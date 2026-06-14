@@ -85,14 +85,14 @@ export default function Navbar() {
       {/* Announcement Bar */}
       <div className="bg-[#0A0A0A] text-neutral-300 text-[9px] font-extrabold tracking-widest uppercase py-2 text-center border-b border-neutral-900">
         {language === "en" 
-          ? "Established in 2026 • Premium Men's Grooming in Guia, Pombal"
+          ? "Established in 2026"
           : language === "es"
-          ? "Fundada en 2026 • Estética Masculina Premium en Guia, Pombal"
+          ? "Fundada en 2026"
           : language === "fr"
-          ? "Établi en 2026 • Coiffure Masculine Premium à Guia, Pombal"
+          ? "Établi en 2026"
           : language === "de"
-          ? "Gegründet 2026 • Premium Herrenpflege in Guia, Pombal"
-          : "Inaugurada a 22 de Março de 2026 • Estética Masculina na Guia, Pombal"
+          ? "Gegründet 2026"
+          : "Inaugurada a 22 de Março de 2026"
         }
       </div>
 
