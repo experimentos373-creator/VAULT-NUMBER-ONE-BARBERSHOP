@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #D4AF37; /* Aged Gold */
+  --color-primary-hover: #C5A880; /* Bronze/Muted Gold */
+  --color-dark: #0A0A0A; /* Matte Black */
+  --color-bg-warm: #121212; /* Dark theme background */
+  --color-gold: #262626; /* Dark borders */
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+}
+
+@layer base {
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    background-color: var(--color-bg-warm);
+    color: #FFFFFF;
+  }
+  
+  section[id], footer[id] {
+    scroll-margin-top: 96px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom Scrollbar for Dark Theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #121212;
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+
+/* Smooth active spring scaling effect helper */
+.spring-hover {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.spring-hover:hover {
+  transform: translateY(-2px);
+}
+
+.spring-hover:active {
+  transform: translateY(0) scale(0.96);
+}
+
+/* Slow Blink animation for stars */
+@keyframes slow-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.slow-blink {
+  animation: slow-blink 2.5s ease-in-out infinite;
+}
+
+/* Scroll Reveal Animations */
+.reveal-fade,
+.reveal-slide-up,
+.reveal-slide-left,
+.reveal-slide-right {
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1), transform 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-slide-up {
+  transform: translateY(30px);
+}
+
+.reveal-slide-left {
+  transform: translateX(-30px);
+}
+
+.reveal-slide-right {
+  transform: translateX(30px);
+}
+
+.reveal-visible {
+  opacity: 1 !important;
+  transform: translate(0, 0) !important;
+}
+
+/* Menu Tab Switch Animation */
+@keyframes menu-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-menu-fade {
+  animation: menu-fade-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Floating Particles (Embers) Animation for Hero - Amber/Gold flakes */
+@keyframes float-particle {
+  0% {
+    transform: translateY(10px) translateX(0) scale(0.5);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(212, 175, 55, 0);
+  }
+  15% {
+    opacity: var(--particle-opacity, 0.3);
+    box-shadow: 0 0 6px 1px rgba(212, 175, 55, 0.5);
+  }
+  50% {
+    transform: translateY(-50vh) translateX(var(--particle-sway, 25px)) scale(1.1);
+    box-shadow: 0 0 14px 4px rgba(212, 175, 55, 0.95), 0 0 24px 8px rgba(212, 175, 55, 0.4);
+  }
+  80% {
+    opacity: var(--particle-opacity, 0.3);
+    box-shadow: 0 0 8px 2px rgba(212, 175, 55, 0.6);
+  }
+  100% {
+    transform: translateY(-110vh) translateX(calc(var(--particle-sway, 25px) * -0.5)) scale(1.3);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(212, 175, 55, 0);
+  }
+}
+
+.floating-particle {
+  position: absolute;
+  bottom: -25px;
+  background-color: #D4AF37; /* primary gold color */
+  border-radius: 50%;
+  pointer-events: none;
+  animation: float-particle var(--particle-duration, 12s) linear infinite;
+  animation-delay: var(--particle-delay, 0s);
+  filter: blur(0.5px);
+  will-change: transform, opacity, box-shadow;
+}
+
+/* WhatsApp Floating Button Pulsing Animation */
+@keyframes whatsapp-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.whatsapp-btn {
+  position: relative;
+}
+
+.whatsapp-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background-color: #25D366;
+  z-index: -1;
+  animation: whatsapp-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
