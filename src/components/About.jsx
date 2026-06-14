@@ -1,4 +1,4 @@
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck, Instagram, Heart, MessageCircle, ExternalLink } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function About() {
@@ -30,7 +30,7 @@ export default function About() {
         <div className="lg:col-span-6 relative h-[420px] sm:h-[500px] flex items-center justify-center reveal-slide-left z-10">
           
           {/* Main Large Image (Fit Alignment) */}
-          <div className="absolute top-[5%] left-[5%] w-[68%] h-[75%] border border-neutral-800 overflow-hidden rounded-2xl shadow-2xl bg-neutral-900">
+          <div className="absolute top-[5%] left-[5%] w-[68%] h-[75%] border border-neutral-800 overflow-hidden rounded-2xl shadow-2xl bg-neutral-900 group">
             <img
               src="/post4.png"
               alt="Ricardo Pedrosa no Vault Number One Barbershop"
@@ -39,6 +39,39 @@ export default function About() {
               width="500"
               height="375"
             />
+            {/* Instagram Hover Overlay */}
+            <a
+              href="https://www.instagram.com/vaultnumberone_barbershop/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-6 text-white text-left z-20"
+            >
+              {/* Header info */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Instagram className="w-5 h-5 text-primary" />
+                  <span className="text-xs font-semibold tracking-wider">@vaultnumberone_barbershop</span>
+                </div>
+                <ExternalLink className="w-4 h-4 opacity-60 text-primary" />
+              </div>
+
+              {/* Caption in the middle */}
+              <p className="text-xs leading-relaxed font-medium line-clamp-4 my-auto">
+                {t("gallery.post4.caption")}
+              </p>
+
+              {/* Footer Stats */}
+              <div className="flex items-center gap-6 pt-4 border-t border-white/10 text-xs font-bold">
+                <span className="flex items-center gap-1.5">
+                  <Heart className="w-4 h-4 fill-current text-red-500" />
+                  148
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <MessageCircle className="w-4 h-4 fill-current" />
+                  14
+                </span>
+              </div>
+            </a>
           </div>
 
           {/* Overlapping Image (Service) */}
