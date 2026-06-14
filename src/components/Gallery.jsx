@@ -113,10 +113,19 @@ export default function Gallery() {
             </div>
 
             {/* Stats */}
-            <div className="flex justify-center sm:justify-start gap-6 text-sm mb-4 text-neutral-300">
-              <span><strong>9</strong> {stats.posts}</span>
-              <span><strong>{stats.followersVal}</strong> {stats.followers}</span>
-              <span><strong>{stats.followingVal}</strong> {stats.following}</span>
+            <div className="flex justify-center sm:justify-start gap-8 sm:gap-10 text-sm mb-5 text-neutral-300">
+              <div className="flex flex-col items-center sm:items-start">
+                <strong className="text-white text-base font-bold">9</strong>
+                <span className="text-xs text-neutral-400 whitespace-nowrap">{stats.posts}</span>
+              </div>
+              <div className="flex flex-col items-center sm:items-start">
+                <strong className="text-white text-base font-bold">{stats.followersVal}</strong>
+                <span className="text-xs text-neutral-400 whitespace-nowrap">{stats.followers}</span>
+              </div>
+              <div className="flex flex-col items-center sm:items-start">
+                <strong className="text-white text-base font-bold">{stats.followingVal}</strong>
+                <span className="text-xs text-neutral-400 whitespace-nowrap">{stats.following}</span>
+              </div>
             </div>
 
             {/* Bio */}
