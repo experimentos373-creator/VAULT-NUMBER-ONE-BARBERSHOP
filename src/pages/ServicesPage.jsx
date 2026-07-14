@@ -1,128 +1,192 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Cpu, Activity, Wrench, Shield, CheckCircle2 } from "lucide-react";
+import { Calendar, ArrowLeft, ShieldCheck, Phone, User, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
-import BudgetForm from "../components/BudgetForm";
 
 export default function ServicesPage() {
-  const { t, language } = useLanguage();
-  const prefix = language === "pt" ? "" : `/${language}`;
+  const { t } = useLanguage();
 
-  useEffect(() => {
-    const titles = {
-      pt: "Serviços de Oficina & Orçamentos | Route N109",
-      en: "Workshop Services & Quotes | Route N109",
-      es: "Servicios de Taller & Presupuestos | Route N109",
-      fr: "Services d'Atelier & Devis | Route N109",
-      de: "Werkstattservice & Kostenvoranschläge | Route N109"
-    };
-    document.title = titles[language] || titles.pt;
-  }, [language]);
+  // Form submission state
+  const [retomaFormSubmitted, setRetomaFormSubmitted] = useState(false);
 
-  const specialties = [
-    {
-      title: t("services.diagBosch.title"),
-      desc: t("services.diagBosch.desc"),
-      icon: <Cpu className="w-6 h-6 text-primary" />
-    },
-    {
-      title: t("services.diagDJI.title"),
-      desc: t("services.diagDJI.desc"),
-      icon: <Activity className="w-6 h-6 text-primary" />
-    },
-    {
-      title: t("services.suspension.title"),
-      desc: t("services.suspension.desc"),
-      icon: <Wrench className="w-6 h-6 text-primary" />
-    },
-    {
-      title: t("services.custom.title"),
-      desc: t("services.custom.desc"),
-      icon: <Shield className="w-6 h-6 text-primary" />
-    }
-  ];
+  // Form Field States
+  const [userName, setUserName] = useState("");
+  const [userPhone, setUserPhone] = useState("");
+  const [retomaBrand, setRetomaBrand] = useState("");
+  const [retomaModel, setRetomaModel] = useState("");
+  const [retomaYear, setRetomaYear] = useState("");
+  const [retomaKms, setRetomaKms] = useState("");
+
+  const handleRetomaSubmit = (e) => {
+    e.preventDefault();
+    if (!retomaBrand || !retomaModel || !retomaYear || !retomaKms || !userName || !userPhone) return;
+    setRetomaFormSubmitted(true);
+  };
 
   return (
-    <div className="bg-white min-h-screen text-neutral-800 pt-24 md:pt-32 pb-20 text-left">
+    <div className="bg-light-bg min-h-screen text-neutral-800 pt-24 md:pt-32 pb-20">
       
       {/* Back button */}
-      <div className="max-w-[1400px] mx-auto px-6 mb-8">
-        <Link to={prefix || "/"} className="inline-flex items-center gap-2 text-neutral-500 hover:text-neutral-900 transition-colors font-semibold text-sm">
+      <div className="max-w-[1400px] mx-auto px-6 mb-8 text-left">
+        <Link to="/" className="inline-flex items-center gap-2 text-neutral-500 hover:text-neutral-900 transition-colors font-semibold text-sm">
           <ArrowLeft className="w-4 h-4" />
           {t("general.backToHome")}
         </Link>
       </div>
 
       <section className="relative">
-        <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+        <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
           
-          {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-primary font-black uppercase text-xs tracking-widest bg-primary/10 px-4 py-1.5 rounded-full mb-4 inline-block">
-              {t("general.servicesWorkshop")}
+          {/* Section Header */}
+          <div className="mb-12 reveal-slide-up">
+            <span className="text-primary-dark font-black uppercase text-xs tracking-widest bg-primary/15 px-4 py-1.5 rounded-full mb-4 inline-block">
+              Serviços Gatilhauto
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold font-display tracking-tight leading-none mb-6 uppercase text-neutral-900">
-              {t("services.pageTitle")}
+            <h1 className="text-4xl md:text-5xl font-extrabold font-display tracking-tight leading-none mb-4 uppercase text-neutral-900">
+              {t("services.title")}
             </h1>
-            <p className="text-neutral-500 font-normal text-sm md:text-base leading-relaxed">
-              {t("services.pageSubtitle")}
+            <p className="text-neutral-500 font-normal max-w-xl mx-auto text-sm leading-relaxed">
+              {t("services.subtitle")}
             </p>
           </div>
 
-          {/* Grid: Left - Specialties list, Right - Form tabs */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          {/* Form Container */}
+          <div className="max-w-xl mx-auto bg-white border border-neutral-100 rounded-3xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.03)] relative text-left">
             
-            {/* Specialties list */}
-            <div className="lg:col-span-5 space-y-8">
-              <h2 className="text-xl md:text-2xl font-black uppercase tracking-tight text-neutral-950 border-b pb-4 mb-6">
-                {language === "en" ? "Workshop Specialties" : "Especialidades de Oficina"}
+            <div className="animate-menu-fade">
+              <h2 className="text-xl font-bold font-display uppercase tracking-wider text-neutral-900 mb-2 flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-primary-dark" />
+                <span>{t("services.retoma.title")}</span>
               </h2>
+              <p className="text-xs text-neutral-500 mb-6 font-semibold">
+                {t("services.retoma.subtitle")}
+              </p>
 
-              <div className="space-y-6">
-                {specialties.map((spec, index) => (
-                  <div key={index} className="flex gap-4 p-5 rounded-2xl bg-neutral-50 border border-neutral-100 hover:border-neutral-200 transition-all duration-300">
-                    <div className="p-3 bg-white rounded-xl shadow-sm h-fit shrink-0 border border-neutral-100">
-                      {spec.icon}
+              {!retomaFormSubmitted ? (
+                <form onSubmit={handleRetomaSubmit} className="space-y-5">
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-[10px] text-neutral-400 font-bold uppercase tracking-wider block mb-2">
+                        {t("services.retoma.brand")}
+                      </label>
+                      <input
+                        type="text"
+                        value={retomaBrand}
+                        onChange={(e) => setRetomaBrand(e.target.value)}
+                        placeholder="Ex: Mercedes-Benz"
+                        className="w-full bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-3 text-xs font-semibold text-neutral-800 outline-none focus:border-primary/50 transition-colors"
+                        required
+                      />
                     </div>
                     <div>
-                      <h3 className="text-base font-extrabold text-neutral-900 uppercase tracking-wide mb-1.5 font-display">
-                        {spec.title}
-                      </h3>
-                      <p className="text-xs text-neutral-500 font-medium leading-relaxed">
-                        {spec.desc}
-                      </p>
+                      <label className="text-[10px] text-neutral-400 font-bold uppercase tracking-wider block mb-2">
+                        {t("services.retoma.model")}
+                      </label>
+                      <input
+                        type="text"
+                        value={retomaModel}
+                        onChange={(e) => setRetomaModel(e.target.value)}
+                        placeholder="Ex: Classe A 180d AMG"
+                        className="w-full bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-3 text-xs font-semibold text-neutral-800 outline-none focus:border-primary/50 transition-colors"
+                        required
+                      />
                     </div>
                   </div>
-                ))}
-              </div>
 
-              {/* Note card */}
-              <div className="p-5 border border-primary/20 bg-primary/5 rounded-2xl text-xs font-semibold text-neutral-600 leading-relaxed">
-                <span className="text-primary font-black uppercase tracking-wider block mb-1.5">Info Importante</span>
-                {t("contact.hoursNote")}
-              </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-[10px] text-neutral-400 font-bold uppercase tracking-wider block mb-2">
+                        {t("services.retoma.year")}
+                      </label>
+                      <input
+                        type="number"
+                        min="1980"
+                        max="2027"
+                        value={retomaYear}
+                        onChange={(e) => setRetomaYear(e.target.value)}
+                        placeholder="Ex: 2018"
+                        className="w-full bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-3 text-xs font-semibold text-neutral-800 outline-none focus:border-primary/50 transition-colors"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[10px] text-neutral-400 font-bold uppercase tracking-wider block mb-2">
+                        {t("services.retoma.kms")}
+                      </label>
+                      <input
+                        type="number"
+                        min="0"
+                        value={retomaKms}
+                        onChange={(e) => setRetomaKms(e.target.value)}
+                        placeholder="Ex: 145000"
+                        className="w-full bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-3 text-xs font-semibold text-neutral-800 outline-none focus:border-primary/50 transition-colors"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Contact information fields */}
+                  <div className="border-t border-neutral-100 pt-4 space-y-4">
+                    <div>
+                      <label className="text-[10px] text-neutral-400 font-bold uppercase tracking-wider block mb-2">
+                        Nome do proprietário
+                      </label>
+                      <div className="bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-2.5 flex items-center gap-3">
+                        <User className="w-4 h-4 text-neutral-400" />
+                        <input
+                          type="text"
+                          value={userName}
+                          onChange={(e) => setUserName(e.target.value)}
+                          placeholder="Nome Completo"
+                          className="bg-transparent text-xs font-semibold text-neutral-800 w-full outline-none border-none"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="text-[10px] text-neutral-400 font-bold uppercase tracking-wider block mb-2">
+                        {t("services.retoma.phone")}
+                      </label>
+                      <div className="bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-2.5 flex items-center gap-3">
+                        <Phone className="w-4 h-4 text-neutral-400" />
+                        <input
+                          type="tel"
+                          value={userPhone}
+                          onChange={(e) => setUserPhone(e.target.value)}
+                          placeholder="Telemóvel"
+                          className="bg-transparent text-xs font-semibold text-neutral-800 w-full outline-none border-none"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    className="w-full bg-primary hover:bg-primary-dark text-neutral-950 py-4 rounded-xl font-bold text-xs uppercase tracking-widest text-center transition-colors shadow-lg shadow-primary/10 cursor-pointer border-none"
+                  >
+                    {t("services.retoma.submit")}
+                  </button>
+
+                </form>
+              ) : (
+                <div className="text-center py-10 animate-menu-fade">
+                  <CheckCircle2 className="w-16 h-16 text-emerald-500 mx-auto mb-6" />
+                  <h3 className="text-lg font-bold font-display uppercase tracking-wider text-neutral-900 mb-2">Proposta Submetida!</h3>
+                  <p className="text-xs text-neutral-500 leading-relaxed max-w-sm mx-auto font-semibold">
+                    {t("services.retoma.success")}
+                  </p>
+                </div>
+              )}
             </div>
 
-            {/* Forms interface - Only rendering the Quote Form */}
-            <div className="lg:col-span-7 bg-neutral-50 border border-neutral-200/80 rounded-3xl p-6 sm:p-8 shadow-sm">
-              <div className="mb-6">
-                <h3 className="text-lg font-black uppercase text-center tracking-tight text-neutral-900 font-display mb-2">
-                  {t("contact.tabBudget")}
-                </h3>
-                <p className="text-xs text-neutral-500 font-semibold text-center leading-relaxed">
-                  {t("general.budgetSubtitle")}
-                </p>
-              </div>
-
-              <div className="animate-menu-fade">
-                <BudgetForm />
-              </div>
-
-              {/* Trust disclaimer */}
-              <div className="mt-8 border-t border-neutral-200 pt-4 flex items-center justify-center gap-2 text-[9px] text-neutral-400 font-extrabold uppercase tracking-wider">
-                <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
-                <span>Ligação direta e segura para o WhatsApp de Route N109</span>
-              </div>
+            {/* Trust Assurance Badge */}
+            <div className="mt-8 border-t border-neutral-100 pt-4 flex items-center justify-center gap-2.5 text-[10px] text-neutral-400 font-bold uppercase tracking-wider">
+              <ShieldCheck className="w-4 h-4 text-primary-dark shrink-0" />
+              <span>Conexão Segura SSL • Gatilhauto Pombal</span>
             </div>
 
           </div>

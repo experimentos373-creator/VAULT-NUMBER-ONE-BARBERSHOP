@@ -1,0 +1,16 @@
+<svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="60" height="30" fill="#012169"/>
+  
+  <!-- White Saltire -->
+  <path d="M0 0l60 30M60 0L0 30" stroke="#fff" stroke-width="6"/>
+  
+  <!-- Red Saltire -->
+  <path d="M0 0l60 30M60 0L0 30" stroke="#C8102E" stroke-width="2"/>
+  
+  <!-- White Cross -->
+  <path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/>
+  
+  <!-- Red Cross -->
+  <path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/>
+</svg>

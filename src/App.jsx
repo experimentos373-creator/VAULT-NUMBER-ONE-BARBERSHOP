@@ -1,18 +1,13 @@
-import { useEffect, lazy, Suspense } from "react";
+import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { SpeedInsights } from "@vercel/speed-insights/react";
+import { LanguageProvider } from "./context/LanguageContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import StockPage from "./pages/StockPage";
+import ServicesPage from "./pages/ServicesPage";
+import CompanyPage from "./pages/CompanyPage";
 import WhatsAppButton from "./components/WhatsAppButton";
-import { LanguageProvider } from "./context/LanguageContext";
-
-// Lazy load pages for chunk splitting and optimized performance
-const Home = lazy(() => import("./pages/Home"));
-const SEOPage = lazy(() => import("./pages/SEOPage"));
-const CatalogPage = lazy(() => import("./pages/CatalogPage"));
-const CompanyPage = lazy(() => import("./pages/CompanyPage"));
-const ServicesPage = lazy(() => import("./pages/ServicesPage"));
-const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 
 // Scroll Restoration & Hash Scrolling Helper
 function ScrollToTop() {
@@ -23,7 +18,6 @@ function ScrollToTop() {
     document.body.style.overflow = "unset";
 
     if (hash) {
-      // Small timeout to allow the DOM to render before finding the element
       setTimeout(() => {
         const element = document.getElementById(hash.substring(1));
         if (element) {
@@ -38,7 +32,7 @@ function ScrollToTop() {
   return null;
 }
 
-// Re-observe reveal elements on every route change, watching for DOM changes due to lazy loading
+// Re-observe reveal elements on every route change so animations always fire
 function RevealObserver() {
   const { pathname } = useLocation();
 
@@ -60,29 +54,16 @@ function RevealObserver() {
 
     const observer = new IntersectionObserver(handleIntersection, observerOptions);
 
-    const observeElements = () => {
+    const timer = setTimeout(() => {
       const revealElements = document.querySelectorAll(
         ".reveal-fade:not(.reveal-visible), .reveal-slide-up:not(.reveal-visible), .reveal-slide-left:not(.reveal-visible), .reveal-slide-right:not(.reveal-visible)"
       );
       revealElements.forEach((el) => observer.observe(el));
-    };
-
-    // Run initially
-    observeElements();
-
-    // Use MutationObserver to re-observe whenever new elements are mounted (e.g. from React.lazy chunks)
-    const mutationObserver = new MutationObserver(() => {
-      observeElements();
-    });
-
-    mutationObserver.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
+    }, 100);
 
     return () => {
+      clearTimeout(timer);
       observer.disconnect();
-      mutationObserver.disconnect();
     };
   }, [pathname]);
 
@@ -92,65 +73,28 @@ function RevealObserver() {
 export default function App() {
   return (
     <LanguageProvider>
-      <div className="bg-white text-dark min-h-screen flex flex-col justify-between overflow-x-hidden">
+      <div className="bg-dark-bg text-neutral-200 min-h-screen flex flex-col justify-between overflow-x-hidden">
         <ScrollToTop />
         <RevealObserver />
 
-        {/* Navigation Bar */}
+        {/* Global Floating Navigation Bar */}
         <Navbar />
 
-        <Suspense fallback={<div className="min-h-screen bg-white"></div>}>
+        {/* Page Content Routes */}
+        <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/en" element={<Home />} />
-            <Route path="/es" element={<Home />} />
-            <Route path="/fr" element={<Home />} />
-            <Route path="/de" element={<Home />} />
-            {/* Catalog routes (static, before dynamic :slug) */}
-            <Route path="/catalogo" element={<CatalogPage />} />
-            <Route path="/en/catalog" element={<CatalogPage />} />
-            <Route path="/es/catalogo" element={<CatalogPage />} />
-            <Route path="/fr/catalogue" element={<CatalogPage />} />
-            <Route path="/de/katalog" element={<CatalogPage />} />
-
-            {/* Company routes */}
-            <Route path="/empresa" element={<CompanyPage />} />
-            <Route path="/en/about" element={<CompanyPage />} />
-            <Route path="/es/empresa" element={<CompanyPage />} />
-            <Route path="/fr/entreprise" element={<CompanyPage />} />
-            <Route path="/de/unternehmen" element={<CompanyPage />} />
-
-            {/* Services routes */}
+            <Route path="/viaturas" element={<StockPage />} />
             <Route path="/servicos" element={<ServicesPage />} />
-            <Route path="/en/services" element={<ServicesPage />} />
-            <Route path="/es/servicios" element={<ServicesPage />} />
-            <Route path="/fr/services" element={<ServicesPage />} />
-            <Route path="/de/services" element={<ServicesPage />} />
-
-            {/* Gallery routes */}
-            <Route path="/galeria" element={<GalleryPage />} />
-            <Route path="/en/gallery" element={<GalleryPage />} />
-            <Route path="/es/galeria" element={<GalleryPage />} />
-            <Route path="/fr/galerie" element={<GalleryPage />} />
-            <Route path="/de/galerie" element={<GalleryPage />} />
-
-            {/* Dynamic SEO pages */}
-            <Route path="/:slug" element={<SEOPage />} />
-            <Route path="/en/:slug" element={<SEOPage />} />
-            <Route path="/es/:slug" element={<SEOPage />} />
-            <Route path="/fr/:slug" element={<SEOPage />} />
-            <Route path="/de/:slug" element={<SEOPage />} />
+            <Route path="/empresa" element={<CompanyPage />} />
           </Routes>
-        </Suspense>
+        </main>
 
-        {/* Contact Banner & Footer */}
+        {/* Footer Area */}
         <Footer />
 
-        {/* Dynamic Floating WhatsApp / Phone button */}
+        {/* Contact WhatsApp Button */}
         <WhatsAppButton />
-
-        {/* Vercel Speed Insights */}
-        <SpeedInsights />
       </div>
     </LanguageProvider>
   );

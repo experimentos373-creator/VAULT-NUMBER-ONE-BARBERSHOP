@@ -22,10 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Agent metadata and temp directories
-.agent/
-.gemini/
-
-
-.vercel
