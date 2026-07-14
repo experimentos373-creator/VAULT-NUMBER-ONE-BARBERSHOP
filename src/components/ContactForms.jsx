@@ -25,7 +25,7 @@ export default function ContactForms() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch text-left reveal-slide-up">
           
           {/* Card 1: Online Booking via Buk.pt (Preferred) */}
-          <div className="lg:col-span-5 bg-[#121212] border border-neutral-800 p-8 rounded-2xl flex flex-col justify-between hover:border-primary/45 transition-colors duration-300">
+          <div className="lg:col-span-5 bg-[#121212] border border-neutral-850 p-8 rounded-2xl flex flex-col justify-between hover:border-primary/40 hover:shadow-lg transition-all duration-300">
             <div>
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
                 <Calendar className="w-6 h-6 text-primary" />
@@ -33,7 +33,7 @@ export default function ContactForms() {
               <h3 className="text-xl font-bold text-white font-display uppercase tracking-wider mb-3">
                 Marcação Online
               </h3>
-              <p className="text-xs text-neutral-400 leading-relaxed mb-6 font-normal">
+              <p className="text-xs text-neutral-455 leading-relaxed mb-6 font-normal">
                 Agende diretamente na nossa agenda digital através do **Buk.pt**. Escolha o seu serviço, escolha o barbeiro Ricardo Pedrosa, e selecione o dia e a hora com confirmação instantânea e sem complicações.
               </p>
             </div>
@@ -42,15 +42,15 @@ export default function ContactForms() {
               href="https://vaultnumberone.buk.pt"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-primary hover:bg-[#B8902B] text-black font-black py-4 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 uppercase text-xs tracking-widest font-display w-full text-center spring-hover"
+              className="bg-primary hover:bg-[#B8902B] text-black font-black py-4 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-205 flex items-center justify-center gap-2 uppercase text-xs tracking-widest font-display w-full text-center spring-hover"
             >
               Agendar no Buk.pt
               <ExternalLink className="w-4 h-4" />
             </a>
           </div>
 
-          {/* Card 2: Custom Booking Form (WhatsApp fallback) */}
-          <div className="lg:col-span-7 bg-[#121212] border border-neutral-800 p-2 rounded-2xl shadow-xl">
+          {/* Card 2: Custom Booking Form (Instagram fallback) */}
+          <div className="lg:col-span-7">
             <WorkshopForm />
           </div>
 

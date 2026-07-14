@@ -65,8 +65,8 @@ export default function Reviews() {
           </div>
           
           {/* Main Google rating card */}
-          <div className="bg-[#121212] border border-neutral-800 rounded-2xl p-5 flex items-center gap-4 text-left self-start md:self-auto backdrop-blur-sm">
-            <div className="bg-primary/20 text-primary w-12 h-12 rounded-xl flex items-center justify-center font-black text-xl font-display">
+          <div className="bg-[#121212] border border-neutral-850 rounded-xl p-5 flex items-center gap-4 text-left self-start md:self-auto backdrop-blur-sm shadow-md">
+            <div className="bg-primary/20 text-primary w-12 h-12 rounded-lg flex items-center justify-center font-black text-xl font-display">
               5.0
             </div>
             <div>
@@ -83,19 +83,19 @@ export default function Reviews() {
         </div>
 
         {/* Reviews Columns Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {reviewsList.map((rev, idx) => (
             <div
               key={idx}
-              className="bg-transparent border-l border-neutral-800 hover:border-primary/45 pl-6 py-2 flex flex-col justify-between relative group transition-all duration-500 reveal-slide-up"
+              className="bg-[#121212]/40 border border-neutral-850 hover:border-primary/30 p-6 sm:p-8 flex flex-col justify-between relative group transition-all duration-300 rounded-xl shadow-sm reveal-slide-up"
               style={{ transitionDelay: `${(idx % 3) * 100}ms` }}
             >
               <div>
                 {/* Large Decorative Quote */}
-                <span className="font-serif text-7xl text-white/5 group-hover:text-primary/10 absolute right-4 top-0 select-none transition-colors duration-500">”</span>
+                <span className="font-serif text-7xl text-white/5 group-hover:text-primary/10 absolute right-6 top-2 select-none transition-colors duration-500">”</span>
 
                 {/* Rating stars */}
-                <div className="flex text-primary gap-0.5 mb-4">
+                <div className="flex text-primary gap-0.5 mb-5">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
@@ -107,7 +107,7 @@ export default function Reviews() {
                 </div>
 
                 {/* Review text */}
-                <p className="text-neutral-300 font-normal text-sm leading-relaxed mb-6 italic">
+                <p className="text-neutral-350 font-normal text-sm leading-relaxed mb-6 italic relative z-10">
                   "{rev.text}"
                 </p>
               </div>

@@ -80,22 +80,22 @@ export default function Gallery() {
         </div>
 
         {/* Simulated Instagram Profile Header Card */}
-        <div className="max-w-3xl mx-auto bg-[#0C0C0C] border border-neutral-900 p-6 sm:p-8 rounded-2xl mb-12 flex flex-col sm:flex-row items-center gap-6 sm:gap-10 reveal-slide-up">
+        <div className="max-w-3xl mx-auto bg-[#0c0c0c] border border-neutral-850 p-6 sm:p-8 rounded-2xl mb-12 flex flex-col sm:flex-row items-center gap-6 sm:gap-10 reveal-slide-up">
           {/* Avatar with gradient border */}
           <div className="relative p-[3px] rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 shrink-0">
             <div className="bg-[#0C0C0C] p-1 rounded-full">
               <img
                 src="/favicon.png"
                 alt="Vault Number One Logo"
-                className="w-20 h-20 rounded-full object-cover"
+                className="w-18 h-18 sm:w-20 sm:h-20 rounded-full object-cover"
               />
             </div>
           </div>
 
           {/* Profile details */}
           <div className="flex-1 text-center sm:text-left">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4 justify-center sm:justify-start">
-              <h3 className="text-lg font-bold text-white flex items-center justify-center sm:justify-start gap-1">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4 justify-center sm:justify-start">
+              <h3 className="text-base sm:text-lg font-bold text-white flex items-center justify-center sm:justify-start gap-1">
                 vaultnumberone_barbershop
                 {/* Instagram Verified Badge SVG */}
                 <svg className="w-4 h-4 text-[#0095f6]" viewBox="0 0 24 24" fill="currentColor">
@@ -106,7 +106,7 @@ export default function Gallery() {
                 href="https://www.instagram.com/vaultnumberone_barbershop/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#0095f6] hover:bg-[#1877f2] text-white px-6 py-1.5 rounded-lg text-xs font-bold transition-all text-center"
+                className="bg-[#0095f6] hover:bg-[#1877f2] text-white px-5 py-1.5 rounded-lg text-xs font-bold transition-all text-center inline-block spring-hover shadow-sm"
               >
                 Seguir
               </a>
@@ -115,32 +115,32 @@ export default function Gallery() {
             {/* Stats */}
             <div className="flex justify-center sm:justify-start gap-8 sm:gap-10 text-sm mb-5 text-neutral-300">
               <div className="flex flex-col items-center sm:items-start">
-                <strong className="text-white text-base font-bold">9</strong>
-                <span className="text-xs text-neutral-400 whitespace-nowrap">{stats.posts}</span>
+                <strong className="text-white text-sm sm:text-base font-bold">9</strong>
+                <span className="text-[10px] sm:text-xs text-neutral-400 whitespace-nowrap">{stats.posts}</span>
               </div>
               <div className="flex flex-col items-center sm:items-start">
-                <strong className="text-white text-base font-bold">{stats.followersVal}</strong>
-                <span className="text-xs text-neutral-400 whitespace-nowrap">{stats.followers}</span>
+                <strong className="text-white text-sm sm:text-base font-bold">{stats.followersVal}</strong>
+                <span className="text-[10px] sm:text-xs text-neutral-400 whitespace-nowrap">{stats.followers}</span>
               </div>
               <div className="flex flex-col items-center sm:items-start">
-                <strong className="text-white text-base font-bold">{stats.followingVal}</strong>
-                <span className="text-xs text-neutral-400 whitespace-nowrap">{stats.following}</span>
+                <strong className="text-white text-sm sm:text-base font-bold">{stats.followingVal}</strong>
+                <span className="text-[10px] sm:text-xs text-neutral-400 whitespace-nowrap">{stats.following}</span>
               </div>
             </div>
 
             {/* Bio */}
             <div className="text-xs text-neutral-400 leading-relaxed font-medium">
-              <p className="font-bold text-white">VAULT NUMBER ONE BARBERSHOP</p>
+              <p className="font-bold text-white uppercase tracking-wide">VAULT NUMBER ONE BARBERSHOP</p>
               <p className="text-primary font-bold">Barbeiro @ricardofpedrosa</p>
               <p>📍 GUIA, POMBAL</p>
-              <p>Avenida José Maria Duarte Júnior, 5, Rés do Chão, Direito</p>
-              <p className="mt-1 text-[10px] text-neutral-500 uppercase tracking-wider">Marcações: vaultnumberone.buk.pt</p>
+              <p>Avenida José Maria Duarte Júnior, 5, R/C Direito</p>
+              <p className="mt-1.5 text-[10px] text-neutral-500 uppercase tracking-widest font-bold">Marcações: vaultnumberone.buk.pt</p>
             </div>
           </div>
         </div>
 
         {/* Symmetric Instagram Post Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {posts.map((post, idx) => (
             <a
               key={idx}
@@ -158,8 +158,8 @@ export default function Gallery() {
                 className="w-full h-full object-cover opacity-80 transition-transform duration-700 ease-out group-hover:scale-105 group-hover:opacity-100"
               />
 
-              {/* Instagram Hover Overlay */}
-              <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-6 text-white text-left z-20">
+              {/* Instagram Hover Overlay (Desktop/Tablet) */}
+              <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:flex flex-col justify-between p-6 text-white text-left z-20">
                 {/* Header info */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -184,6 +184,14 @@ export default function Gallery() {
                     <MessageCircle className="w-4 h-4 fill-current" />
                     {post.comments}
                   </span>
+                </div>
+              </div>
+
+              {/* Mobile Touch Overlay Bar (Always Visible at Bottom for Touch Devices) */}
+              <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-3.5 flex items-center justify-between text-white z-20 sm:hidden">
+                <span className="text-[10px] font-bold truncate max-w-[65%]">{post.caption}</span>
+                <div className="flex items-center gap-2.5 font-bold text-[9px] shrink-0 text-neutral-300">
+                  <span className="flex items-center gap-1"><Heart className="w-3.5 h-3.5 text-red-500 fill-current" /> {post.likes}</span>
                 </div>
               </div>
               

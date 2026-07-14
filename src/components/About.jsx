@@ -24,13 +24,13 @@ export default function About() {
       {/* Subtle geometric line art background */}
       <div className="absolute right-0 top-0 w-1/3 h-full border-l border-neutral-900 pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
         {/* Images stacked in an overlapping magazine layout */}
-        <div className="lg:col-span-6 relative h-[420px] sm:h-[500px] flex items-center justify-center reveal-slide-left z-10">
+        <div className="lg:col-span-6 relative h-[380px] sm:h-[500px] flex items-center justify-center reveal-slide-left z-10">
           
           {/* Main Large Image (Fit Alignment) */}
-          <div className="absolute top-[5%] left-[5%] w-[68%] h-[75%] border border-neutral-800 overflow-hidden rounded-2xl shadow-2xl bg-neutral-900 group">
+          <div className="absolute top-[5%] left-[5%] w-[70%] h-[75%] border border-neutral-800 overflow-hidden rounded-2xl shadow-2xl bg-neutral-900 group">
             <img
               src="/post4.png"
               alt="Ricardo Pedrosa no Vault Number One Barbershop"
@@ -39,12 +39,12 @@ export default function About() {
               width="500"
               height="375"
             />
-            {/* Instagram Hover Overlay */}
+            {/* Instagram Hover Overlay (Desktop/Tablet) */}
             <a
               href="https://www.instagram.com/vaultnumberone_barbershop/"
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-6 text-white text-left z-20"
+              className="absolute inset-0 bg-black/85 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:flex flex-col justify-between p-6 text-white text-left z-20"
             >
               {/* Header info */}
               <div className="flex items-center justify-between">
@@ -72,6 +72,22 @@ export default function About() {
                 </span>
               </div>
             </a>
+
+            {/* Mobile Touch Overlay Bar (Alternative for Mobile Screens) */}
+            <a
+              href="https://www.instagram.com/vaultnumberone_barbershop/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/70 to-transparent p-3.5 flex items-center justify-between text-white z-20 sm:hidden"
+            >
+              <div className="flex items-center gap-1.5">
+                <Instagram className="w-4 h-4 text-primary shrink-0 animate-pulse" />
+                <span className="text-[10px] font-extrabold tracking-wider">@vaultnumberone_barbershop</span>
+              </div>
+              <span className="text-[9px] bg-primary/20 text-primary border border-primary/25 px-2 py-0.5 font-black uppercase rounded-sm flex items-center gap-1">
+                Ver <ExternalLink className="w-2.5 h-2.5" />
+              </span>
+            </a>
           </div>
 
           {/* Overlapping Image (Service) */}
@@ -87,10 +103,10 @@ export default function About() {
           </div>
 
           {/* Floating Certified Badge */}
-          <div className="absolute top-[12%] right-[8%] bg-[#0C0C0C] text-white p-5 rounded-2xl border border-neutral-800 z-30 shadow-2xl text-center flex flex-col justify-center items-center w-36 h-36">
-            <ShieldCheck className="w-8 h-8 text-primary mb-2 slow-blink" />
-            <span className="text-sm font-extrabold font-display block uppercase tracking-tight">Vault No. 1</span>
-            <span className="text-[8px] text-neutral-400 uppercase tracking-widest mt-1">
+          <div className="absolute top-[10%] right-[3%] sm:right-[6%] bg-[#0C0C0C] text-white p-3 sm:p-5 rounded-2xl border border-neutral-800 z-30 shadow-2xl text-center flex flex-col justify-center items-center w-28 h-28 sm:w-36 sm:h-36">
+            <ShieldCheck className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-1 sm:mb-2 slow-blink" />
+            <span className="text-xs sm:text-sm font-extrabold font-display block uppercase tracking-tight">Vault No. 1</span>
+            <span className="text-[7px] sm:text-[8px] text-neutral-400 uppercase tracking-widest mt-1">
               {t("about.since")}
             </span>
           </div>
@@ -119,7 +135,7 @@ export default function About() {
             {features.map((feature, idx) => (
               <div
                 key={idx}
-                className="flex items-start gap-6 py-5 border-b border-neutral-850 group transition-colors duration-300"
+                className="flex items-start gap-6 py-5 border-b border-neutral-850 group transition-all duration-300 hover:border-neutral-700"
               >
                 <span className="font-display text-3xl font-black text-primary/30 group-hover:text-primary transition-colors duration-300 leading-none pt-1">
                   {`0${idx + 1}`}

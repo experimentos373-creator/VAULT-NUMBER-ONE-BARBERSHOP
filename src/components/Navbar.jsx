@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { Menu, X, Instagram, Globe, Scissors } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
-import { config } from "../config";
 
 export default function Navbar() {
   const { t, language } = useLanguage();
@@ -72,7 +71,7 @@ export default function Navbar() {
 
   const prefix = language === "pt" ? "" : `/${language}`;
   const navLinks = [
-    { label: t("nav.bikes").toUpperCase(), href: `${prefix}/#menu` },
+    { label: t("nav.services").toUpperCase(), href: `${prefix}/#menu` },
     { label: t("nav.about").toUpperCase(), href: `${prefix}/#sobre` },
     { label: t("nav.reviews").toUpperCase(), href: `${prefix}/#avaliacoes` },
     { label: t("nav.contact").toUpperCase(), href: `${prefix}/#contacto` },
@@ -83,7 +82,7 @@ export default function Navbar() {
   return (
     <div className="fixed top-0 left-0 w-full z-50 transition-all duration-300">
       {/* Announcement Bar */}
-      <div className="bg-[#0A0A0A] text-neutral-300 text-[9px] font-extrabold tracking-widest uppercase py-2 text-center border-b border-neutral-900">
+      <div className="bg-[#0A0A0A] text-neutral-300 text-[9px] font-extrabold tracking-widest uppercase py-2.5 text-center border-b border-neutral-900">
         {language === "en" 
           ? "Established in 2026"
           : language === "es"
@@ -99,41 +98,41 @@ export default function Navbar() {
       <nav
         className={`w-full transition-all duration-300 ${
           isScrolled || isMobileMenuOpen
-            ? "bg-[#0A0A0A]/95 backdrop-blur-md shadow-lg py-4 text-white border-b border-neutral-900"
-            : "bg-[#0C0C0C]/80 backdrop-blur-sm py-5 text-white border-b border-neutral-900/40"
+            ? "bg-[#0A0A0A]/95 backdrop-blur-md shadow-lg py-3 text-white border-b border-neutral-900"
+            : "bg-[#0C0C0C]/80 backdrop-blur-sm py-4.5 text-white border-b border-neutral-900/40"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
           {/* Logo */}
-          <Link to={prefix || "/"} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 group">
+          <Link to={prefix || "/"} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2.5 group shrink-0">
             <div className="flex items-center gap-2">
               <Scissors className="w-4 h-4 text-primary shrink-0 animate-pulse" />
-              <span className="font-extrabold tracking-tighter text-xl font-display text-white">
+              <span className="font-extrabold tracking-tighter text-lg sm:text-xl font-display text-white">
                 VAULT NUMBER<span className="text-primary font-black">.ONE</span>
               </span>
             </div>
-            <span className="text-[9px] uppercase tracking-widest bg-primary text-black px-2 py-0.5 font-black rounded-sm self-start sm:self-auto">
+            <span className="text-[8px] sm:text-[9px] uppercase tracking-widest bg-primary text-black px-1.5 py-0.5 font-black rounded-sm self-start sm:self-auto">
               Barbershop
             </span>
           </Link>
 
           {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-6 font-medium">
+          <div className="hidden md:flex items-center gap-4 lg:gap-6 font-medium">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="hover:text-primary text-xs tracking-wider transition-colors relative text-neutral-300 hover:text-white font-extrabold after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full"
+                className="hover:text-primary text-[11px] lg:text-xs tracking-wider transition-colors relative text-neutral-300 hover:text-white font-extrabold after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full"
               >
                 {link.label}
               </a>
             ))}
 
             {/* Language Selector Dropdown */}
-            <div className="relative border-l border-neutral-800 pl-4" ref={desktopDropdownRef}>
+            <div className="relative border-l border-neutral-800 pl-3.5 lg:pl-4" ref={desktopDropdownRef}>
               <button
                 onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-                className="flex items-center gap-1.5 text-[10px] font-bold tracking-widest text-neutral-400 hover:text-white uppercase cursor-pointer py-1.5 px-2.5 rounded-lg bg-neutral-900/60 hover:bg-neutral-800 transition-all duration-200"
+                className="flex items-center gap-1.5 text-[10px] font-bold tracking-widest text-neutral-400 hover:text-white uppercase cursor-pointer py-1.5 px-2 rounded-lg bg-neutral-900/60 hover:bg-neutral-800 transition-all duration-200"
               >
                 <Globe className="w-3.5 h-3.5 text-neutral-400" />
                 <span>{currentLangObj.label}</span>
@@ -178,10 +177,10 @@ export default function Navbar() {
               href="https://www.instagram.com/vaultnumberone_barbershop/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-primary hover:bg-white text-black hover:text-black px-5 py-2.5 rounded-full font-extrabold text-xs uppercase tracking-wider flex items-center gap-2 spring-hover shadow-md hover:shadow-primary/30 transition-all duration-300"
+              className="bg-primary hover:bg-white text-black px-4 py-2.5 rounded-full font-extrabold text-[10px] sm:text-xs uppercase tracking-wider flex items-center gap-2 spring-hover shadow-md hover:shadow-primary/30 transition-all duration-300"
             >
               <Instagram className="w-3.5 h-3.5" />
-              Instagram
+              <span className="hidden lg:inline">Instagram</span>
             </a>
           </div>
 
@@ -191,7 +190,7 @@ export default function Navbar() {
             <div className="relative" ref={mobileDropdownRef}>
               <button
                 onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-                className="flex items-center gap-1 text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase cursor-pointer py-1.5 px-2 rounded-lg bg-neutral-900/60"
+                className="flex items-center gap-1.5 text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase cursor-pointer py-1.5 px-2.5 rounded-lg bg-neutral-900/60"
               >
                 <span>{currentLangObj.label}</span>
                 <span className="text-[6px] text-neutral-450">▼</span>
@@ -243,13 +242,13 @@ export default function Navbar() {
 
         {/* Mobile Drawer */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-[#0C0C0C] border-t border-neutral-900 shadow-2xl py-6 px-6 flex flex-col gap-4 text-white font-semibold">
+          <div className="md:hidden absolute top-full left-0 w-full bg-[#0A0A0A]/98 backdrop-blur-xl border-b border-neutral-900 shadow-2xl py-8 px-6 flex flex-col gap-2 text-white font-semibold animate-menu-fade">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="hover:text-primary transition-colors py-3 border-b border-neutral-900 last:border-0 text-xs tracking-wider font-extrabold"
+                className="hover:text-primary transition-colors py-3 border-b border-neutral-900/60 last:border-0 text-xs tracking-widest font-black uppercase"
               >
                 {link.label}
               </a>
@@ -259,7 +258,7 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="bg-primary hover:bg-[#B8902B] text-black text-center py-3.5 rounded-full font-bold mt-2 shadow-md uppercase text-xs tracking-wider flex items-center justify-center gap-2 transition-colors duration-200"
+              className="bg-primary hover:bg-[#B8902B] text-black text-center py-4 rounded-full font-extrabold mt-4 shadow-md uppercase text-xs tracking-wider flex items-center justify-center gap-2 transition-colors duration-200"
             >
               <Instagram className="w-4 h-4" />
               Instagram

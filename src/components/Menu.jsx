@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { Info, Sparkles, Instagram, Scissors } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function Menu() {
   const { t, language } = useLanguage();
   const prefix = language === "pt" ? "" : `/${language}`;
+  const [activeTab, setActiveTab] = useState("cabelo"); // "cabelo", "barba", "combos"
 
   const especialidadesCabelo = [
     {
@@ -80,7 +82,7 @@ export default function Menu() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-20 reveal-slide-up">
+        <div className="text-center mb-12 lg:mb-20 reveal-slide-up">
           <span className="text-black font-black uppercase text-xs tracking-widest bg-primary px-4 py-1.5 rounded-none mb-4 inline-block">
             {t("menu.badge")}
           </span>
@@ -92,13 +94,49 @@ export default function Menu() {
           </p>
         </div>
 
+        {/* Mobile/Tablet Tabs Selector */}
+        <div className="flex lg:hidden justify-center bg-white/[0.02] border border-neutral-900 rounded-xl p-1 mb-12 max-w-md mx-auto relative z-20">
+          <button
+            onClick={() => setActiveTab("cabelo")}
+            className={`flex-1 py-3 text-xs uppercase font-extrabold tracking-wider transition-all duration-200 rounded-lg cursor-pointer ${
+              activeTab === "cabelo"
+                ? "bg-primary text-black font-black shadow-md scale-102"
+                : "text-neutral-400 hover:text-white"
+            }`}
+          >
+            Cabelo
+          </button>
+          <button
+            onClick={() => setActiveTab("barba")}
+            className={`flex-1 py-3 text-xs uppercase font-extrabold tracking-wider transition-all duration-200 rounded-lg cursor-pointer ${
+              activeTab === "barba"
+                ? "bg-primary text-black font-black shadow-md scale-102"
+                : "text-neutral-400 hover:text-white"
+            }`}
+          >
+            Barba
+          </button>
+          <button
+            onClick={() => setActiveTab("combos")}
+            className={`flex-1 py-3 text-xs uppercase font-extrabold tracking-wider transition-all duration-200 rounded-lg cursor-pointer ${
+              activeTab === "combos"
+                ? "bg-primary text-black font-black shadow-md scale-102"
+                : "text-neutral-400 hover:text-white"
+            }`}
+          >
+            Combos
+          </button>
+        </div>
+
         {/* Editorial styled menu (3 Columns layout) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch max-w-7xl mx-auto">
           
           {/* Column 1: Estética Capilar (col-span-4) */}
-          <div className="lg:col-span-4 flex flex-col justify-between h-full gap-8 reveal-slide-up">
+          <div className={`lg:col-span-4 flex flex-col justify-between h-full gap-8 reveal-slide-up ${
+            activeTab === "cabelo" ? "flex animate-menu-fade" : "hidden lg:flex"
+          }`}>
             <div>
-              <div className="border-b border-neutral-800 pb-4 mb-2">
+              <div className="border-b border-neutral-800 pb-4 mb-6">
                 <h3 className="font-display font-black text-2xl uppercase tracking-wider text-primary flex items-center gap-2">
                   <Scissors className="w-5 h-5 text-primary rotate-90" /> Estética Capilar
                 </h3>
@@ -109,9 +147,9 @@ export default function Menu() {
               
               <div className="flex flex-col gap-6">
                 {especialidadesCabelo.map((item, idx) => (
-                  <div key={idx} className="bg-white/[0.02] border-l-2 border-primary border-t border-r border-b border-neutral-850 p-6 shadow-md transition-all duration-300 hover:bg-white/[0.04] rounded-none">
+                  <div key={idx} className="bg-[#121212]/40 border-l-2 border-primary border-t border-r border-b border-neutral-850 p-6 shadow-md transition-all duration-300 hover:border-primary/40 hover:bg-white/[0.03] rounded-none group/item">
                     <div className="flex items-baseline justify-between w-full mb-2">
-                      <h4 className="font-bold font-display text-white text-base">
+                      <h4 className="font-bold font-display text-white text-base group-hover/item:text-primary transition-colors duration-300">
                         {item.name}
                       </h4>
                       <span className="flex-grow border-b border-dotted border-white/20 mx-2"></span>
@@ -131,16 +169,18 @@ export default function Menu() {
 
             <a
               href={`${prefix}/#formularios`}
-              className="w-full border border-primary hover:bg-primary hover:text-black text-white px-4 py-3 text-xs uppercase font-extrabold tracking-widest rounded-none transition-all duration-300 cursor-pointer text-center block spring-hover"
+              className="w-full border border-primary hover:bg-primary hover:text-black text-white px-4 py-3.5 text-xs uppercase font-extrabold tracking-widest rounded-none transition-all duration-300 cursor-pointer text-center block spring-hover"
             >
               {t("menu.ctaCustom")}
             </a>
           </div>
 
           {/* Column 2: Cuidado Facial (col-span-4) */}
-          <div className="lg:col-span-4 flex flex-col justify-between h-full gap-8 reveal-slide-up" style={{ transitionDelay: "150ms" }}>
+          <div className={`lg:col-span-4 flex flex-col justify-between h-full gap-8 reveal-slide-up lg:delay-75 ${
+            activeTab === "barba" ? "flex animate-menu-fade" : "hidden lg:flex"
+          }`}>
             <div>
-              <div className="border-b border-neutral-800 pb-4 mb-2">
+              <div className="border-b border-neutral-800 pb-4 mb-6">
                 <h3 className="font-display font-black text-2xl uppercase tracking-wider text-white flex items-center gap-2">
                   <span>🪒</span> Cuidado Facial
                 </h3>
@@ -151,13 +191,13 @@ export default function Menu() {
               
               <div className="flex flex-col gap-6">
                 {especialidadesBarba.map((item, idx) => (
-                  <div key={idx} className="border-b border-neutral-850 pb-5 last:border-b-0">
+                  <div key={idx} className="border-b border-neutral-850 pb-5 last:border-b-0 hover:pl-2.5 transition-all duration-300 group/item">
                     <div className="flex items-baseline justify-between w-full mb-1">
-                      <h4 className="font-bold font-display text-white text-base">
+                      <h4 className="font-bold font-display text-white text-base group-hover/item:text-primary transition-colors duration-300">
                         {item.name}
                       </h4>
                       <span className="flex-grow border-b border-dotted border-white/10 mx-2"></span>
-                      <span className="font-bold text-gray-405 font-display text-sm shrink-0">{item.price}</span>
+                      <span className="font-bold text-neutral-350 font-display text-sm shrink-0">{item.price}</span>
                     </div>
                     <p className="text-xs text-neutral-400 font-light leading-relaxed mb-2">{item.desc}</p>
                     {item.tag && (
@@ -172,16 +212,18 @@ export default function Menu() {
 
             <a
               href={`${prefix}/#formularios`}
-              className="w-full border border-neutral-800 hover:border-primary text-white hover:text-primary px-4 py-3 text-xs uppercase font-extrabold tracking-widest rounded-none transition-all duration-300 cursor-pointer text-center block spring-hover"
+              className="w-full border border-neutral-800 hover:border-primary text-white hover:text-primary px-4 py-3.5 text-xs uppercase font-extrabold tracking-widest rounded-none transition-all duration-300 cursor-pointer text-center block spring-hover"
             >
               {t("menu.ctaInfo")}
             </a>
           </div>
 
           {/* Column 3: Combos Especiais (col-span-4) */}
-          <div className="lg:col-span-4 flex flex-col justify-between h-full gap-8 reveal-slide-up" style={{ transitionDelay: "300ms" }}>
+          <div className={`lg:col-span-4 flex flex-col justify-between h-full gap-8 reveal-slide-up lg:delay-150 ${
+            activeTab === "combos" ? "flex animate-menu-fade" : "hidden lg:flex"
+          }`}>
             <div>
-              <div className="border-b border-neutral-800 pb-4 mb-2">
+              <div className="border-b border-neutral-800 pb-4 mb-6">
                 <h3 className="font-display font-black text-2xl uppercase tracking-wider text-white flex items-center gap-2">
                   <span>✨</span> Combos Especiais
                 </h3>
@@ -193,16 +235,16 @@ export default function Menu() {
               <div className="flex flex-col gap-6">
                 
                 {/* Sub-Group 1: Combos Cabelo + Barba */}
-                <div>
+                <div className="hover:pl-2 transition-all duration-300 group/sub">
                   <h4 className="text-xs font-black text-primary uppercase tracking-wider mb-3 pb-1 border-b border-neutral-850 flex items-center gap-1.5">
-                    <span className="w-1 h-1 rounded-full bg-primary" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                     Combos Cabelo + Barba
                   </h4>
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-3">
                     {combosCabeloBarba.map((item, idx) => (
-                      <div key={idx} className="pb-3 border-b border-neutral-900/60 last:border-b-0">
+                      <div key={idx} className="pb-2 border-b border-neutral-900/60 last:border-b-0">
                         <div className="flex items-baseline justify-between w-full">
-                          <h5 className="font-semibold text-white text-xs">{item.name}</h5>
+                          <h5 className="font-semibold text-white text-xs group-hover/sub:text-neutral-300 transition-colors">{item.name}</h5>
                           <span className="flex-grow border-b border-dotted border-white/10 mx-1.5"></span>
                           <span className="font-bold text-neutral-400 text-xs shrink-0">{item.price}</span>
                         </div>
@@ -212,16 +254,16 @@ export default function Menu() {
                 </div>
 
                 {/* Sub-Group 2: Cabelo & Hidratação */}
-                <div>
+                <div className="hover:pl-2 transition-all duration-300 group/sub">
                   <h4 className="text-xs font-black text-primary uppercase tracking-wider mb-3 pb-1 border-b border-neutral-850 flex items-center gap-1.5">
-                    <span className="w-1 h-1 rounded-full bg-primary" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                     Cabelo & Hidratação
                   </h4>
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-3">
                     {cabeloHidratacao.map((item, idx) => (
-                      <div key={idx} className="pb-3 border-b border-neutral-900/60 last:border-b-0">
+                      <div key={idx} className="pb-2 border-b border-neutral-900/60 last:border-b-0">
                         <div className="flex items-baseline justify-between w-full">
-                          <h5 className="font-semibold text-white text-xs">{item.name}</h5>
+                          <h5 className="font-semibold text-white text-xs group-hover/sub:text-neutral-300 transition-colors">{item.name}</h5>
                           <span className="flex-grow border-b border-dotted border-white/10 mx-1.5"></span>
                           <span className="font-bold text-neutral-400 text-xs shrink-0">{item.price}</span>
                         </div>
@@ -231,16 +273,16 @@ export default function Menu() {
                 </div>
 
                 {/* Sub-Group 3: Produtos */}
-                <div>
+                <div className="hover:pl-2 transition-all duration-300 group/sub">
                   <h4 className="text-xs font-black text-primary uppercase tracking-wider mb-3 pb-1 border-b border-neutral-850 flex items-center gap-1.5">
-                    <span className="w-1 h-1 rounded-full bg-primary" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                     {t("menu.wheels")}
                   </h4>
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-3">
                     {produtos.map((item, idx) => (
-                      <div key={idx} className="pb-3 border-b border-neutral-900/60 last:border-b-0">
+                      <div key={idx} className="pb-2 border-b border-neutral-900/60 last:border-b-0">
                         <div className="flex items-baseline justify-between w-full">
-                          <h5 className="font-semibold text-white text-xs">{item.name}</h5>
+                          <h5 className="font-semibold text-white text-xs group-hover/sub:text-neutral-300 transition-colors">{item.name}</h5>
                           <span className="flex-grow border-b border-dotted border-white/10 mx-1.5"></span>
                           <span className="font-bold text-neutral-400 text-xs shrink-0">{item.price}</span>
                         </div>
@@ -256,7 +298,7 @@ export default function Menu() {
               href="https://www.instagram.com/vaultnumberone_barbershop/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full border border-neutral-800 hover:border-primary text-white hover:text-primary px-4 py-3 text-xs uppercase font-extrabold tracking-widest rounded-none transition-all duration-300 cursor-pointer text-center block spring-hover"
+              className="w-full border border-neutral-800 hover:border-primary text-white hover:text-primary px-4 py-3.5 text-xs uppercase font-extrabold tracking-widest rounded-none transition-all duration-300 cursor-pointer text-center block spring-hover"
             >
               <span className="flex items-center justify-center gap-2">
                 <Instagram className="w-3.5 h-3.5" />

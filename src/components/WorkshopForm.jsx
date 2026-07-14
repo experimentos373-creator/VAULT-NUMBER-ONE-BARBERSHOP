@@ -7,7 +7,7 @@ const WHATSAPP_LABELS = {
     title: "*Nova Marcação de Cadeira - Vault Number One*",
     name: "*Nome:*",
     contact: "*Contacto:*",
-    bike: "*Estilo/Pedido:*",
+    style: "*Estilo/Pedido:*",
     service: "*Serviço:*",
     date: "*Data Pretendida:*",
     obs: "*Observações:*",
@@ -17,7 +17,7 @@ const WHATSAPP_LABELS = {
     title: "*New Chair Booking - Vault Number One*",
     name: "*Name:*",
     contact: "*Contact:*",
-    bike: "*Style/Request:*",
+    style: "*Desired Style / Request:*",
     service: "*Service:*",
     date: "*Preferred Date:*",
     obs: "*Notes:*",
@@ -29,13 +29,13 @@ const PLACEHOLDERS = {
   pt: {
     name: "Ex: Pedro Santos",
     contact: "Ex: 912 345 678",
-    bike: "Ex: Degradê com risco lateral ou barba clássica",
+    style: "Ex: Degradê com risco lateral ou barba clássica",
     desc: "Notas ou preferência de horário (ex: final da tarde)..."
   },
   en: {
     name: "E.g. Peter Smith",
     contact: "E.g. +351 912 345 678",
-    bike: "E.g. Skin fade with razor line or classic beard",
+    style: "E.g. Skin fade with razor line or classic beard",
     desc: "Notes or preferred time (e.g. late afternoon)..."
   }
 };
@@ -47,7 +47,7 @@ export default function WorkshopForm() {
   const [formData, setFormData] = useState({
     nome: "",
     contacto: "",
-    marcaModelo: "",
+    estiloPedido: "",
     dataPretendida: "",
     tipoServico: "corte_cabelo",
     observacoes: ""
@@ -80,7 +80,7 @@ export default function WorkshopForm() {
     const message = `${labels.title}\n\n` +
       `${labels.name} ${formData.nome}\n` +
       `${labels.contact} ${formData.contacto}\n` +
-      `${labels.bike} ${formData.marcaModelo}\n` +
+      `${labels.style} ${formData.estiloPedido}\n` +
       `${labels.service} ${serviceLabel}\n` +
       `${labels.date} ${formData.dataPretendida}\n` +
       `${labels.obs} ${formData.observacoes || labels.none}`;
@@ -99,7 +99,7 @@ export default function WorkshopForm() {
       setFormData({
         nome: "",
         contacto: "",
-        marcaModelo: "",
+        estiloPedido: "",
         dataPretendida: "",
         tipoServico: "corte_cabelo",
         observacoes: ""
@@ -126,13 +126,13 @@ export default function WorkshopForm() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-5 bg-[#121212] p-6 rounded-2xl border border-neutral-800 w-full text-left">
-        <h3 className="text-lg font-bold text-white border-b border-neutral-850 pb-3 mb-4 font-display uppercase tracking-wider text-primary">
+      <form onSubmit={handleSubmit} className="space-y-5 bg-[#121212] p-6 rounded-2xl border border-neutral-850 w-full text-left">
+        <h3 className="text-lg font-bold text-white border-b border-neutral-900 pb-3 mb-4 font-display uppercase tracking-wider text-primary">
           {t("form.workshop.title")}
         </h3>
         
         <div>
-          <label htmlFor="workshop-nome" className="block text-xs font-bold text-neutral-400 mb-1.5 font-display uppercase tracking-wider">
+          <label htmlFor="workshop-nome" className="block text-xs font-bold text-neutral-450 mb-1.5 font-display uppercase tracking-wider">
             {t("form.workshop.name")} *
           </label>
           <input
@@ -143,12 +143,12 @@ export default function WorkshopForm() {
             value={formData.nome}
             onChange={handleChange}
             placeholder={activePlaceholders.name}
-            className="w-full px-4 py-2.5 bg-[#1A1A1A] border border-neutral-800 rounded-lg text-white placeholder-neutral-500 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-all duration-205 text-sm"
+            className="w-full px-4 py-2.5 bg-[#1A1A1A] border border-neutral-850 rounded-lg text-white placeholder-neutral-600 focus:ring-2 focus:ring-primary/45 focus:border-primary focus:outline-none transition-all duration-200 text-sm"
           />
         </div>
 
         <div>
-          <label htmlFor="workshop-contacto" className="block text-xs font-bold text-neutral-400 mb-1.5 font-display uppercase tracking-wider">
+          <label htmlFor="workshop-contacto" className="block text-xs font-bold text-neutral-450 mb-1.5 font-display uppercase tracking-wider">
             {t("form.workshop.contact")} *
           </label>
           <input
@@ -159,29 +159,29 @@ export default function WorkshopForm() {
             value={formData.contacto}
             onChange={handleChange}
             placeholder={activePlaceholders.contact}
-            className="w-full px-4 py-2.5 bg-[#1A1A1A] border border-neutral-800 rounded-lg text-white placeholder-neutral-500 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-all duration-205 text-sm"
+            className="w-full px-4 py-2.5 bg-[#1A1A1A] border border-neutral-850 rounded-lg text-white placeholder-neutral-600 focus:ring-2 focus:ring-primary/45 focus:border-primary focus:outline-none transition-all duration-200 text-sm"
           />
         </div>
 
         <div>
-          <label htmlFor="workshop-marcaModelo" className="block text-xs font-bold text-neutral-400 mb-1.5 font-display uppercase tracking-wider">
-            {t("form.workshop.bike")} *
+          <label htmlFor="workshop-estiloPedido" className="block text-xs font-bold text-neutral-450 mb-1.5 font-display uppercase tracking-wider">
+            {t("form.workshop.style")} *
           </label>
           <input
             type="text"
-            id="workshop-marcaModelo"
-            name="marcaModelo"
+            id="workshop-estiloPedido"
+            name="estiloPedido"
             required
-            value={formData.marcaModelo}
+            value={formData.estiloPedido}
             onChange={handleChange}
-            placeholder={activePlaceholders.bike}
-            className="w-full px-4 py-2.5 bg-[#1A1A1A] border border-neutral-800 rounded-lg text-white placeholder-neutral-500 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-all duration-205 text-sm"
+            placeholder={activePlaceholders.style}
+            className="w-full px-4 py-2.5 bg-[#1A1A1A] border border-neutral-850 rounded-lg text-white placeholder-neutral-600 focus:ring-2 focus:ring-primary/45 focus:border-primary focus:outline-none transition-all duration-200 text-sm"
           />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="workshop-tipo" className="block text-xs font-bold text-neutral-400 mb-1.5 font-display uppercase tracking-wider">
+            <label htmlFor="workshop-tipo" className="block text-xs font-bold text-neutral-450 mb-1.5 font-display uppercase tracking-wider">
               {t("form.workshop.type")} *
             </label>
             <select
@@ -189,7 +189,7 @@ export default function WorkshopForm() {
               name="tipoServico"
               value={formData.tipoServico}
               onChange={handleChange}
-              className="w-full px-3 py-2.5 bg-[#1A1A1A] border border-neutral-800 rounded-lg text-white focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-all duration-205 text-xs"
+              className="w-full px-3 py-2.5 bg-[#1A1A1A] border border-neutral-850 rounded-lg text-white focus:ring-2 focus:ring-primary/40 focus:border-primary focus:outline-none transition-all duration-200 text-xs cursor-pointer"
             >
               {serviceOptions.map((opt) => (
                 <option key={opt.value} value={opt.value} className="bg-[#121212] text-white">
@@ -200,7 +200,7 @@ export default function WorkshopForm() {
           </div>
 
           <div>
-            <label htmlFor="workshop-data" className="block text-xs font-bold text-neutral-400 mb-1.5 font-display uppercase tracking-wider">
+            <label htmlFor="workshop-data" className="block text-xs font-bold text-neutral-450 mb-1.5 font-display uppercase tracking-wider">
               {t("form.workshop.date")} *
             </label>
             <input
@@ -210,21 +210,21 @@ export default function WorkshopForm() {
               required
               value={formData.dataPretendida}
               onChange={handleChange}
-              className="w-full px-4 py-2.5 bg-[#1A1A1A] border border-neutral-800 rounded-lg text-white focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-all duration-205 text-sm"
+              className="w-full px-4 py-2.5 bg-[#1A1A1A] border border-neutral-850 rounded-lg text-white focus:ring-2 focus:ring-primary/45 focus:border-primary focus:outline-none transition-all duration-200 text-sm cursor-pointer"
             />
           </div>
         </div>
 
         {/* Selected Service Description Overlay */}
         <div>
-          <span className="block text-[10px] font-bold text-neutral-500 uppercase tracking-widest mb-1">Detalhes do Serviço</span>
-          <p className="text-xs text-neutral-400 leading-relaxed bg-[#1A1A1A] p-3 border border-neutral-850 rounded-lg">
+          <span className="block text-[10px] font-bold text-neutral-500 uppercase tracking-widest mb-1.5 font-display">Detalhes do Serviço Seleccionado</span>
+          <p className="text-xs text-neutral-400 leading-relaxed bg-[#1A1A1A] p-4.5 border border-neutral-900 rounded-lg font-light">
             {serviceDesc}
           </p>
         </div>
 
         <div>
-          <label htmlFor="workshop-observacoes" className="block text-xs font-bold text-neutral-400 mb-1.5 font-display uppercase tracking-wider">
+          <label htmlFor="workshop-observacoes" className="block text-xs font-bold text-neutral-450 mb-1.5 font-display uppercase tracking-wider">
             {t("form.workshop.desc")}
           </label>
           <textarea
@@ -234,13 +234,13 @@ export default function WorkshopForm() {
             value={formData.observacoes}
             onChange={handleChange}
             placeholder={activePlaceholders.desc}
-            className="w-full px-4 py-2.5 bg-[#1A1A1A] border border-neutral-800 rounded-lg text-white placeholder-neutral-500 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-all duration-205 text-sm"
+            className="w-full px-4 py-2.5 bg-[#1A1A1A] border border-neutral-850 rounded-lg text-white placeholder-neutral-600 focus:ring-2 focus:ring-primary/45 focus:border-primary focus:outline-none transition-all duration-200 text-sm"
           ></textarea>
         </div>
 
         <button
           type="submit"
-          className="w-full bg-primary hover:bg-white text-black font-black py-3.5 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer spring-hover uppercase text-xs tracking-widest font-display"
+          className="w-full bg-primary hover:bg-white text-black font-black py-4 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer spring-hover uppercase text-xs tracking-widest font-display"
         >
           <Instagram className="w-4 h-4" />
           {t("form.workshop.submit")}

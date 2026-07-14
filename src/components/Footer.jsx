@@ -1,4 +1,4 @@
-import { Instagram, Phone, Mail, ArrowUpRight, Scissors } from "lucide-react";
+import { Instagram, Mail, ArrowUpRight, Scissors } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { config } from "../config";
 
@@ -130,7 +130,7 @@ export default function Footer() {
           {/* Quick links */}
           <div className="flex flex-wrap justify-center gap-8 font-semibold text-white">
             <a href={`${prefix}/#menu`} className="hover:text-primary transition-colors">
-              {t("nav.bikes")}
+              {t("nav.services")}
             </a>
             <a href={`${prefix}/#sobre`} className="hover:text-primary transition-colors">
               {t("nav.about")}
