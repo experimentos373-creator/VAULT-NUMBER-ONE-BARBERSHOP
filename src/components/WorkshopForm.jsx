@@ -1,27 +1,58 @@
 import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { CheckCircle2, Instagram } from "lucide-react";
+import { config } from "../config";
+import { CheckCircle2 } from "lucide-react";
 
 const WHATSAPP_LABELS = {
   pt: {
-    title: "*Nova Marcação de Cadeira - Vault Number One*",
+    title: "*Nova Marcação de Oficina - Route N109*",
     name: "*Nome:*",
     contact: "*Contacto:*",
-    style: "*Estilo/Pedido:*",
+    bike: "*Bicicleta:*",
     service: "*Serviço:*",
     date: "*Data Pretendida:*",
     obs: "*Observações:*",
     none: "Nenhuma"
   },
   en: {
-    title: "*New Chair Booking - Vault Number One*",
+    title: "*New Workshop Booking - Route N109*",
     name: "*Name:*",
     contact: "*Contact:*",
-    style: "*Desired Style / Request:*",
+    bike: "*Bicycle:*",
     service: "*Service:*",
     date: "*Preferred Date:*",
     obs: "*Notes:*",
     none: "None"
+  },
+  es: {
+    title: "*Nueva Cita de Taller - Route N109*",
+    name: "*Nombre:*",
+    contact: "*Contacto:*",
+    bike: "*Bicicleta:*",
+    service: "*Servicio:*",
+    date: "*Fecha Deseada:*",
+    obs: "*Notas:*",
+    none: "Ninguna"
+  },
+  fr: {
+    title: "*Nouveau Rendez-vous Atelier - Route N109*",
+    name: "*Nom:*",
+    contact: "*Contact:*",
+    bike: "*Vélo:*",
+    service: "*Service:*",
+    date: "*Date Souhaitée:*",
+    obs: "*Notes:*",
+    none: "Aucune"
+  },
+  de: {
+    title: "*Neuer Werkstatt-Termin - Route N109*",
+    name: "*Name:*",
+    contact: "*Kontakt:*",
+    bike: "*Fahrrad:*",
+    service: "*Service:*",
+    date: "*Wunschtermin:*",
+    obs: "*Anmerkungen:*",
+    none: "Keine"
   }
 };
 
@@ -29,14 +60,32 @@ const PLACEHOLDERS = {
   pt: {
     name: "Ex: Pedro Santos",
     contact: "Ex: 912 345 678",
-    style: "Ex: Degradê com risco lateral ou barba clássica",
-    desc: "Notas ou preferência de horário (ex: final da tarde)..."
+    bike: "Ex: Amflow PL Carbon Pro 2026",
+    desc: "Descreva algum barulho, comportamento anómalo ou pedidos específicos..."
   },
   en: {
     name: "E.g. Peter Smith",
     contact: "E.g. +351 912 345 678",
-    style: "E.g. Skin fade with razor line or classic beard",
-    desc: "Notes or preferred time (e.g. late afternoon)..."
+    bike: "E.g. Amflow PL Carbon Pro 2026",
+    desc: "Describe any noise, abnormal behavior, or specific requests..."
+  },
+  es: {
+    name: "Ej: Pedro Santos",
+    contact: "Ej: +34 612 345 678",
+    bike: "Ej: Amflow PL Carbon Pro 2026",
+    desc: "Describe cualquier ruido, comportamiento anómalo o peticiones específicas..."
+  },
+  fr: {
+    name: "Ex: Pierre Martin",
+    contact: "Ex: +33 6 12 34 56 78",
+    bike: "Ex: Amflow PL Carbon Pro 2026",
+    desc: "Décrivez tout bruit, comportement anormal ou demande spécifique..."
+  },
+  de: {
+    name: "Z.B. Peter Schmidt",
+    contact: "Z.B. +49 151 12345678",
+    bike: "Z.B. Amflow PL Carbon Pro 2026",
+    desc: "Beschreiben Sie Geräusche, abnormales Verhalten oder spezifische Wünsche..."
   }
 };
 
@@ -47,21 +96,18 @@ export default function WorkshopForm() {
   const [formData, setFormData] = useState({
     nome: "",
     contacto: "",
-    estiloPedido: "",
+    marcaModelo: "",
     dataPretendida: "",
-    tipoServico: "corte_cabelo",
+    tipoServico: "DiagBosch",
     observacoes: ""
   });
 
-  const serviceOptions = [
-    { value: "corte_cabelo", label: "Corte de Cabelo — 14 €", ptDesc: "Cortes Fade/Degradê (Zero ou Shaver), Cortes técnicos (Taper Fade, Burst Fade, Mullet, Crop...), sociais ou exclusivamente à tesoura. Lavagem de cabelo incluída.", enDesc: "Fade/Skin Fade, Taper Fade, Burst Fade, Mullet, Crop, social or exclusively scissor cuts. Hair wash included." },
-    { value: "corte_estudante", label: "Corte de Cabelo (Estudante) — 12 €", ptDesc: "Corte aplicável a estudantes do 1° ao 12° ano de escolaridade (apresentar comprovativo, ex: cartão da escola). Lavagem de cabelo incluída.", enDesc: "Haircut applicable to students from 1st to 12th grade (must show student ID). Hair wash included." },
-    { value: "corte_pente", label: "Corte c/ pente — 9 €", ptDesc: "Corte de cabelo realizado à máquina e que envolva apenas pentes (pente meio para cima). Lavagem de cabelo incluída.", enDesc: "Haircut performed with clippers and using guards only (from 0.5 guard upwards). Hair wash included." },
-    { value: "rapadela", label: "Rapadela — 8 €", ptDesc: "Rapadela de cabelo realizada à máquina com Shaver ou Navalha, dependendo da sua preferência.", enDesc: "Shaved head performed with shaver or straight razor, depending on preference." },
-    { value: "barba", label: "Corte de barba — 10 €", ptDesc: "Serviço destinado a todas as variantes e rituais de um corte de barba.", enDesc: "Service designed for all variants and rituals of beard grooming." },
-    { value: "pack_cabelo_barba", label: "Pack Cabelo e Barba — 20 €", ptDesc: "Pack completo combinado de cabelo e barba.", enDesc: "Combined hair and beard service package." },
-    { value: "pack_pente_barba", label: "Pack Corte c/ pente e Barba — 18 €", ptDesc: "Junção dos serviços de Corte c/ pente e Barba.", enDesc: "Combined clipper-only haircut and beard trim." },
-    { value: "pack_rapadela_barba", label: "Pack Rapadela e Barba — 16 €", ptDesc: "Junção dos serviços Rapadela e Corte de Barba. Toalha quente incluída.", enDesc: "Combined shaved head and beard cut. Hot towel included." }
+  const serviceTypesOptions = [
+    { value: "DiagBosch", labelKey: "form.workshop.type.diagBosch" },
+    { value: "DiagDJI", labelKey: "form.workshop.type.diagDJI" },
+    { value: "Suspension", labelKey: "form.workshop.type.suspension" },
+    { value: "Brakes", labelKey: "form.workshop.type.brakes" },
+    { value: "General", labelKey: "form.workshop.type.general" }
   ];
 
   const handleChange = (e) => {
@@ -72,67 +118,62 @@ export default function WorkshopForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const selectedService = serviceOptions.find(o => o.value === formData.tipoServico) || serviceOptions[0];
-    const serviceLabel = selectedService.label;
+    const selectedServiceLabel = t(serviceTypesOptions.find(o => o.value === formData.tipoServico)?.labelKey || "form.workshop.type.general");
 
     const labels = WHATSAPP_LABELS[language] || WHATSAPP_LABELS["pt"];
 
     const message = `${labels.title}\n\n` +
       `${labels.name} ${formData.nome}\n` +
       `${labels.contact} ${formData.contacto}\n` +
-      `${labels.style} ${formData.estiloPedido}\n` +
-      `${labels.service} ${serviceLabel}\n` +
+      `${labels.bike} ${formData.marcaModelo}\n` +
+      `${labels.service} ${selectedServiceLabel}\n` +
       `${labels.date} ${formData.dataPretendida}\n` +
       `${labels.obs} ${formData.observacoes || labels.none}`;
 
-    // Copy to clipboard for easy pasting on Instagram DM
-    navigator.clipboard.writeText(message).catch(err => {
-      console.error("Failed to copy booking text: ", err);
-    });
+    const encodedText = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${config.whatsappNumber}?text=${encodedText}`;
 
-    const instagramUrl = "https://www.instagram.com/vaultnumberone_barbershop/";
-
+    // Show success overlay modal for 2 seconds
     setShowSuccess(true);
     setTimeout(() => {
-      window.open(instagramUrl, "_blank");
+      window.open(whatsappUrl, "_blank");
       setShowSuccess(false);
+      // Reset form
       setFormData({
         nome: "",
         contacto: "",
-        estiloPedido: "",
+        marcaModelo: "",
         dataPretendida: "",
-        tipoServico: "corte_cabelo",
+        tipoServico: "DiagBosch",
         observacoes: ""
       });
-    }, 2500);
+    }, 2000);
   };
 
   const activePlaceholders = PLACEHOLDERS[language] || PLACEHOLDERS["pt"];
-  const currentService = serviceOptions.find(o => o.value === formData.tipoServico) || serviceOptions[0];
-  const serviceDesc = language === "en" ? currentService.enDesc : currentService.ptDesc;
 
   return (
     <div className="relative">
-      {/* Success Modal */}
+      {/* Success Modal Overlay */}
       {showSuccess && (
-        <div className="absolute inset-0 bg-[#0C0C0C]/95 z-50 flex flex-col justify-center items-center p-6 text-center animate-menu-fade rounded-2xl border border-neutral-800">
-          <CheckCircle2 className="w-16 h-16 text-primary mb-4 animate-bounce" />
-          <h4 className="text-xl font-bold text-white mb-2 font-display uppercase tracking-wider">
+        <div className="absolute inset-0 bg-white/95 z-50 flex flex-col justify-center items-center p-6 text-center animate-menu-fade rounded-2xl">
+          <CheckCircle2 className="w-16 h-16 text-[#25D366] mb-4 animate-bounce" />
+          <h4 className="text-xl font-bold text-neutral-900 mb-2 font-display uppercase">
             {t("form.workshop.title")}
           </h4>
-          <p className="text-sm text-neutral-400 font-medium leading-relaxed max-w-xs">
+          <p className="text-sm text-neutral-600 font-medium leading-relaxed max-w-xs">
             {t("form.workshop.success")}
           </p>
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-5 bg-[#121212] p-6 rounded-2xl border border-neutral-850 w-full text-left">
-        <h3 className="text-lg font-bold text-white border-b border-neutral-900 pb-3 mb-4 font-display uppercase tracking-wider text-primary">
+      <form onSubmit={handleSubmit} className="space-y-5 bg-white p-6 rounded-2xl shadow-lg border border-gray-100 max-w-lg mx-auto text-left">
+        <h3 className="text-xl font-bold text-dark border-b pb-3 mb-4 font-display uppercase tracking-wider">
           {t("form.workshop.title")}
         </h3>
         
         <div>
-          <label htmlFor="workshop-nome" className="block text-xs font-bold text-neutral-450 mb-1.5 font-display uppercase tracking-wider">
+          <label htmlFor="workshop-nome" className="block text-sm font-bold text-gray-700 mb-1 font-display uppercase tracking-wider">
             {t("form.workshop.name")} *
           </label>
           <input
@@ -143,12 +184,12 @@ export default function WorkshopForm() {
             value={formData.nome}
             onChange={handleChange}
             placeholder={activePlaceholders.name}
-            className="w-full px-4 py-2.5 bg-[#1A1A1A] border border-neutral-850 rounded-lg text-white placeholder-neutral-600 focus:ring-2 focus:ring-primary/45 focus:border-primary focus:outline-none transition-all duration-200 text-sm"
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all duration-200"
           />
         </div>
 
         <div>
-          <label htmlFor="workshop-contacto" className="block text-xs font-bold text-neutral-450 mb-1.5 font-display uppercase tracking-wider">
+          <label htmlFor="workshop-contacto" className="block text-sm font-bold text-gray-700 mb-1 font-display uppercase tracking-wider">
             {t("form.workshop.contact")} *
           </label>
           <input
@@ -159,29 +200,29 @@ export default function WorkshopForm() {
             value={formData.contacto}
             onChange={handleChange}
             placeholder={activePlaceholders.contact}
-            className="w-full px-4 py-2.5 bg-[#1A1A1A] border border-neutral-850 rounded-lg text-white placeholder-neutral-600 focus:ring-2 focus:ring-primary/45 focus:border-primary focus:outline-none transition-all duration-200 text-sm"
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all duration-200"
           />
         </div>
 
         <div>
-          <label htmlFor="workshop-estiloPedido" className="block text-xs font-bold text-neutral-450 mb-1.5 font-display uppercase tracking-wider">
-            {t("form.workshop.style")} *
+          <label htmlFor="workshop-marcaModelo" className="block text-sm font-bold text-gray-700 mb-1 font-display uppercase tracking-wider">
+            {t("form.workshop.bike")} *
           </label>
           <input
             type="text"
-            id="workshop-estiloPedido"
-            name="estiloPedido"
+            id="workshop-marcaModelo"
+            name="marcaModelo"
             required
-            value={formData.estiloPedido}
+            value={formData.marcaModelo}
             onChange={handleChange}
-            placeholder={activePlaceholders.style}
-            className="w-full px-4 py-2.5 bg-[#1A1A1A] border border-neutral-850 rounded-lg text-white placeholder-neutral-600 focus:ring-2 focus:ring-primary/45 focus:border-primary focus:outline-none transition-all duration-200 text-sm"
+            placeholder={activePlaceholders.bike}
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all duration-200"
           />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="workshop-tipo" className="block text-xs font-bold text-neutral-450 mb-1.5 font-display uppercase tracking-wider">
+            <label htmlFor="workshop-tipo" className="block text-sm font-bold text-gray-700 mb-1 font-display uppercase tracking-wider">
               {t("form.workshop.type")} *
             </label>
             <select
@@ -189,18 +230,18 @@ export default function WorkshopForm() {
               name="tipoServico"
               value={formData.tipoServico}
               onChange={handleChange}
-              className="w-full px-3 py-2.5 bg-[#1A1A1A] border border-neutral-850 rounded-lg text-white focus:ring-2 focus:ring-primary/40 focus:border-primary focus:outline-none transition-all duration-200 text-xs cursor-pointer"
+              className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all duration-200 bg-white"
             >
-              {serviceOptions.map((opt) => (
-                <option key={opt.value} value={opt.value} className="bg-[#121212] text-white">
-                  {opt.label}
+              {serviceTypesOptions.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {t(opt.labelKey)}
                 </option>
               ))}
             </select>
           </div>
 
           <div>
-            <label htmlFor="workshop-data" className="block text-xs font-bold text-neutral-450 mb-1.5 font-display uppercase tracking-wider">
+            <label htmlFor="workshop-data" className="block text-sm font-bold text-gray-700 mb-1 font-display uppercase tracking-wider">
               {t("form.workshop.date")} *
             </label>
             <input
@@ -210,39 +251,33 @@ export default function WorkshopForm() {
               required
               value={formData.dataPretendida}
               onChange={handleChange}
-              className="w-full px-4 py-2.5 bg-[#1A1A1A] border border-neutral-850 rounded-lg text-white focus:ring-2 focus:ring-primary/45 focus:border-primary focus:outline-none transition-all duration-200 text-sm cursor-pointer"
+              className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all duration-200"
             />
           </div>
         </div>
 
-        {/* Selected Service Description Overlay */}
         <div>
-          <span className="block text-[10px] font-bold text-neutral-500 uppercase tracking-widest mb-1.5 font-display">Detalhes do Serviço Seleccionado</span>
-          <p className="text-xs text-neutral-400 leading-relaxed bg-[#1A1A1A] p-4.5 border border-neutral-900 rounded-lg font-light">
-            {serviceDesc}
-          </p>
-        </div>
-
-        <div>
-          <label htmlFor="workshop-observacoes" className="block text-xs font-bold text-neutral-450 mb-1.5 font-display uppercase tracking-wider">
+          <label htmlFor="workshop-observacoes" className="block text-sm font-bold text-gray-700 mb-1 font-display uppercase tracking-wider">
             {t("form.workshop.desc")}
           </label>
           <textarea
             id="workshop-observacoes"
             name="observacoes"
-            rows="2"
+            rows="3"
             value={formData.observacoes}
             onChange={handleChange}
             placeholder={activePlaceholders.desc}
-            className="w-full px-4 py-2.5 bg-[#1A1A1A] border border-neutral-850 rounded-lg text-white placeholder-neutral-600 focus:ring-2 focus:ring-primary/45 focus:border-primary focus:outline-none transition-all duration-200 text-sm"
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all duration-200"
           ></textarea>
         </div>
 
         <button
           type="submit"
-          className="w-full bg-primary hover:bg-white text-black font-black py-4 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer spring-hover uppercase text-xs tracking-widest font-display"
+          className="w-full bg-[#1A56DB] hover:bg-[#1E429F] text-white font-bold py-3.5 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer spring-hover uppercase text-xs tracking-widest font-display"
         >
-          <Instagram className="w-4 h-4" />
+          <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.464L0 24zm6.59-4.846c1.6.95 3.498 1.45 5.429 1.451h.007c5.455 0 9.894-4.436 9.897-9.894.001-2.643-1.027-5.129-2.896-6.999C17.214 1.846 14.725.82 12.012.82c-5.46 0-9.903 4.439-9.907 9.897-.001 1.93.504 3.814 1.465 5.433L2.613 21.75l5.885-1.542zM17.56 14.62c-.3-.15-1.782-.877-2.057-.977-.275-.1-.475-.15-.675.15-.2.3-.775.977-.95 1.177-.175.2-.35.225-.65.075-.3-.15-1.265-.467-2.41-1.485-.89-.795-1.49-1.777-1.665-2.077-.175-.3-.018-.462.13-.61.135-.133.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.675-1.625-.925-2.225-.244-.589-.496-.51-.675-.52-.172-.007-.368-.009-.565-.009-.197 0-.517.074-.788.368-.27.294-1.03 1.007-1.03 2.455 0 1.448 1.054 2.846 1.202 3.044.148.198 2.075 3.168 5.027 4.444.702.304 1.25.485 1.678.621.705.224 1.346.193 1.854.117.566-.085 1.782-.728 2.033-1.432.25-.704.25-1.306.175-1.43-.075-.124-.275-.199-.575-.349z" />
+          </svg>
           {t("form.workshop.submit")}
         </button>
       </form>

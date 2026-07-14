@@ -1,4 +1,4 @@
-# robots.txt para Vault Number One Barbershop
+# robots.txt para Route N109
 # Otimizado para SEO Google e Controle de IA (Junho de 2026)
 
 User-agent: *
@@ -27,4 +27,4 @@ User-agent: ChatGPT-User
 Allow: /
 
 # Sitemap
-Sitemap: https://vault-number-one-barbershop.vercel.app/sitemap.xml
+Sitemap: https://agostinho-bikes.vercel.app/sitemap.xml

@@ -1,19 +1,29 @@
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import SEOPage from "./pages/SEOPage";
 import WhatsAppButton from "./components/WhatsAppButton";
 import { LanguageProvider } from "./context/LanguageContext";
+
+// Lazy load pages for chunk splitting and optimized performance
+const Home = lazy(() => import("./pages/Home"));
+const SEOPage = lazy(() => import("./pages/SEOPage"));
+const CatalogPage = lazy(() => import("./pages/CatalogPage"));
+const CompanyPage = lazy(() => import("./pages/CompanyPage"));
+const ServicesPage = lazy(() => import("./pages/ServicesPage"));
+const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 
 // Scroll Restoration & Hash Scrolling Helper
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    // Reset any layout/scroll locks on route transitions
+    document.body.style.overflow = "unset";
+
     if (hash) {
+      // Small timeout to allow the DOM to render before finding the element
       setTimeout(() => {
         const element = document.getElementById(hash.substring(1));
         if (element) {
@@ -28,11 +38,14 @@ function ScrollToTop() {
   return null;
 }
 
-export default function App() {
+// Re-observe reveal elements on every route change, watching for DOM changes due to lazy loading
+function RevealObserver() {
+  const { pathname } = useLocation();
+
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: "0px -30px", // Trigger slightly inside view
+      rootMargin: "0px -30px",
       threshold: 0.05,
     };
 
@@ -47,36 +60,90 @@ export default function App() {
 
     const observer = new IntersectionObserver(handleIntersection, observerOptions);
 
-    const revealElements = document.querySelectorAll(
-      ".reveal-fade, .reveal-slide-up, .reveal-slide-left, .reveal-slide-right"
-    );
-    revealElements.forEach((el) => observer.observe(el));
+    const observeElements = () => {
+      const revealElements = document.querySelectorAll(
+        ".reveal-fade:not(.reveal-visible), .reveal-slide-up:not(.reveal-visible), .reveal-slide-left:not(.reveal-visible), .reveal-slide-right:not(.reveal-visible)"
+      );
+      revealElements.forEach((el) => observer.observe(el));
+    };
 
-    return () => observer.disconnect();
-  }, []);
+    // Run initially
+    observeElements();
 
+    // Use MutationObserver to re-observe whenever new elements are mounted (e.g. from React.lazy chunks)
+    const mutationObserver = new MutationObserver(() => {
+      observeElements();
+    });
+
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
+  }, [pathname]);
+
+  return null;
+}
+
+export default function App() {
   return (
     <LanguageProvider>
-      <div className="bg-[#0C0C0C] text-white min-h-screen flex flex-col justify-between overflow-x-hidden">
+      <div className="bg-white text-dark min-h-screen flex flex-col justify-between overflow-x-hidden">
         <ScrollToTop />
+        <RevealObserver />
 
         {/* Navigation Bar */}
         <Navbar />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/en" element={<Home />} />
-          <Route path="/es" element={<Home />} />
-          <Route path="/fr" element={<Home />} />
-          <Route path="/de" element={<Home />} />
-          <Route path="/:slug" element={<SEOPage />} />
-          <Route path="/en/:slug" element={<SEOPage />} />
-          <Route path="/es/:slug" element={<SEOPage />} />
-          <Route path="/fr/:slug" element={<SEOPage />} />
-          <Route path="/de/:slug" element={<SEOPage />} />
-        </Routes>
+        <Suspense fallback={<div className="min-h-screen bg-white"></div>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/en" element={<Home />} />
+            <Route path="/es" element={<Home />} />
+            <Route path="/fr" element={<Home />} />
+            <Route path="/de" element={<Home />} />
+            {/* Catalog routes (static, before dynamic :slug) */}
+            <Route path="/catalogo" element={<CatalogPage />} />
+            <Route path="/en/catalog" element={<CatalogPage />} />
+            <Route path="/es/catalogo" element={<CatalogPage />} />
+            <Route path="/fr/catalogue" element={<CatalogPage />} />
+            <Route path="/de/katalog" element={<CatalogPage />} />
 
-        {/* Footer */}
+            {/* Company routes */}
+            <Route path="/empresa" element={<CompanyPage />} />
+            <Route path="/en/about" element={<CompanyPage />} />
+            <Route path="/es/empresa" element={<CompanyPage />} />
+            <Route path="/fr/entreprise" element={<CompanyPage />} />
+            <Route path="/de/unternehmen" element={<CompanyPage />} />
+
+            {/* Services routes */}
+            <Route path="/servicos" element={<ServicesPage />} />
+            <Route path="/en/services" element={<ServicesPage />} />
+            <Route path="/es/servicios" element={<ServicesPage />} />
+            <Route path="/fr/services" element={<ServicesPage />} />
+            <Route path="/de/services" element={<ServicesPage />} />
+
+            {/* Gallery routes */}
+            <Route path="/galeria" element={<GalleryPage />} />
+            <Route path="/en/gallery" element={<GalleryPage />} />
+            <Route path="/es/galeria" element={<GalleryPage />} />
+            <Route path="/fr/galerie" element={<GalleryPage />} />
+            <Route path="/de/galerie" element={<GalleryPage />} />
+
+            {/* Dynamic SEO pages */}
+            <Route path="/:slug" element={<SEOPage />} />
+            <Route path="/en/:slug" element={<SEOPage />} />
+            <Route path="/es/:slug" element={<SEOPage />} />
+            <Route path="/fr/:slug" element={<SEOPage />} />
+            <Route path="/de/:slug" element={<SEOPage />} />
+          </Routes>
+        </Suspense>
+
+        {/* Contact Banner & Footer */}
         <Footer />
 
         {/* Dynamic Floating WhatsApp / Phone button */}

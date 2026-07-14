@@ -1,50 +1,57 @@
 export const config = {
   // Production domain for SEO sitemap & canonical links
-  domain: "https://vault-number-one-barbershop.vercel.app",
+  domain: "https://routen109.vercel.app",
 
   // Contacts
-  whatsappNumber: "351916334276", // Update with Ricardo Pedrosa's actual phone number
-  telephone: "+351916334276",
-  telephoneDisplay: "+351 916 334 276",
-  email: "ricardopedrosa.barber@gmail.com", // Placeholder, easily editable
+  whatsappNumber: "351935141143",
+  telephone: "+351935141143",
+  telephoneDisplay: "+351 935 141 143",
+  email: "routen109mobilidade@gmail.com",
   
   address: {
-    street: "Avenida José Maria Duarte Júnior, 5",
-    locality: "Guia, Pombal",
-    postalCode: "3105-082",
+    street: "Avenida Nossa Senhora da Guia, 64",
+    locality: "Lavos, Figueira da Foz",
+    postalCode: "3090-474",
     country: "PT",
-    countryName: "Portugal",
-    reference: "Ao lado do restaurante 'O Barriguitas'"
+    countryName: "Portugal"
   },
   
   geo: {
-    latitude: 39.9458413,
-    longitude: -8.7844762
+    latitude: 40.0827,
+    longitude: -8.8354
   },
 
   // Integration Keys (set empty string if not active)
-  googleAnalyticsId: "", 
+  googleAnalyticsId: "", // Replace with G-XXXXXXXXXX when ready
   googleSearchConsoleKey: "",
 
-  // Dynamic WhatsApp pre-filled messages based on active page
+  // Dynamic WhatsApp pre-filled messages
   whatsappMessages: {
     pt: {
-      "/": "Olá Vault Number One Barbershop! Gostaria de obter mais informações.",
-      "/cortes-modernos": "Olá Vault Number One! Gostaria de agendar um corte moderno (Fade / Mullet).",
-      "/barba-guia": "Olá Vault Number One! Gostaria de agendar um tratamento de barba.",
-      "/barbearia-pombal": "Olá Vault Number One! Gostaria de saber os horários disponíveis para marcação na Guia, Pombal.",
-      "/ricardo-pedrosa": "Olá Ricardo Pedrosa! Gostaria de reservar um horário para atendimento personalizado.",
-      "/orcamento": "Olá! Gostaria de simular o preço para os serviços selecionados.",
-      "/marcacao-barbearia": "Olá! Gostaria de agendar um serviço na barbearia."
+      "/": "Olá Route N109! Gostaria de obter mais informações.",
+      "/mondraker": "Olá Route N109! Gostaria de saber mais sobre a gama Mondraker.",
+      "/bicicletas-eletricas": "Olá Route N109! Gostaria de obter informações sobre veículos elétricos.",
+      "/mondraker-crafty": "Olá Route N109! Gostaria de obter informações sobre a Mondraker Crafty.",
+      "/mondraker-zendit": "Olá Route N109! Gostaria de obter informações sobre a Mondraker Zendit.",
+      "/e-bikes": "Olá Route N109! Gostaria de saber mais sobre a gama de E-Bikes e Trotinetes.",
+      "/e-bikes-usadas": "Olá Route N109! Gostaria de ver as opções disponíveis de mobilidade elétrica usada.",
+      "/oficina-pombal": "Olá Route N109! Gostaria de agendar um serviço na vossa oficina.",
+      "/assistencia-bosch": "Olá Route N109! Gostaria de agendar assistência técnica para o meu veículo elétrico.",
+      "/diagnostico-bosch": "Olá Route N109! Gostaria de agendar um Diagnóstico de Bateria/Motor.",
+      "/diagnostico-dji-avinox": "Olá Route N109! Gostaria de agendar um Diagnóstico DJI Avinox para a minha E-Bike."
     },
     en: {
-      "/": "Hello Vault Number One Barbershop! I would like to get more information.",
-      "/cortes-modernos": "Hello Vault Number One! I would like to book a modern haircut (Fade / Mullet).",
-      "/barba-guia": "Hello Vault Number One! I would like to book a beard treatment.",
-      "/barbearia-pombal": "Hello Vault Number One! I would like to check available hours for booking in Guia, Pombal.",
-      "/ricardo-pedrosa": "Hello Ricardo Pedrosa! I would like to book a personalized appointment.",
-      "/orcamento": "Hello! I would like to simulate the pricing for the selected services.",
-      "/marcacao-barbearia": "Hello! I would like to book a service at the barbershop."
+      "/": "Hello Route N109! I would like to get more information.",
+      "/mondraker": "Hello Route N109! I would like to know more about the Mondraker range.",
+      "/bicicletas-eletricas": "Hello Route N109! I would like to get information about electric vehicles.",
+      "/mondraker-crafty": "Hello Route N109! I would like to get information about the Mondraker Crafty.",
+      "/mondraker-zendit": "Hello Route N109! I would like to get information about the Mondraker Zendit.",
+      "/e-bikes": "Hello Route N109! I would like to know more about the E-Bike and Scooter range.",
+      "/e-bikes-usadas": "Hello Route N109! I would like to see the available options of used electric vehicles.",
+      "/oficina-pombal": "Hello Route N109! I would like to book a service at your workshop.",
+      "/assistencia-bosch": "Hello Route N109! I would like to book technical assistance for my electric vehicle.",
+      "/diagnostico-bosch": "Hello Route N109! I would like to book a Battery/Motor Diagnostics.",
+      "/diagnostico-dji-avinox": "Hello Route N109! I would like to book a DJI Avinox Diagnostics."
     }
   }
 };

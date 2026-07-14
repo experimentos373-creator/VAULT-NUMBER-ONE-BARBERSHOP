@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
+import BudgetForm from "../components/BudgetForm";
 import WorkshopForm from "../components/WorkshopForm";
-import { ArrowLeft, Award, Scissors } from "lucide-react";
+import { ArrowLeft, Award, Cpu } from "lucide-react";
 import { config } from "../config";
 import { SEO_DATA } from "../data/seoData";
 
@@ -49,8 +50,9 @@ export default function SEOPage() {
       scriptBreadcrumb.id = "breadcrumb-schema";
       document.head.appendChild(scriptBreadcrumb);
 
-      // 2. Specific Schema based on formType
+      // 2. Specific Schema based on formType (budget -> Product, workshop -> FAQPage/Service)
       if (pageData.formType === "budget") {
+        const brandName = slug.includes("mondraker") ? "Mondraker" : slug.includes("cube") ? "Cube" : slug.includes("amflow") ? "Amflow" : "Multimarca";
         const productSchema = {
           "@context": "https://schema.org",
           "@type": "Product",
@@ -59,14 +61,14 @@ export default function SEOPage() {
           "description": pageData.intro,
           "brand": {
             "@type": "Brand",
-            "name": "Vault Number One Barbershop"
+            "name": brandName
           },
           "offers": {
             "@type": "AggregateOffer",
             "priceCurrency": "EUR",
-            "lowPrice": "10",
-            "highPrice": "30",
-            "offerCount": "6"
+            "lowPrice": "990",
+            "highPrice": "14990",
+            "offerCount": "8"
           }
         };
 
@@ -83,49 +85,49 @@ export default function SEOPage() {
             {
               "@type": "Question",
               "name": language === "en" 
-                ? `How to book the service ${pageData.h1} in Pombal?`
+                ? `How to book the service ${pageData.h1} in Figueira da Foz?`
                 : language === "es"
-                ? `¿Cómo reservar el servicio ${pageData.h1} en Pombal?`
+                ? `¿Cómo reservar el servicio ${pageData.h1} en Figueira da Foz?`
                 : language === "fr"
-                ? `Comment réserver le service ${pageData.h1} à Pombal?`
+                ? `Comment réserver le service ${pageData.h1} à Figueira da Foz?`
                 : language === "de"
-                ? `Wie buche ich den Service ${pageData.h1} in Pombal?`
-                : `Como agendar o serviço ${pageData.h1} em Pombal?`,
+                ? `Wie buche ich den Service ${pageData.h1} in Figueira da Foz?`
+                : `Como agendar o serviço ${pageData.h1} em Figueira da Foz?`,
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": language === "en"
-                  ? "You can request an appointment by filling out the booking form on this page. The details will be prepared so you can send them directly to our Instagram for scheduling confirmation."
+                  ? "You can request an appointment by filling out the booking form on this page. The data will be sent directly to our WhatsApp for scheduling confirmation."
                   : language === "es"
-                  ? "Puede solicitar la cita completando el formulario de reserva en esta página. Los detalles se prepararán para que los envíe directamente a nuestro Instagram para la confirmación de la cita."
+                  ? "Puede solicitar la cita completando el formulario de reserva en esta página. Los datos se enviarán directamente a nuestro WhatsApp para la confirmación de la cita."
                   : language === "fr"
-                  ? "Vous pouvez demander un rendez-vous en remplissant le formulaire de réservation sur cette page. Les détails seront préparés pour que vous puissiez les envoyer directement sur notre Instagram pour confirmation de l'heure."
+                  ? "Vous pouvez demander un rendez-vous en remplissant le formulaire de réservation sur cette page. Les données seront envoyées directement à notre WhatsApp pour confirmation de l'heure."
                   : language === "de"
-                  ? "Sie können einen Termin anfragen, indem Sie das Buchungsformular auf dieser Seite ausfüllen. Die Details werden vorbereitet, damit Sie sie zur Bestätigung direkt an unser Instagram senden können."
-                  : "Pode solicitar o agendamento preenchendo o formulário de marcação nesta página. Os dados serão copiados para que os envie diretamente para o nosso Instagram para confirmação de horário."
+                  ? "Sie können einen Termin anfragen, indem Sie das Buchungsformular auf dieser Seite ausfüllen. Die Daten werden zur Terminbestätigung direkt an unser WhatsApp gesendet."
+                  : "Pode solicitar o agendamento preenchendo o formulário de marcação nesta página. Os dados serão enviados diretamente para o nosso WhatsApp para confirmação de horário."
               }
             },
             {
               "@type": "Question",
               "name": language === "en"
-                ? "Who will perform my haircut at Vault Number One?"
+                ? "Does Route N109 workshop have certified mechanics?"
                 : language === "es"
-                ? "¿Quién realizará mi corte en Vault Number One?"
+                ? "¿Cuenta el taller de Route N109 con mecánicos certificados?"
                 : language === "fr"
-                ? "Qui va faire ma coupe chez Vault Number One?"
+                ? "L'atelier d'Route N109 a-t-il des mécaniciens certifiés?"
                 : language === "de"
-                ? "Wer schneidet mir bei Vault Number One die Haare?"
-                : "Quem realiza o meu corte na Vault Number One?",
+                ? "Hat die Route N109 Werkstatt zertifizierte Mechaniker?"
+                : "A oficina Route N109 tem mecânicos certificados?",
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": language === "en"
-                  ? "All haircut and beard services are performed by barber Ricardo Pedrosa himself, ensuring dedicated, premium quality."
+                  ? "Yes, our workshop has certified mechanics with direct experience in racing teams and technical training in Bosch E-Bike and DJI Avinox systems."
                   : language === "es"
-                  ? "Todos los servicios de corte y barba son realizados por el propio barbero Ricardo Pedrosa, asegurando una dedicación exclusiva y de alta calidad."
+                  ? "Sí, nuestro taller cuenta con mecánicos certificados con experiencia directa en equipos de competición y capacitación técnica en sistemas Bosch E-Bike y DJI Avinox."
                   : language === "fr"
-                  ? "Tous les services de coupe et de barbe sont effectués par le coiffeur Ricardo Pedrosa lui-même, garantissant une qualité supérieure."
+                  ? "Oui, notre atelier dispose de mécaniciens certifiés ayant une expérience directe des équipes de course et une formation technique sur les systèmes Bosch E-Bike et DJI Avinox."
                   : language === "de"
-                  ? "Alle Haarschnitte und Bartpflege-Dienstleistungen werden von Barbier Ricardo Pedrosa selbst durchgeführt, um höchste Qualität zu garantieren."
-                  : "Todos os serviços de corte e barba são realizados pelo próprio barbeiro Ricardo Pedrosa, garantindo dedicação exclusiva e qualidade premium."
+                  ? "Ja, unsere Werkstatt verfügt über zertifizierte Mechaniker mit direkter Erfahrung in Rennställen und technischer Ausbildung in Bosch E-Bike- und DJI Avinox-Systemen."
+                  : "Sim, a nossa oficina dispõe de mecânicos certificados com experiência direta em equipas de competição e formação técnica nos sistemas Bosch E-Bike e DJI Avinox."
               }
             }
           ]
@@ -177,14 +179,14 @@ export default function SEOPage() {
 
   if (!pageData) {
     return (
-      <div className="py-28 text-center bg-[#0C0C0C] text-white min-h-[60vh] flex flex-col justify-center items-center">
-        <h2 className="text-3xl font-bold mb-4 font-display uppercase tracking-wider text-primary">
+      <div className="py-28 text-center bg-white min-h-[60vh] flex flex-col justify-center items-center">
+        <h2 className="text-3xl font-bold mb-4 font-display uppercase">
           {t("general.pageNotFound")}
         </h2>
-        <p className="text-neutral-400 mb-8">
+        <p className="text-neutral-500 mb-8">
           {t("general.pageNotFoundDesc")}
         </p>
-        <Link to={prefix || "/"} className="bg-primary hover:bg-[#B8902B] text-black font-extrabold py-3 px-6 rounded-full transition-colors duration-200 uppercase text-xs tracking-wider">
+        <Link to={prefix || "/"} className="bg-primary hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200">
           {t("general.backToHome")}
         </Link>
       </div>
@@ -192,37 +194,36 @@ export default function SEOPage() {
   }
 
   return (
-    <div className="bg-[#121212] text-white min-h-screen pt-28 md:pt-36">
+    <div className="bg-white min-h-screen pt-24 md:pt-32">
       {/* Header section with back button */}
-      <div className="max-w-7xl mx-auto px-6 mb-8 text-left">
-        <Link to={prefix || "/"} className="inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-colors font-semibold text-sm">
-          <ArrowLeft className="w-4 h-4 text-primary" />
+      <div className="max-w-[1400px] mx-auto px-6 mb-8 text-left">
+        <Link to={prefix || "/"} className="inline-flex items-center gap-2 text-neutral-500 hover:text-neutral-900 transition-colors font-semibold text-sm">
+          <ArrowLeft className="w-4 h-4" />
           {t("general.backToHome")}
         </Link>
       </div>
 
-      <section className="py-8 md:py-16 bg-[#121212] relative overflow-hidden border-b border-neutral-900 text-left">
-        {/* Subtle geometric line art background */}
-        <div className="absolute right-0 top-0 w-1/3 h-full border-l border-neutral-900 pointer-events-none" />
+      <section className="py-8 md:py-16 bg-white relative overflow-hidden border-b border-neutral-100 text-left">
+        <div className="absolute right-0 top-0 w-1/3 h-full border-l border-neutral-100 pointer-events-none" />
         
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           {/* Images stacked in an overlapping magazine layout */}
           <div className="lg:col-span-6 relative h-[320px] sm:h-[450px] flex items-center justify-center z-10">
-            <div className="absolute top-[5%] left-[5%] w-[85%] h-[85%] border border-neutral-800 overflow-hidden rounded-2xl shadow-2xl bg-neutral-900">
+            <div className="absolute top-[5%] left-[5%] w-[85%] h-[85%] border border-neutral-200 overflow-hidden rounded-2xl shadow-lg bg-neutral-100">
               <img
                 src={pageData.image}
                 alt={pageData.h1}
-                className="w-full h-full object-cover opacity-80 transition-all duration-700"
+                className="w-full h-full object-cover transition-all duration-700"
               />
             </div>
             {/* Floating Certified Badge */}
-            <div className="absolute top-[12%] right-[8%] bg-neutral-950 text-white p-5 rounded-2xl border border-neutral-800 z-30 shadow-lg text-center flex flex-col justify-center items-center w-28 h-28 sm:w-36 sm:h-36">
+            <div className="absolute top-[12%] right-[8%] bg-neutral-900 text-white p-5 rounded-2xl border border-neutral-800 z-30 shadow-lg text-center flex flex-col justify-center items-center w-28 h-28 sm:w-36 sm:h-36">
               {pageData.formType === "budget" ? (
                 <Award className="w-8 h-8 text-primary mb-2 slow-blink" />
               ) : (
-                <Scissors className="w-8 h-8 text-primary mb-2 slow-blink" />
+                <Cpu className="w-8 h-8 text-primary mb-2 slow-blink" />
               )}
-              <span className="text-xs sm:text-sm font-extrabold font-display block uppercase tracking-tight">VAULT NO. 1</span>
+              <span className="text-xs sm:text-sm font-extrabold font-display block uppercase tracking-tight">Route N109</span>
               <span className="text-[7px] sm:text-[8px] text-neutral-400 uppercase tracking-widest mt-1">
                 {t("general.certified")}
               </span>
@@ -234,31 +235,31 @@ export default function SEOPage() {
             <span className="text-primary font-extrabold uppercase text-xs tracking-widest bg-primary/10 px-4 py-1.5 rounded-full mb-6">
               {pageData.formType === "budget" ? t("general.brandsProducts") : t("general.servicesWorkshop")}
             </span>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white font-display tracking-tight leading-[1.05] mb-4 uppercase">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-neutral-900 font-display tracking-tight leading-[1.05] mb-4 uppercase">
               {pageData.h1}
             </h1>
-            <p className="text-primary font-bold mb-6 text-sm sm:text-base font-display uppercase tracking-wide">
+            <p className="text-neutral-500 font-bold mb-6 text-base font-display uppercase tracking-wide">
               {pageData.subtitle}
             </p>
-            <p className="text-neutral-300 font-normal leading-relaxed mb-10 text-base">
+            <p className="text-neutral-600 font-normal leading-relaxed mb-10 text-base">
               {pageData.intro}
             </p>
 
             {/* Highlights Editorial List */}
-            <div className="w-full border-t border-neutral-850">
+            <div className="w-full border-t border-neutral-200">
               {pageData.features.map((feature, idx) => (
                 <div
                   key={idx}
-                  className="flex items-start gap-6 py-5 border-b border-neutral-855 group transition-colors duration-300"
+                  className="flex items-start gap-6 py-5 border-b border-neutral-100 group transition-colors duration-300"
                 >
                   <span className="font-display text-2xl font-black text-primary/30 group-hover:text-primary transition-colors duration-300 leading-none pt-1">
                     {`0${idx + 1}`}
                   </span>
                   <div>
-                    <h3 className="font-bold text-white font-display text-base mb-1 uppercase tracking-wide">
+                    <h3 className="font-bold text-neutral-900 font-display text-base mb-1 uppercase tracking-wide">
                       {feature.title}
                     </h3>
-                    <p className="text-sm text-neutral-400 font-normal leading-relaxed">
+                    <p className="text-sm text-neutral-500 font-normal leading-relaxed">
                       {feature.desc}
                     </p>
                   </div>
@@ -270,20 +271,20 @@ export default function SEOPage() {
       </section>
 
       {/* Forms Area */}
-      <section className="py-16 md:py-24 bg-[#0C0C0C] border-t border-neutral-900">
+      <section className="py-16 md:py-24 bg-neutral-50">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-extrabold text-white font-display uppercase mb-4 tracking-wider">
+          <h2 className="text-3xl font-extrabold text-neutral-900 font-display uppercase mb-4">
             {t("general.contactUs")}
           </h2>
-          <p className="text-neutral-400 mb-12 max-w-xl mx-auto text-sm leading-relaxed">
+          <p className="text-neutral-500 mb-12 max-w-xl mx-auto text-sm leading-relaxed">
             {pageData.formType === "budget" 
               ? t("general.budgetSubtitle") 
               : t("general.workshopSubtitle")
             }
           </p>
 
-          <div className="max-w-lg mx-auto bg-neutral-900 rounded-2xl shadow-xl p-2 border border-neutral-850">
-            <WorkshopForm />
+          <div className="max-w-lg mx-auto bg-white rounded-2xl shadow-xl p-2 border border-neutral-100">
+            {pageData.formType === "budget" ? <BudgetForm /> : <WorkshopForm />}
           </div>
         </div>
       </section>

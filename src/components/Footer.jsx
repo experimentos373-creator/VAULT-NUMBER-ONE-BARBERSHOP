@@ -1,4 +1,4 @@
-import { Instagram, Mail, ArrowUpRight, Scissors } from "lucide-react";
+import { Facebook, Instagram, Phone, Mail, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { config } from "../config";
 
@@ -6,48 +6,77 @@ export default function Footer() {
   const { t, language } = useLanguage();
   const currentYear = new Date().getFullYear();
 
-  const socialLinks = [
+  const contactCards = [
     {
       name: "Instagram",
-      handle: "@vaultnumberone_barbershop",
-      icon: <Instagram className="w-5 h-5" />,
-      url: "https://www.instagram.com/vaultnumberone_barbershop/",
-      color: "hover:border-amber-500/40 hover:bg-amber-500/5 hover:text-primary"
+      handle: "@routen109mobilidade",
+      icon: <Instagram className="w-5 h-5 text-pink-500 group-hover:scale-110 transition-transform duration-300" />,
+      iconBg: "bg-pink-500/10 group-hover:bg-pink-500/20",
+      url: "https://www.instagram.com/routen109mobilidade/",
+      borderColor: "hover:border-pink-500/30",
+      hoverBg: "hover:bg-pink-500/[0.02]"
+    },
+    {
+      name: "Facebook",
+      handle: "RouteN109",
+      icon: <Facebook className="w-5 h-5 text-blue-500 group-hover:scale-110 transition-transform duration-300" />,
+      iconBg: "bg-blue-500/10 group-hover:bg-blue-500/20",
+      url: "https://www.facebook.com/RouteN109//",
+      borderColor: "hover:border-blue-500/30",
+      hoverBg: "hover:bg-blue-500/[0.02]"
+    },
+    {
+      name: t("footer.emailCard") || "E-mail",
+      handle: config.email,
+      icon: <Mail className="w-5 h-5 text-red-500 group-hover:scale-110 transition-transform duration-300" />,
+      iconBg: "bg-red-500/10 group-hover:bg-red-500/20",
+      url: `mailto:${config.email}`,
+      borderColor: "hover:border-red-500/30",
+      hoverBg: "hover:bg-red-500/[0.02]"
+    },
+    {
+      name: language === "en" ? "Phone" : language === "es" ? "Teléfono" : language === "fr" ? "Téléphone" : language === "de" ? "Telefon" : "Telefone",
+      handle: config.telephoneDisplay,
+      icon: <Phone className="w-5 h-5 text-emerald-500 group-hover:scale-110 transition-transform duration-300" />,
+      iconBg: "bg-emerald-500/10 group-hover:bg-emerald-500/20",
+      url: `tel:${config.telephone}`,
+      borderColor: "hover:border-emerald-500/30",
+      hoverBg: "hover:bg-emerald-500/[0.02]"
     }
   ];
 
   const prefix = language === "pt" ? "" : `/${language}`;
 
   return (
-    <footer id="footer" className="bg-[#0A0A0A] text-white pt-16 pb-8 md:pt-24 md:pb-12 border-t border-neutral-900 relative overflow-hidden text-left">
-      {/* Decorative ambient light */}
+    <footer id="footer" className="bg-neutral-950 text-white pt-16 pb-8 md:pt-24 md:pb-12 border-t border-neutral-900 relative overflow-hidden text-left">
+      {/* UX Audit: label placeholder aria-label */}
+      {/* Decorative details */}
       <div className="absolute right-[5%] bottom-[10%] w-[300px] h-[300px] bg-primary/5 rounded-full filter blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-6 relative z-10">
         
         {/* Contact Banner Section */}
-        <div className="bg-[#121212] border border-neutral-850 rounded-none p-6 md:p-12 mb-10 md:mb-16 flex flex-col lg:flex-row items-center justify-between gap-8 backdrop-blur-sm">
+        <div className="bg-neutral-900 border border-neutral-805 rounded-none p-6 md:p-12 mb-10 md:mb-16 flex flex-col lg:flex-row items-center justify-between gap-8 backdrop-blur-sm">
           <div className="text-center lg:text-left">
-            <h3 className="text-3xl font-extrabold font-display tracking-tight mb-2 uppercase text-white">
+            <h3 className="text-3xl font-extrabold font-display tracking-tight mb-2 uppercase">
               {t("footer.title")}
             </h3>
-            <p className="text-neutral-400 text-sm font-normal max-w-md leading-relaxed">
+            <p className="text-neutral-300 text-sm font-normal max-w-md leading-relaxed">
               {t("footer.desc")}
             </p>
           </div>
+          
           <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto shrink-0">
             <a
-              href="https://www.instagram.com/vaultnumberone_barbershop/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-primary hover:bg-white text-black font-extrabold px-6 py-4 rounded-full flex items-center justify-center gap-2 spring-hover shadow-md w-full sm:w-auto text-xs uppercase tracking-wider transition-colors duration-200"
+              href={`tel:${config.telephone}`}
+              className="bg-primary hover:bg-neutral-900 text-white px-6 py-4 rounded-full font-bold flex items-center justify-center gap-2 spring-hover shadow-md shadow-primary/20 w-full sm:w-auto text-xs uppercase tracking-wider"
             >
-              <Instagram className="w-4 h-4" />
-              {t("footer.callBtn")}: @vaultnumberone_barbershop
+              <Phone className="w-4 h-4" />
+              {t("footer.callBtn")}: {config.telephoneDisplay}
             </a>
             <a
               href={`mailto:${config.email}`}
-              className="bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-white px-6 py-4 rounded-full font-bold flex items-center justify-center gap-2 spring-hover shadow-md w-full sm:w-auto text-xs uppercase tracking-wider transition-colors duration-200"
+              className="bg-white hover:bg-neutral-100 text-neutral-950 px-6 py-4 rounded-full font-bold flex items-center justify-center gap-2 spring-hover shadow-md w-full sm:w-auto text-xs uppercase tracking-wider"
             >
               <Mail className="w-4 h-4 text-primary" />
               {t("footer.emailBtn")}
@@ -55,52 +84,28 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Info Cards Grid */}
+        {/* Info Cards Grid: Socials, Email, Phone */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          
-          {/* Social Links */}
-          {socialLinks.map((social, idx) => (
+          {contactCards.map((card, idx) => (
             <a
               key={idx}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`p-6 rounded-none border border-neutral-850 bg-[#121212]/40 flex items-center justify-between transition-all duration-350 group ${social.color}`}
+              href={card.url}
+              target={card.url.startsWith("http") ? "_blank" : undefined}
+              rel={card.url.startsWith("http") ? "noopener noreferrer" : undefined}
+              className={`p-5 rounded-2xl border border-neutral-900 bg-neutral-900/30 flex items-center justify-between transition-all duration-300 group hover:bg-neutral-900/60 ${card.borderColor} ${card.hoverBg} text-left`}
             >
               <div className="flex items-center gap-4">
-                <div className="bg-neutral-900 p-3 rounded-none border border-neutral-800 group-hover:bg-neutral-800 transition-colors">
-                  {social.icon}
+                <div className={`p-2.5 rounded-xl transition-colors ${card.iconBg}`}>
+                  {card.icon}
                 </div>
                 <div>
-                  <h4 className="font-bold text-white font-display text-sm mb-0.5">{social.name}</h4>
-                  <p className="text-[11px] text-neutral-400 font-normal">{social.handle}</p>
+                  <h4 className="font-bold text-white font-display text-sm mb-0.5">{card.name}</h4>
+                  <p className="text-[11px] text-neutral-400 font-normal truncate max-w-[140px] sm:max-w-[160px] md:max-w-[130px] lg:max-w-[150px]">{card.handle}</p>
                 </div>
               </div>
-              <ArrowUpRight className="w-4 h-4 text-neutral-500 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary" />
+              <ArrowUpRight className="w-4 h-4 text-neutral-600 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary" />
             </a>
           ))}
-
-          {/* Email Card */}
-          <a
-            href={`mailto:${config.email}`}
-            className="p-6 rounded-none border border-neutral-850 bg-[#121212]/40 flex items-center justify-between transition-all duration-300 group hover:border-primary/40 hover:bg-neutral-900/40 text-left"
-          >
-            <div className="flex items-center gap-4">
-              <div className="bg-neutral-900 p-3 rounded-none border border-neutral-800 group-hover:bg-neutral-800 transition-colors">
-                <Mail className="w-5 h-5 text-neutral-300 group-hover:text-primary" />
-              </div>
-              <div>
-                <h4 className="font-bold text-white font-display text-sm mb-0.5">
-                  {t("footer.emailCard")}
-                </h4>
-                <p className="text-[11px] text-neutral-400 font-normal truncate max-w-[140px]">
-                  {config.email}
-                </p>
-              </div>
-            </div>
-            <ArrowUpRight className="w-4 h-4 text-neutral-500 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary" />
-          </a>
-
         </div>
 
         {/* Divider */}
@@ -109,9 +114,9 @@ export default function Footer() {
           {/* Logo & copyright */}
           <div className="flex flex-col items-center md:items-start gap-2 text-center md:text-left">
             <a href={`${prefix}/#home`} className="flex items-center gap-3">
-              <Scissors className="w-4 h-4 text-primary shrink-0" />
-              <span className="font-extrabold tracking-tighter text-white font-display text-lg uppercase">
-                Vault <span className="text-primary font-black font-display">Number One</span>
+              <span className="w-3 h-3 bg-primary rounded-full animate-pulse" />
+              <span className="font-extrabold tracking-tighter text-white font-display text-lg">
+                AGOSTINHO <span className="text-red-500 font-black font-display">BIKES</span>
               </span>
             </a>
             <p className="text-xs text-neutral-400 mt-1">
@@ -125,12 +130,22 @@ export default function Footer() {
                 P&D Agency
               </a>.
             </p>
+            <div className="mt-2">
+              <a 
+                href="https://www.livroreclamacoes.pt" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[10px] text-neutral-400 hover:text-white transition-colors underline font-medium block"
+              >
+                Livro de Reclamações Eletrónico
+              </a>
+            </div>
           </div>
 
           {/* Quick links */}
           <div className="flex flex-wrap justify-center gap-8 font-semibold text-white">
             <a href={`${prefix}/#menu`} className="hover:text-primary transition-colors">
-              {t("nav.services")}
+              {t("nav.bikes")}
             </a>
             <a href={`${prefix}/#sobre`} className="hover:text-primary transition-colors">
               {t("nav.about")}

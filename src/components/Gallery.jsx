@@ -1,217 +1,95 @@
-import { Instagram, Heart, MessageCircle, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Image, ArrowRight, Maximize2 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { galleryImages } from "../data/galleryData";
 
 export default function Gallery() {
   const { t, language } = useLanguage();
-
-  const statsLabels = {
-    pt: { posts: "publicações", followers: "seguidores", following: "a seguir", followersVal: "352", followingVal: "27" },
-    en: { posts: "posts", followers: "followers", following: "following", followersVal: "352", followingVal: "27" },
-    es: { posts: "publicaciones", followers: "seguidores", following: "seguidos", followersVal: "352", followingVal: "27" },
-    fr: { posts: "publications", followers: "abonnés", following: "abonnements", followersVal: "352", followingVal: "27" },
-    de: { posts: "Beiträge", followers: "Abonnenten", following: "abonniert", followersVal: "352", followingVal: "27" }
-  };
-  const stats = statsLabels[language] || statsLabels.pt;
-
-  const posts = [
-    {
-      url: "/post4.png",
-      caption: t("gallery.post3.caption"),
-      likes: "185",
-      comments: "21",
-      link: "https://www.instagram.com/vaultnumberone_barbershop/"
-    },
-    {
-      url: "/post2.png",
-      caption: t("gallery.post5.caption"),
-      likes: "92",
-      comments: "5",
-      link: "https://www.instagram.com/vaultnumberone_barbershop/"
-    },
-    {
-      url: "/post5.png",
-      caption: t("gallery.post4.caption"),
-      likes: "148",
-      comments: "14",
-      link: "https://www.instagram.com/vaultnumberone_barbershop/"
-    },
-    {
-      url: "/post1.png",
-      caption: t("gallery.post1.caption"),
-      likes: "120",
-      comments: "9",
-      link: "https://www.instagram.com/vaultnumberone_barbershop/"
-    },
-    {
-      url: "/post3.png",
-      caption: t("gallery.post6.caption"),
-      likes: "155",
-      comments: "11",
-      link: "https://www.instagram.com/vaultnumberone_barbershop/"
-    },
-    {
-      url: "/post6.png",
-      caption: t("gallery.post2.caption"),
-      likes: "210",
-      comments: "25",
-      link: "https://www.instagram.com/vaultnumberone_barbershop/"
-    }
+  const prefix = language === "pt" ? "" : `/${language}`;
+  
+  // Show exactly the 4 requested featured photos in the homepage preview
+  const targetUrls = [
+    "/images/bikes/WhatsApp Image 2026-07-08 at 19.42.28.webp",
+    "/images/bikes/WhatsApp Image 2026-07-08 at 19.43.53.webp",
+    "/images/bikes/WhatsApp Image 2026-07-08 at 19.38.08.webp",
+    "/images/bikes/WhatsApp Image 2026-07-08 at 19.40.13 (1).webp"
   ];
-
+  
+  const previewImages = targetUrls
+    .map(url => galleryImages.find(img => img.url === url))
+    .filter(Boolean);
 
   return (
-    <section id="galeria" className="py-16 md:py-28 bg-[#121212] text-white relative border-b border-neutral-900">
-      {/* Background Grid Accent */}
-      <div className="absolute inset-0 opacity-[0.02] bg-[radial-gradient(#FFFFFF_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+    <section id="galeria" className="py-16 md:py-28 bg-white relative border-b border-neutral-200 text-left">
+      {/* Background Accent Grid */}
+      <div className="absolute inset-0 opacity-[0.01] bg-[radial-gradient(#000000_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-[1400px] mx-auto px-6">
         
         {/* Section Header */}
         <div className="reveal-slide-up mb-16 text-center">
-          <span className="text-black font-black uppercase text-xs tracking-widest bg-primary px-4 py-1.5 rounded-none mb-6 inline-block">
-            {t("gallery.badge")}
+          <span className="text-primary font-extrabold uppercase text-xs tracking-widest bg-primary/10 px-4 py-1.5 rounded-full mb-6 inline-block">
+            {t("nav.gallery")}
           </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white font-display tracking-tight leading-none mb-4 uppercase">
-            {t("gallery.title")}
+          <h2 className="text-4xl md:text-5xl font-extrabold text-neutral-900 font-display tracking-tight leading-none mb-4 uppercase">
+            {t("gallery.pageTitle")}
           </h2>
-          <p className="text-neutral-400 font-normal max-w-xl mx-auto text-sm md:text-base leading-relaxed">
-            {t("gallery.subtitle")}
+          <p className="text-neutral-500 font-normal max-w-xl mx-auto text-sm md:text-base leading-relaxed">
+            {language === "en" 
+              ? "Take a look at our latest custom builds, high-performance tuning, and specialized mechanical work."
+              : "Veja uma amostra das nossas últimas montagens à carta, afinações e trabalhos especializados de oficina."}
           </p>
         </div>
 
-        {/* Simulated Instagram Profile Header Card */}
-        <div className="max-w-3xl mx-auto bg-[#0c0c0c] border border-neutral-850 p-6 sm:p-8 rounded-2xl mb-12 flex flex-col sm:flex-row items-center gap-6 sm:gap-10 reveal-slide-up">
-          {/* Avatar with gradient border */}
-          <div className="relative p-[3px] rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 shrink-0">
-            <div className="bg-[#0C0C0C] p-1 rounded-full">
-              <img
-                src="/favicon.png"
-                alt="Vault Number One Logo"
-                className="w-18 h-18 sm:w-20 sm:h-20 rounded-full object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Profile details */}
-          <div className="flex-1 text-center sm:text-left">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4 justify-center sm:justify-start">
-              <h3 className="text-base sm:text-lg font-bold text-white flex items-center justify-center sm:justify-start gap-1">
-                vaultnumberone_barbershop
-                {/* Instagram Verified Badge SVG */}
-                <svg className="w-4 h-4 text-[#0095f6]" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                </svg>
-              </h3>
-              <a
-                href="https://www.instagram.com/vaultnumberone_barbershop/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#0095f6] hover:bg-[#1877f2] text-white px-5 py-1.5 rounded-lg text-xs font-bold transition-all text-center inline-block spring-hover shadow-sm"
-              >
-                Seguir
-              </a>
-            </div>
-
-            {/* Stats */}
-            <div className="flex justify-center sm:justify-start gap-8 sm:gap-10 text-sm mb-5 text-neutral-300">
-              <div className="flex flex-col items-center sm:items-start">
-                <strong className="text-white text-sm sm:text-base font-bold">9</strong>
-                <span className="text-[10px] sm:text-xs text-neutral-400 whitespace-nowrap">{stats.posts}</span>
-              </div>
-              <div className="flex flex-col items-center sm:items-start">
-                <strong className="text-white text-sm sm:text-base font-bold">{stats.followersVal}</strong>
-                <span className="text-[10px] sm:text-xs text-neutral-400 whitespace-nowrap">{stats.followers}</span>
-              </div>
-              <div className="flex flex-col items-center sm:items-start">
-                <strong className="text-white text-sm sm:text-base font-bold">{stats.followingVal}</strong>
-                <span className="text-[10px] sm:text-xs text-neutral-400 whitespace-nowrap">{stats.following}</span>
-              </div>
-            </div>
-
-            {/* Bio */}
-            <div className="text-xs text-neutral-400 leading-relaxed font-medium">
-              <p className="font-bold text-white uppercase tracking-wide">VAULT NUMBER ONE BARBERSHOP</p>
-              <p className="text-primary font-bold">Barbeiro @ricardofpedrosa</p>
-              <p>📍 GUIA, POMBAL</p>
-              <p>Avenida José Maria Duarte Júnior, 5, R/C Direito</p>
-              <p className="mt-1.5 text-[10px] text-neutral-500 uppercase tracking-widest font-bold">Marcações: vaultnumberone.buk.pt</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Symmetric Instagram Post Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {posts.map((post, idx) => (
-            <a
-              key={idx}
-              href={post.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative aspect-square overflow-hidden rounded-2xl border border-neutral-900 bg-[#0C0C0C] block reveal-slide-up"
+        {/* 4-Image Grid Preview */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {previewImages.map((img, idx) => (
+            <Link
+              key={img.id}
+              to={`${prefix}/galeria`}
+              className="group relative aspect-square overflow-hidden rounded-2xl border border-neutral-200/80 bg-neutral-50 block reveal-slide-up"
               style={{ transitionDelay: `${idx * 100}ms` }}
             >
-              {/* Image */}
+              {/* Photo */}
               <img
-                src={post.url}
-                alt={post.caption}
+                src={img.url}
+                alt={t(img.titleKey)}
                 loading="lazy"
-                className="w-full h-full object-cover opacity-80 transition-transform duration-700 ease-out group-hover:scale-105 group-hover:opacity-100"
+                width="300"
+                height="300"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
 
-              {/* Instagram Hover Overlay (Desktop/Tablet) */}
-              <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:flex flex-col justify-between p-6 text-white text-left z-20">
-                {/* Header info */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Instagram className="w-5 h-5 text-primary" />
-                    <span className="text-xs font-semibold tracking-wider">@vaultnumberone_barbershop</span>
-                  </div>
-                  <ExternalLink className="w-4 h-4 opacity-60 text-primary" />
+              {/* Hover Overlay */}
+              <div className="absolute inset-0 bg-neutral-950/75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-6 text-white text-left z-20">
+                <div className="flex justify-end">
+                  <Maximize2 className="w-4 h-4 text-white/80" />
                 </div>
-
-                {/* Caption in the middle */}
-                <p className="text-xs leading-relaxed font-medium line-clamp-4 my-auto">
-                  {post.caption}
-                </p>
-
-                {/* Footer Stats */}
-                <div className="flex items-center gap-6 pt-4 border-t border-white/10 text-xs font-bold">
-                  <span className="flex items-center gap-1.5">
-                    <Heart className="w-4 h-4 fill-current text-red-500" />
-                    {post.likes}
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <MessageCircle className="w-4 h-4 fill-current" />
-                    {post.comments}
-                  </span>
-                </div>
-              </div>
-
-              {/* Mobile Touch Overlay Bar (Always Visible at Bottom for Touch Devices) */}
-              <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-3.5 flex items-center justify-between text-white z-20 sm:hidden">
-                <span className="text-[10px] font-bold truncate max-w-[65%]">{post.caption}</span>
-                <div className="flex items-center gap-2.5 font-bold text-[9px] shrink-0 text-neutral-300">
-                  <span className="flex items-center gap-1"><Heart className="w-3.5 h-3.5 text-red-500 fill-current" /> {post.likes}</span>
+                <div>
+                  <h3 className="text-xs font-black uppercase tracking-wider text-white mb-1.5 font-display">
+                    {t(img.titleKey)}
+                  </h3>
+                  <p className="text-[10px] text-neutral-300 font-medium line-clamp-2 leading-relaxed">
+                    {t(img.descKey)}
+                  </p>
                 </div>
               </div>
               
-              {/* Thin overlay border inside the frame */}
-              <div className="absolute inset-2 border border-white/10 rounded-xl pointer-events-none z-10" />
-            </a>
+              <div className="absolute inset-2 border border-white/5 rounded-xl pointer-events-none z-10" />
+            </Link>
           ))}
         </div>
 
-        {/* Follow CTA Button */}
-        <div className="mt-16 text-center reveal-slide-up">
-          <a
-            href="https://www.instagram.com/vaultnumberone_barbershop/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-primary hover:bg-white text-black hover:text-black px-8 py-4 rounded-full font-black text-xs uppercase tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl spring-hover"
+        {/* Full Gallery CTA Button */}
+        <div className="text-center reveal-slide-up">
+          <Link
+            to={`${prefix}/galeria`}
+            className="inline-flex items-center gap-3 bg-neutral-950 hover:bg-primary text-white px-8 py-4 rounded-full font-black text-xs uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg spring-hover"
           >
-            <Instagram className="w-4 h-4" />
-            Ver no Instagram
-          </a>
+            <Image className="w-4 h-4" />
+            <span>{language === "en" ? "View Full Gallery" : "Ver Galeria Completa"}</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
 
       </div>
