@@ -289,24 +289,16 @@ export default function CatalogPage() {
 
   const categories = [
     { id: "all", label: t("catalog.filter.all") },
-    { id: "e-bikes", label: t("catalog.filter.ebikes") },
-    { id: "e-mtb-enduro", label: t("catalog.filter.enduro") },
-    { id: "e-mtb-trail", label: t("catalog.filter.trail") },
-    { id: "musculares", label: t("catalog.filter.conventional") }
+    { id: "e-mtb", label: t("catalog.filter.emtb") },
+    { id: "e-urban", label: t("catalog.filter.eurban") },
+    { id: "e-scooter", label: t("catalog.filter.escooter") },
+    { id: "e-moto", label: t("catalog.filter.emoto") }
   ];
 
   let filteredBikes = bikes;
   if (activeFilter !== "all") {
     if (activeFilter === "favoritos") {
       filteredBikes = filteredBikes.filter(b => favorites.includes(b.id));
-    } else if (activeFilter === "e-bikes" || activeFilter === "e-mtb") {
-      filteredBikes = filteredBikes.filter(b => b.category === "e-mtb");
-    } else if (activeFilter === "e-mtb-enduro") {
-      filteredBikes = filteredBikes.filter(b => b.category === "e-mtb" && b.categoryLabel[language] && b.categoryLabel[language].toLowerCase().includes("enduro"));
-    } else if (activeFilter === "e-mtb-trail") {
-      filteredBikes = filteredBikes.filter(b => b.category === "e-mtb" && b.categoryLabel[language] && (b.categoryLabel[language].toLowerCase().includes("trail") || b.categoryLabel[language].toLowerCase().includes("light") || b.categoryLabel[language].toLowerCase().includes("hardtail")));
-    } else if (activeFilter === "musculares" || activeFilter === "montanha") {
-      filteredBikes = filteredBikes.filter(b => b.category === "montanha");
     } else {
       filteredBikes = filteredBikes.filter(b => b.category === activeFilter);
     }
@@ -343,27 +335,18 @@ export default function CatalogPage() {
   // Motor Filter
   if (motorFilter === "bosch") {
     filteredBikes = filteredBikes.filter(b => 
-      b.category === "e-mtb" && 
-      ((b.specs.motor && b.specs.motor.toLowerCase().includes("bosch")) || 
-       (b.id.includes("crafty") && !b.id.includes("carbon-rr-s")) ||
-       b.id.includes("chaser") || 
-       b.id.includes("prime"))
+      b.specs.motor && b.specs.motor.toLowerCase().includes("bosch")
     );
   } else if (motorFilter === "djiavinox") {
     filteredBikes = filteredBikes.filter(b => 
-      b.category === "e-mtb" && 
-      ((b.specs.motor && b.specs.motor.toLowerCase().includes("avinox")) || 
-       b.id.includes("zendit") || 
-       b.id.includes("crafty-carbon-rr-s"))
+      b.specs.motor && (b.specs.motor.toLowerCase().includes("avinox") || b.specs.motor.toLowerCase().includes("dji"))
     );
   } else if (motorFilter === "tq") {
     filteredBikes = filteredBikes.filter(b => 
-      b.category === "e-mtb" && 
-      ((b.specs.motor && b.specs.motor.toLowerCase().includes("tq")) || 
-       b.id.includes("neat"))
+      b.specs.motor && b.specs.motor.toLowerCase().includes("tq")
     );
   } else if (motorFilter === "muscular") {
-    filteredBikes = filteredBikes.filter(b => b.category !== "e-mtb");
+    filteredBikes = filteredBikes.filter(b => !b.specs.motor);
   }
 
   if (searchQuery.trim() !== "") {
@@ -377,28 +360,11 @@ export default function CatalogPage() {
     );
   }
 
-  // Sort popular/starred bikes first (Zendit models first, then Crafty models, then others)
+  // Sort popular/starred vehicles first
   const sortedBikes = [...filteredBikes].sort((a, b) => {
-    // 1. Sort by popularity (isStar) first
     if (a.isStar && !b.isStar) return -1;
     if (!a.isStar && b.isStar) return 1;
-    
-    // 2. If both are popular, sort Zendit first, then Crafty
-    if (a.isStar && b.isStar) {
-      const aIsZendit = a.id.toLowerCase().includes("zendit");
-      const bIsZendit = b.id.toLowerCase().includes("zendit");
-      
-      if (aIsZendit && !bIsZendit) return -1;
-      if (!aIsZendit && bIsZendit) return 1;
-      
-      const aIsCrafty = a.id.toLowerCase().includes("crafty");
-      const bIsCrafty = b.id.toLowerCase().includes("crafty");
-      
-      if (aIsCrafty && !bIsCrafty) return -1;
-      if (!aIsCrafty && bIsCrafty) return 1;
-    }
-    
-    return 0;
+    return a.name.localeCompare(b.name);
   });
 
   const handleCategoryFilterChange = (id) => {
