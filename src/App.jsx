@@ -1,20 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { LanguageProvider } from "./context/LanguageContext";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import StockPage from "./pages/StockPage";
-import ServicesPage from "./pages/ServicesPage";
-import CompanyPage from "./pages/CompanyPage";
 import WhatsAppButton from "./components/WhatsAppButton";
+import { LanguageProvider } from "./context/LanguageContext";
+
+// Lazy load pages for optimized loading
+const Home = lazy(() => import("./pages/Home"));
+const Reservations = lazy(() => import("./pages/Reservations"));
+const SEOPage = lazy(() => import("./pages/SEOPage"));
 
 // Scroll Restoration & Hash Scrolling Helper
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // Reset any layout/scroll locks on route transitions
+    // Unlocks scrolling in case it was locked by menu overlays
     document.body.style.overflow = "unset";
 
     if (hash) {
@@ -32,7 +34,7 @@ function ScrollToTop() {
   return null;
 }
 
-// Re-observe reveal elements on every route change so animations always fire
+// Intersection Observer for scroll animations
 function RevealObserver() {
   const { pathname } = useLocation();
 
@@ -54,16 +56,29 @@ function RevealObserver() {
 
     const observer = new IntersectionObserver(handleIntersection, observerOptions);
 
-    const timer = setTimeout(() => {
+    const observeElements = () => {
       const revealElements = document.querySelectorAll(
         ".reveal-fade:not(.reveal-visible), .reveal-slide-up:not(.reveal-visible), .reveal-slide-left:not(.reveal-visible), .reveal-slide-right:not(.reveal-visible)"
       );
       revealElements.forEach((el) => observer.observe(el));
-    }, 100);
+    };
+
+    // Run initially
+    observeElements();
+
+    // Re-run on DOM mutations due to lazy-loaded code chunks
+    const mutationObserver = new MutationObserver(() => {
+      observeElements();
+    });
+
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
 
     return () => {
-      clearTimeout(timer);
       observer.disconnect();
+      mutationObserver.disconnect();
     };
   }, [pathname]);
 
@@ -73,28 +88,42 @@ function RevealObserver() {
 export default function App() {
   return (
     <LanguageProvider>
-      <div className="bg-dark-bg text-neutral-200 min-h-screen flex flex-col justify-between overflow-x-hidden">
+      <div className="bg-[#FDFCFA] text-[#1A1A1A] min-h-screen flex flex-col justify-between overflow-x-hidden">
         <ScrollToTop />
         <RevealObserver />
 
-        {/* Global Floating Navigation Bar */}
+        {/* Global Navigation Bar */}
         <Navbar />
 
-        {/* Page Content Routes */}
-        <main className="flex-grow">
+        <Suspense fallback={<div className="min-h-screen bg-[#FDFCFA]"></div>}>
           <Routes>
+            {/* PT Routes */}
             <Route path="/" element={<Home />} />
-            <Route path="/viaturas" element={<StockPage />} />
-            <Route path="/servicos" element={<ServicesPage />} />
-            <Route path="/empresa" element={<CompanyPage />} />
-          </Routes>
-        </main>
+            <Route path="/reservas" element={<Reservations />} />
 
-        {/* Footer Area */}
+            {/* EN Routes */}
+            <Route path="/en" element={<Home />} />
+            <Route path="/en/reservations" element={<Reservations />} />
+
+            {/* FR Routes */}
+            <Route path="/fr" element={<Home />} />
+            <Route path="/fr/reservations" element={<Reservations />} />
+
+            {/* Dynamic slug fallbacks */}
+            <Route path="/:slug" element={<SEOPage />} />
+            <Route path="/en/:slug" element={<SEOPage />} />
+            <Route path="/fr/:slug" element={<SEOPage />} />
+          </Routes>
+        </Suspense>
+
+        {/* Global Footer */}
         <Footer />
 
-        {/* Contact WhatsApp Button */}
+        {/* Floating WhatsApp Action Button */}
         <WhatsAppButton />
+
+        {/* Speed Insights */}
+        <SpeedInsights />
       </div>
     </LanguageProvider>
   );

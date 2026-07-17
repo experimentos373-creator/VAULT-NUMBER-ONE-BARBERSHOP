@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://garfo-da-costa.vercel.app/sitemap.xml
