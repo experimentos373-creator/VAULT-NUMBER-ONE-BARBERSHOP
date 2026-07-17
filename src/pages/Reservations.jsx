@@ -111,7 +111,7 @@ export default function Reservations() {
         `Por favor, confirme a disponibilidade da mesa.\nObrigado! \uD83D\uDE4F`;
     }
 
-    return `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(text)}`;
+    return `https://api.whatsapp.com/send?phone=${config.whatsappNumber}&text=${encodeURIComponent(text)}`;
   };
 
   const handleSubmit = (e) => {

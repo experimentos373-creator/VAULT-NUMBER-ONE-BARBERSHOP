@@ -22,7 +22,7 @@ export default function WhatsAppButton() {
   const messagesMap = config.whatsappMessages[language] || config.whatsappMessages["pt"];
   const message = messagesMap[activeKey] || messagesMap["/"];
   const encodedText = encodeURIComponent(message);
-  const whatsappUrl = `https://wa.me/${config.whatsappNumber}?text=${encodedText}`;
+  const whatsappUrl = `https://api.whatsapp.com/send?phone=${config.whatsappNumber}&text=${encodedText}`;
 
   const ariaLabels = {
     pt: "Falar pelo WhatsApp",

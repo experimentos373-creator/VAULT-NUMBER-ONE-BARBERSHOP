@@ -66,12 +66,6 @@ export default function Navbar() {
     fr: "reservations"
   };
 
-  const adminSlugMap = {
-    pt: "admin/reservas",
-    en: "admin/reservations",
-    fr: "admin/reservations"
-  };
-
   const navLinks = [
     { label: t("nav.home"), href: isHome ? "#root" : (prefix || "/") },
     { label: t("nav.concept"), href: getHref("#conceito") },
@@ -175,14 +169,6 @@ export default function Navbar() {
             </div>
 
             <Link
-              to={`${prefix}/${adminSlugMap[language]}`}
-              className="p-2 text-neutral-650 hover:text-primary hover:bg-[#D2ECE0]/50 rounded-full transition-all duration-200 cursor-pointer flex items-center justify-center"
-              title={t("nav.admin")}
-            >
-              <Settings className="w-4 h-4" />
-            </Link>
-
-            <Link
               to={`${prefix}/${menuSlugMap[language]}`}
               className="bg-primary hover:bg-primary-hover text-white px-5 py-2.5 rounded-full font-semibold text-[10px] uppercase tracking-wider flex items-center gap-2 spring-hover shadow-md hover:shadow-primary/20"
             >
@@ -192,14 +178,6 @@ export default function Navbar() {
           </div>
 
           <div className="md:hidden flex items-center gap-2">
-            <Link
-              to={`${prefix}/${adminSlugMap[language]}`}
-              className="p-2 text-neutral-650 hover:text-primary hover:bg-[#D2ECE0]/50 rounded-full transition-all duration-200 cursor-pointer flex items-center justify-center mr-1"
-              title={t("nav.admin")}
-            >
-              <Settings className="w-4.5 h-4.5" />
-            </Link>
-
             <div className="relative" ref={mobileDropdownRef}>
               <button
                 onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
