@@ -82,7 +82,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Velocípede com Motor Elétrico", en: "Electric Velocipede / Moped", es: "Velocípedo con Motor Eléctrico", fr: "Vélocipède Électrique", de: "Elektrisches Leichtkraftrad"
     },
-    image: "/images/vehicles/super_soco_tc_max.png",
+    image: "/images/vehicles/s4_gow.png",
     rating: "4.7 (11)",
     drivetrainShort: "Motor Roda 500W",
     suspensionShort: "Duplo Amortecedor Hidráulico",
@@ -116,7 +116,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Velocípede com Motor Elétrico", en: "Electric Velocipede / Moped", es: "Velocípedo con Motor Eléctrico", fr: "Vélocipède Électrique", de: "Elektrisches Leichtkraftrad"
     },
-    image: "/images/vehicles/voltrish_vision.png",
+    image: "/images/vehicles/scooty_250_power.png",
     rating: "4.6 (15)",
     drivetrainShort: "Motor Roda 250W",
     suspensionShort: "Suspensão Comfort",
@@ -150,7 +150,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Scooter Elétrica Urbana", en: "Urban Electric Scooter", es: "Scooter Eléctrica Urbana", fr: "Scooter Électrique Urbain", de: "Urbaner Elektroroller"
     },
-    image: "/images/vehicles/horwin_ek3.png",
+    image: "/images/vehicles/zoa_72v.png",
     rating: "4.8 (21)",
     drivetrainShort: "Motor Hub 1200W (Pico 2000W)",
     suspensionShort: "Suspensão Hidráulica Desportiva",
@@ -184,7 +184,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Scooter Elétrica Urbana", en: "Urban Electric Scooter", es: "Scooter Eléctrica Urbana", fr: "Scooter Électrique Urbain", de: "Urbaner Elektroroller"
     },
-    image: "/images/vehicles/neovolt_runner.png",
+    image: "/images/vehicles/neovolt_weride.png",
     rating: "4.6 (12)",
     drivetrainShort: "Motor Roda 1000W",
     suspensionShort: "Amortecedor Hidráulico Traseiro",
@@ -286,7 +286,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Velocípede com Motor Elétrico", en: "Electric Velocipede / Moped", es: "Velocípedo con Motor Eléctrico", fr: "Vélocipède Électrique", de: "Elektrisches Leichtkraftrad"
     },
-    image: "/images/vehicles/neovolt_runner.png",
+    image: "/images/vehicles/neovolt_gox.png",
     rating: "4.7 (16)",
     drivetrainShort: "Motor Roda 250W",
     suspensionShort: "Suspensão Dianteira Comfort",
@@ -320,7 +320,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Scooter Elétrica Urbana", en: "Urban Electric Scooter", es: "Scooter Eléctrica Urbana", fr: "Scooter Électrique Urbain", de: "Urbaner Elektroroller"
     },
-    image: "/images/vehicles/voltrish_vision.png",
+    image: "/images/vehicles/vision_sport.png",
     rating: "4.8 (18)",
     drivetrainShort: "Motor Roda 1200W",
     suspensionShort: "Amortecedores Traseiros a Gás",
@@ -354,7 +354,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Velocípede com Motor Elétrico", en: "Electric Velocipede / Moped", es: "Velocípedo con Motor Eléctrico", fr: "Vélocipède Électrique", de: "Elektrisches Leichtkraftrad"
     },
-    image: "/images/vehicles/neovolt_runner.png",
+    image: "/images/vehicles/azores.png",
     rating: "4.7 (10)",
     drivetrainShort: "Motor Roda 250W",
     suspensionShort: "Suspensão Dianteira Comfort",
@@ -388,7 +388,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Velocípede com Motor Elétrico", en: "Electric Velocipede / Moped", es: "Velocípedo con Motor Eléctrico", fr: "Vélocipède Électrique", de: "Elektrisches Leichtkraftrad"
     },
-    image: "/images/vehicles/voltrish_vision.png",
+    image: "/images/vehicles/we_fun.png",
     rating: "4.6 (13)",
     drivetrainShort: "Motor Roda 250W",
     suspensionShort: "Suspensão Telescópica Dianteira",
@@ -422,7 +422,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Scooter Elétrica Urbana", en: "Urban Electric Scooter", es: "Scooter Eléctrica Urbana", fr: "Scooter Électrique Urbain", de: "Urbaner Elektroroller"
     },
-    image: "/images/vehicles/segway_e125s.png",
+    image: "/images/vehicles/rio_j2_72v.png",
     rating: "4.8 (22)",
     drivetrainShort: "Motor Roda 1200W",
     suspensionShort: "Amortecimento Duplo Comfort",
@@ -456,7 +456,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Velocípede com Motor Elétrico", en: "Electric Velocipede / Moped", es: "Velocípedo con Motor Eléctrico", fr: "Vélocipède Électrique", de: "Elektrisches Leichtkraftrad"
     },
-    image: "/images/vehicles/voltrish_vision.png",
+    image: "/images/vehicles/voltrish_21.png",
     rating: "4.6 (9)",
     drivetrainShort: "Motor Roda 250W",
     suspensionShort: "Forqueta Telescópica Dianteira",
@@ -490,7 +490,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Triciclo de Mobilidade Reduzida", en: "Mobility Scooter (3-Wheeled)", es: "Vehículo de Movilidad de 3 Ruedas", fr: "Scooter de Mobilité (3 roues)", de: "3-Rad Seniorenmobil"
     },
-    image: "/images/vehicles/neovolt_runner.png",
+    image: "/images/vehicles/vista_3_rodas.png",
     rating: "4.9 (18)",
     drivetrainShort: "Motor Traseiro 800W com Diferencial",
     suspensionShort: "Suspensão Comfort Extra",
@@ -524,7 +524,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Triciclo Utilitário / Carga", en: "Utility Electric Tricycle", es: "Triciclo Eléctrico de Carga", fr: "Tricycle Électrique de Charge", de: "Lasten-Dreirad"
     },
-    image: "/images/vehicles/neovolt_runner.png",
+    image: "/images/vehicles/triciclo_kiev.png",
     rating: "4.7 (12)",
     drivetrainShort: "Motor Roda Traseiro 500W-800W",
     suspensionShort: "Suspensão de Carga Traseira",
@@ -558,7 +558,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Triciclo de Mobilidade Reduzida", en: "Mobility Scooter (3-Wheeled)", es: "Vehículo de Movilidad de 3 Ruedas", fr: "Scooter de Mobilité (3 roues)", de: "3-Rad Seniorenmobil"
     },
-    image: "/images/vehicles/neovolt_runner.png",
+    image: "/images/vehicles/tokio_3_rodas.png",
     rating: "4.8 (15)",
     drivetrainShort: "Motor Traseiro 1000W com Diferencial",
     suspensionShort: "Suspensão Total Hidráulica",
@@ -592,7 +592,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Velocípede com Motor Elétrico", en: "Electric Velocipede / Moped", es: "Velocípedo con Motor Eléctrico", fr: "Vélocipède Électrique", de: "Elektrisches Leichtkraftrad"
     },
-    image: "/images/vehicles/neovolt_runner.png",
+    image: "/images/vehicles/neovolt_standard.png",
     rating: "4.7 (14)",
     drivetrainShort: "Motor Roda 250W",
     suspensionShort: "Suspensão Telescópica Dianteira",
@@ -626,7 +626,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Velocípede com Motor Elétrico", en: "Electric Velocipede / Moped", es: "Velocípedo con Motor Eléctrico", fr: "Vélocipède Électrique", de: "Elektrisches Leichtkraftrad"
     },
-    image: "/images/vehicles/neovolt_runner.png",
+    image: "/images/vehicles/lisbon_sx.png",
     rating: "4.7 (11)",
     drivetrainShort: "Motor Roda 250W",
     suspensionShort: "Suspensão Dianteira Comfort",
@@ -660,7 +660,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Triciclo de Mobilidade de 2 Lugares", en: "2-Seater Mobility Scooter", es: "Vehículo de Movilidad de 2 Plazas", fr: "Scooter de Mobilité 2 places", de: "2-Sitzer Seniorenmobil"
     },
-    image: "/images/vehicles/neovolt_runner.png",
+    image: "/images/vehicles/triciclo_fun.png",
     rating: "4.8 (14)",
     drivetrainShort: "Motor Traseiro 1000W com Diferencial",
     suspensionShort: "Suspensão Comfort Dupla",
@@ -694,7 +694,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Triciclo de Lazer / Mobilidade", en: "3-Wheeled / 3-Seater Leisure Vehicle", es: "Triciclo de Movilidad 3 Plazas", fr: "Tricycle de Loisir / 3 places", de: "3-Rad 3-Sitzer Freizeitfahrzeug"
     },
-    image: "/images/vehicles/neovolt_runner.png",
+    image: "/images/vehicles/luna_qc.png",
     rating: "4.8 (19)",
     drivetrainShort: "Motor Traseiro 1000W com Diferencial",
     suspensionShort: "Suspensão Total Hidráulica",
@@ -762,7 +762,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Triciclo de Lazer Familiar", en: "Leisure Family Tricycle (3-Seater)", es: "Triciclo de Ocio Familiar 3 Plazas", fr: "Tricycle de Loisir Familial 3 places", de: "Freizeit-Dreirad 3-Sitzer"
     },
-    image: "/images/vehicles/neovolt_runner.png",
+    image: "/images/vehicles/raider_mini33.png",
     rating: "4.8 (17)",
     drivetrainShort: "Motor Traseiro 1000W com Diferencial",
     suspensionShort: "Suspensão Comfort Dupla",
@@ -830,7 +830,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Scooter Elétrica Urbana", en: "Urban Electric Scooter", es: "Scooter Eléctrica Urbana", fr: "Scooter Électrique Urbain", de: "Urbaner Elektroroller"
     },
-    image: "/images/vehicles/segway_e125s.png",
+    image: "/images/vehicles/rio_j2_60v.png",
     rating: "4.7 (19)",
     drivetrainShort: "Motor Roda 1000W",
     suspensionShort: "Amortecimento Duplo Comfort",
