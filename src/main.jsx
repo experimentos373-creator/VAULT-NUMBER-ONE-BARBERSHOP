@@ -6,7 +6,8 @@ import App from './App.jsx'
 import { config } from './config.js'
 
 function initializeIntegrations() {
-  if (config.googleSearchConsoleKey) {
+  // 1. Google Search Console Verification Tag
+  if (config.googleSearchConsoleKey && config.googleSearchConsoleKey !== "YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_KEY") {
     let meta = document.querySelector('meta[name="google-site-verification"]');
     if (!meta) {
       meta = document.createElement('meta');
@@ -16,6 +17,7 @@ function initializeIntegrations() {
     meta.content = config.googleSearchConsoleKey;
   }
 
+  // 2. Google Analytics (GA4) Dynamic Load
   if (config.googleAnalyticsId) {
     const script = document.createElement('script');
     script.async = true;
@@ -34,6 +36,7 @@ function initializeIntegrations() {
 }
 
 initializeIntegrations();
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

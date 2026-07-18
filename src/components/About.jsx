@@ -1,109 +1,103 @@
-import { Award, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ShieldCheck, BatteryCharging, Wrench, Settings } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function About() {
-  const { t, language } = useLanguage();
-  const prefix = language === "pt" ? "" : `/${language}`;
+  const { t } = useLanguage();
 
-  const features = [
+  const services = [
     {
       title: t("about.feat1.title"),
-      desc: t("about.feat1.desc")
+      desc: t("about.feat1.desc"),
+      icon: <Settings className="w-4 h-4 text-primary" />
     },
     {
       title: t("about.feat2.title"),
-      desc: t("about.feat2.desc")
+      desc: t("about.feat2.desc"),
+      icon: <BatteryCharging className="w-4 h-4 text-primary" />
     },
     {
       title: t("about.feat3.title"),
-      desc: t("about.feat3.desc")
+      desc: t("about.feat3.desc"),
+      icon: <Wrench className="w-4 h-4 text-primary" />
     }
   ];
 
-  const menuSlug = language === "pt" ? "reservas" : "reservations";
-
   return (
-    <section id="conceito" className="py-16 md:py-28 bg-[#FDFCFA] relative overflow-hidden border-b border-[#E2DFD8]">
-      <div className="absolute right-0 top-0 w-1/3 h-full border-l border-[#E2DFD8]/45 pointer-events-none" />
-      
-      <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-        <div className="lg:col-span-6 relative h-[420px] sm:h-[500px] flex items-center justify-center reveal-slide-left z-10">
-          <div className="absolute top-[5%] left-[5%] w-[68%] h-[75%] border border-[#E2DFD8] overflow-hidden rounded-2xl shadow-lg bg-neutral-100">
-            <img
-              src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
-              alt="Cozinha de autor Chef Ricardo Perpétuo"
-              className="w-full h-full object-cover transition-all duration-700 hover:scale-102"
-              loading="lazy"
-            />
+    <section id="sobre" className="py-20 md:py-28 bg-white text-[#111111] relative border-b border-neutral-200/50">
+      <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
+        
+        {/* Left 5 Columns: Sleek Framed Workshop Image */}
+        <div className="lg:col-span-5 relative reveal-slide-left w-full flex justify-center">
+          <div className="relative p-2.5 bg-[#FCFBFA] border border-neutral-200 shadow-md w-full max-w-[450px]">
+            <div className="border border-neutral-200 overflow-hidden relative">
+              <img
+                src="/images/route109_about.jpg"
+                alt="Oficina Route N109 - Assistência Técnica"
+                className="w-full h-[320px] sm:h-[400px] object-cover hover:scale-102 transition-transform duration-700"
+                width="500"
+                height="400"
+              />
+            </div>
+            {/* Caption style under image */}
+            <div className="mt-2 text-[9px] uppercase tracking-widest text-neutral-400 font-bold text-center">
+              Centro Técnico de Diagnóstico e Reparação Eletrónica
+            </div>
           </div>
 
-          <div className="absolute bottom-[5%] right-[5%] w-[48%] h-[48%] border-4 border-[#FDFCFA] z-20 overflow-hidden rounded-2xl shadow-2xl bg-neutral-150">
-            <img
-              src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80"
-              alt="Jantares vínicos Herdade das Servas"
-              className="w-full h-full object-cover hover:scale-[1.05] transition-transform duration-500"
-              loading="lazy"
-            />
-          </div>
-
-          <div className="absolute top-[12%] right-[8%] bg-primary text-white p-5 rounded-2xl border border-[#E2DFD8]/20 z-30 shadow-lg text-center flex flex-col justify-center items-center w-36 h-36">
-            <Award className="w-8 h-8 text-primary-light mb-2 slow-blink" />
-            <span className="text-sm font-semibold font-serif block uppercase tracking-tight leading-tight">Garfo da Costa</span>
-            <span className="text-[7px] text-[#D2ECE0] uppercase tracking-widest mt-1">
-              Costa de Lavos
-            </span>
+          {/* Floating Minimal Stamp (High Contrast Round Badge) */}
+          <div className="absolute -bottom-4 -right-4 bg-neutral-950 text-white rounded-full w-24 h-24 flex flex-col items-center justify-center border border-neutral-800 shadow-xl z-20">
+            <ShieldCheck className="w-5 h-5 text-primary mb-1 animate-pulse" />
+            <span className="text-[8px] font-black uppercase tracking-widest text-center leading-none">Oficina</span>
+            <span className="text-[8px] font-bold text-neutral-400 uppercase tracking-widest text-center mt-0.5">Certificada</span>
           </div>
         </div>
 
-        <div className="lg:col-span-6 flex flex-col items-start text-left reveal-slide-right">
-          <span className="text-primary font-semibold uppercase text-[10px] tracking-wider bg-[#D2ECE0] px-4 py-1.5 rounded-full mb-6">
+        {/* Right 7 Columns: Text & Clean Editorial Services */}
+        <div className="lg:col-span-7 flex flex-col items-start text-left reveal-slide-right z-10">
+          <span className="text-primary font-bold uppercase text-[10px] tracking-widest bg-primary/10 px-3.5 py-1.5 rounded-full mb-6">
             {t("about.badge")}
           </span>
-          <h2 className="text-4xl md:text-5xl font-normal text-neutral-900 font-serif tracking-tight leading-[1.1] mb-4 uppercase">
+          
+          <h2 className="text-4xl md:text-5xl font-normal text-neutral-950 font-display tracking-tight leading-[1.1] mb-6 uppercase">
             {t("about.title")}
           </h2>
-          <p className="text-primary font-semibold mb-6 text-sm uppercase tracking-wider">
+          
+          <p className="text-primary font-bold mb-4 text-xs uppercase tracking-widest">
             {t("about.subtitle")}
           </p>
-          <p className="text-neutral-600 font-normal leading-relaxed mb-4 text-sm font-sans">
+          
+          <p className="text-neutral-600 leading-relaxed mb-4 text-sm md:text-base">
             {t("about.paragraph1")}
           </p>
-          <p className="text-neutral-600 font-normal leading-relaxed mb-10 text-sm font-sans">
+          <p className="text-neutral-600 leading-relaxed mb-12 text-sm md:text-base">
             {t("about.paragraph2")}
           </p>
 
-          <div className="w-full border-t border-[#E2DFD8]">
-            {features.map((feature, idx) => (
+          {/* Clean List with fine dividers (instead of rounded box cards) */}
+          <div className="w-full border-t border-neutral-200/80">
+            {services.map((service, idx) => (
               <div
                 key={idx}
-                className="flex items-start gap-6 py-5 border-b border-[#E2DFD8]/40 group transition-colors duration-300"
+                className="flex items-start gap-6 py-5 border-b border-neutral-200/80 group transition-colors duration-250 hover:bg-neutral-50/50 px-2"
               >
-                <span className="font-serif text-3xl font-normal text-primary/30 group-hover:text-primary transition-colors duration-300 leading-none pt-1">
-                  {`0${idx + 1}`}
+                {/* Visual numbering */}
+                <span className="font-display text-2xl font-normal text-primary/30 group-hover:text-primary transition-colors duration-300 leading-none pt-0.5">
+                  0{idx + 1}
                 </span>
-                <div>
-                  <h3 className="font-semibold text-neutral-900 font-serif text-base mb-1 uppercase tracking-wide">
-                    {feature.title}
+                <div className="flex-1">
+                  <h3 className="font-bold text-neutral-950 text-sm uppercase tracking-wider mb-1 flex items-center gap-2">
+                    <span className="opacity-60 group-hover:opacity-100 transition-opacity">{service.icon}</span>
+                    {service.title}
                   </h3>
-                  <p className="text-xs text-neutral-500 font-normal leading-relaxed font-sans">
-                    {feature.desc}
+                  <p className="text-xs md:text-sm text-neutral-500 leading-relaxed max-w-xl">
+                    {service.desc}
                   </p>
                 </div>
               </div>
             ))}
           </div>
-
-          <div className="mt-8">
-            <Link
-              to={`${prefix}/${menuSlug}`}
-              className="inline-flex items-center gap-2 bg-primary hover:bg-[#1E362C] text-white px-6 py-3.5 rounded-full font-semibold text-[10px] uppercase tracking-wider transition-all duration-300 spring-hover shadow-md"
-            >
-              <span>{t("hero.ctaBook")}</span>
-              <ArrowRight className="w-4 h-4 text-primary-light" />
-            </Link>
-          </div>
         </div>
+
       </div>
     </section>
   );

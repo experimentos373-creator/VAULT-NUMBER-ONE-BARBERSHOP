@@ -6,20 +6,21 @@ import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
 import { LanguageProvider } from "./context/LanguageContext";
 
-// Lazy load pages for optimized loading
+// Lazy load pages for chunk splitting and optimized performance
 const Home = lazy(() => import("./pages/Home"));
-const Reservations = lazy(() => import("./pages/Reservations"));
 const SEOPage = lazy(() => import("./pages/SEOPage"));
+const CatalogPage = lazy(() => import("./pages/CatalogPage"));
 
 // Scroll Restoration & Hash Scrolling Helper
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // Unlocks scrolling in case it was locked by menu overlays
+    // Reset any layout/scroll locks on route transitions
     document.body.style.overflow = "unset";
 
     if (hash) {
+      // Small timeout to allow the DOM to render before finding the element
       setTimeout(() => {
         const element = document.getElementById(hash.substring(1));
         if (element) {
@@ -34,7 +35,7 @@ function ScrollToTop() {
   return null;
 }
 
-// Intersection Observer for scroll animations
+// Re-observe reveal elements on every route change, watching for DOM changes due to lazy loading
 function RevealObserver() {
   const { pathname } = useLocation();
 
@@ -66,7 +67,7 @@ function RevealObserver() {
     // Run initially
     observeElements();
 
-    // Re-run on DOM mutations due to lazy-loaded code chunks
+    // Use MutationObserver to re-observe whenever new elements are mounted (e.g. from React.lazy chunks)
     const mutationObserver = new MutationObserver(() => {
       observeElements();
     });
@@ -88,41 +89,43 @@ function RevealObserver() {
 export default function App() {
   return (
     <LanguageProvider>
-      <div className="bg-[#FDFCFA] text-[#1A1A1A] min-h-screen flex flex-col justify-between overflow-x-hidden">
+      <div className="bg-white text-dark min-h-screen flex flex-col justify-between overflow-x-hidden">
         <ScrollToTop />
         <RevealObserver />
 
-        {/* Global Navigation Bar */}
+        {/* Navigation Bar */}
         <Navbar />
 
-        <Suspense fallback={<div className="min-h-screen bg-[#FDFCFA]"></div>}>
+        <Suspense fallback={<div className="min-h-screen bg-white"></div>}>
           <Routes>
-            {/* PT Routes */}
             <Route path="/" element={<Home />} />
-            <Route path="/reservas" element={<Reservations />} />
-
-            {/* EN Routes */}
             <Route path="/en" element={<Home />} />
-            <Route path="/en/reservations" element={<Reservations />} />
-
-            {/* FR Routes */}
+            <Route path="/es" element={<Home />} />
             <Route path="/fr" element={<Home />} />
-            <Route path="/fr/reservations" element={<Reservations />} />
+            <Route path="/de" element={<Home />} />
+            {/* Catalog routes */}
+            <Route path="/catalogo" element={<CatalogPage />} />
+            <Route path="/en/catalog" element={<CatalogPage />} />
+            <Route path="/es/catalogo" element={<CatalogPage />} />
+            <Route path="/fr/catalogue" element={<CatalogPage />} />
+            <Route path="/de/katalog" element={<CatalogPage />} />
 
-            {/* Dynamic slug fallbacks */}
+            {/* Dynamic SEO pages */}
             <Route path="/:slug" element={<SEOPage />} />
             <Route path="/en/:slug" element={<SEOPage />} />
+            <Route path="/es/:slug" element={<SEOPage />} />
             <Route path="/fr/:slug" element={<SEOPage />} />
+            <Route path="/de/:slug" element={<SEOPage />} />
           </Routes>
         </Suspense>
 
-        {/* Global Footer */}
+        {/* Contact Banner & Footer */}
         <Footer />
 
-        {/* Floating WhatsApp Action Button */}
+        {/* Dynamic Floating WhatsApp / Phone button */}
         <WhatsAppButton />
 
-        {/* Speed Insights */}
+        {/* Vercel Speed Insights */}
         <SpeedInsights />
       </div>
     </LanguageProvider>

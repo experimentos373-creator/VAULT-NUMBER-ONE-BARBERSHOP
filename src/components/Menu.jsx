@@ -1,225 +1,319 @@
-import { useState } from "react";
-import { Award, Compass, Eye } from "lucide-react";
-import { useLanguage } from "../context/LanguageContext";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { ArrowRight, Maximize2, Settings, Instagram, Facebook, ChevronLeft, ChevronRight, Zap } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
+import { bikes, catalogSlugs } from "../data/bikesData";
+
+const getInitialCardsPerView = () => {
+  if (typeof window === "undefined") return 3;
+  if (window.innerWidth < 640) return 1;
+  if (window.innerWidth < 1024) return 2;
+  if (window.innerWidth < 1280) return 3;
+  return 4;
+};
 
 export default function Menu() {
   const { t, language } = useLanguage();
-  const [activeTab, setActiveTab] = useState("specialities");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [cardsPerView, setCardsPerView] = useState(getInitialCardsPerView);
+  
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
   const prefix = language === "pt" ? "" : `/${language}`;
+  const catalogPath = `${prefix}/${catalogSlugs[language] || "catalogo"}`;
 
-  const specialities = [
-    {
-      id: "linguini",
-      title: t("menu.item.linguini.title"),
-      desc: t("menu.item.linguini.desc"),
-      tag: t("menu.item.linguini.tag"),
-      category: "Peixes & Mariscos",
-      image: "/images/linguini_nero.png"
-    },
-    {
-      id: "lingueirao",
-      title: t("menu.item.lingueirao.title"),
-      desc: t("menu.item.lingueirao.desc"),
-      tag: t("menu.item.lingueirao.tag"),
-      category: "Peixes & Mariscos",
-      image: "/images/arroz_lingueirao.jpg"
-    },
-    {
-      id: "crocante",
-      title: t("menu.item.crocante.title"),
-      desc: t("menu.item.crocante.desc"),
-      tag: t("menu.item.crocante.tag"),
-      category: "Peixes & Mariscos",
-      image: "/images/crocante_peixe.jpg"
-    },
-    {
-      id: "espetada",
-      title: t("menu.item.espetada.title"),
-      desc: t("menu.item.espetada.desc"),
-      tag: t("menu.item.espetada.tag"),
-      category: "Carnes",
-      image: "/images/espetada_terra_mar.png"
-    },
-    {
-      id: "vitela",
-      title: t("menu.item.vitela.title"),
-      desc: t("menu.item.vitela.desc"),
-      tag: t("menu.item.vitela.tag"),
-      category: "Carnes",
-      image: "/images/naco_vitela_novo.jpg"
-    },
-    {
-      id: "basca",
-      title: t("menu.item.basca.title"),
-      desc: t("menu.item.basca.desc"),
-      tag: t("menu.item.basca.tag"),
-      category: "Sobremesas",
-      image: "/images/torta_basca.png"
-    }
-  ];
+  const popularBikes = bikes
+    .filter(b => b.isStar)
+    .sort((a, b) => {
+      const aIsSurron = a.id.toLowerCase().includes("surron");
+      const bIsSurron = b.id.toLowerCase().includes("surron");
+      if (aIsSurron && !bIsSurron) return -1;
+      if (!aIsSurron && bIsSurron) return 1;
+      const aIsSoco = a.id.toLowerCase().includes("soco");
+      const bIsSoco = b.id.toLowerCase().includes("soco");
+      if (aIsSoco && !bIsSoco) return -1;
+      if (!aIsSoco && bIsSoco) return 1;
+      return 0;
+    });
 
-  const menuSlug = language === "pt" ? "reservas" : "reservations";
+  useEffect(() => {
+    const updateCardsPerView = () => {
+      if (window.innerWidth < 640) setCardsPerView(1);
+      else if (window.innerWidth < 1024) setCardsPerView(2);
+      else if (window.innerWidth < 1280) setCardsPerView(3);
+      else setCardsPerView(4);
+    };
+    window.addEventListener("resize", updateCardsPerView);
+    return () => window.removeEventListener("resize", updateCardsPerView);
+  }, []);
+
+  const maxIndex = Math.max(0, popularBikes.length - cardsPerView);
+
+  const scrollLeft = () => setCurrentIndex(prev => Math.max(prev - 1, 0));
+  const scrollRight = () => setCurrentIndex(prev => Math.min(prev + 1, maxIndex));
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+  const handleTouchMove = (e) => { touchEndX.current = e.targetTouches[0].clientX; };
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (diff > 50) setCurrentIndex(prev => Math.min(prev + 1, maxIndex));
+    else if (diff < -50) setCurrentIndex(prev => Math.max(prev - 1, 0));
+  };
 
   return (
-    <section id="especialidades" className="py-16 md:py-28 bg-[#FDFCFA] text-black relative border-b border-[#E2DFD8] font-sans">
-      <div className="absolute left-0 top-1/4 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl pointer-events-none" />
-      <div className="absolute right-0 bottom-1/4 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl pointer-events-none" />
-
+    <section id="produtos" className="py-20 md:py-28 bg-[#FCFBFA] text-[#111111] relative border-b border-neutral-200/50">
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+        
+        {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 reveal-slide-up">
-          <span className="text-primary font-semibold uppercase text-[10px] tracking-wider bg-[#D2ECE0] px-4 py-1.5 rounded-full mb-4 inline-block">
+          <span className="text-primary font-bold uppercase text-[10px] tracking-widest bg-primary/10 px-4 py-1.5 rounded-full mb-4 inline-block">
             {t("menu.badge")}
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal font-serif tracking-tight leading-none mb-6 uppercase text-neutral-900">
+          <h2 className="text-4xl md:text-5xl font-normal font-display tracking-tight leading-none mb-6 text-neutral-950 uppercase">
             {t("menu.title")}
           </h2>
-          <p className="text-neutral-600 text-sm md:text-base font-normal leading-relaxed">
+          <div className="w-16 h-[1px] bg-primary mx-auto mb-6"></div>
+          <p className="text-neutral-500 text-sm md:text-base leading-relaxed max-w-2xl mx-auto font-normal">
             {t("menu.subtitle")}
           </p>
         </div>
 
-        <div className="flex justify-center gap-4 mb-16 reveal-slide-up">
-          <button
-            onClick={() => setActiveTab("specialities")}
-            className={`px-6 py-3 text-xs font-semibold uppercase tracking-wider rounded-full transition-all duration-300 cursor-pointer ${
-              activeTab === "specialities"
-                ? "bg-primary text-white shadow-md"
-                : "bg-white border border-[#E2DFD8] text-neutral-700 hover:bg-[#F4F3EF]"
+        {/* Carousel */}
+        <div className="relative mb-20 px-2 md:px-12 reveal-slide-up">
+          
+          <button 
+            onClick={scrollLeft}
+            disabled={currentIndex === 0}
+            className={`hidden md:flex absolute md:left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-none bg-white border border-neutral-250/70 shadow-sm text-neutral-800 hover:bg-neutral-950 hover:text-white hover:border-neutral-950 transition-all cursor-pointer active:scale-95 ${
+              currentIndex === 0 ? "opacity-30 pointer-events-none" : ""
             }`}
+            aria-label="Anterior"
           >
-            {t("menu.tabSpecialities")}
+            <ChevronLeft className="w-5 h-5" />
           </button>
-          <button
-            onClick={() => setActiveTab("executive")}
-            className={`px-6 py-3 text-xs font-semibold uppercase tracking-wider rounded-full transition-all duration-300 cursor-pointer ${
-              activeTab === "executive"
-                ? "bg-primary text-white shadow-md"
-                : "bg-white border border-[#E2DFD8] text-neutral-700 hover:bg-[#F4F3EF]"
+
+          <button 
+            onClick={scrollRight}
+            disabled={currentIndex === maxIndex}
+            className={`hidden md:flex absolute md:right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-none bg-white border border-neutral-250/70 shadow-sm text-neutral-800 hover:bg-neutral-950 hover:text-white hover:border-neutral-950 transition-all cursor-pointer active:scale-95 ${
+              currentIndex === maxIndex ? "opacity-30 pointer-events-none" : ""
             }`}
+            aria-label="Próximo"
           >
-            {t("menu.tabExecutive")}
+            <ChevronRight className="w-5 h-5" />
           </button>
+
+          <div 
+            className="overflow-hidden w-full py-4 px-1"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <div 
+              className="flex gap-6 transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+              style={{ transform: `translateX(calc(-${currentIndex} * (100% + 24px) / ${cardsPerView}))` }}
+            >
+              {popularBikes.map((bike) => (
+                <div 
+                  key={bike.id} 
+                  className="flex-shrink-0"
+                  style={{ width: `calc((100% - (24px * ${cardsPerView - 1})) / ${cardsPerView})` }}
+                >
+                  <Link
+                    to={`${catalogPath}?bike=${bike.id}`}
+                    className="flex flex-col bg-white border border-neutral-200/80 rounded-none p-5 hover:border-primary transition-all duration-300 text-left group h-full relative shadow-sm hover:shadow-md cursor-pointer"
+                  >
+                    {bike.isStar && (
+                      <div className="absolute top-4 left-4 z-10 bg-primary text-white text-[8px] font-bold uppercase tracking-widest px-2.5 py-1 flex items-center gap-1 shadow-sm">
+                        <Zap className="w-2.5 h-2.5 fill-current" /> {t("catalog.badge.star")}
+                      </div>
+                    )}
+
+                    {/* Image Area inside clean container */}
+                    <div className="bg-[#FCFBFA] border border-neutral-100 aspect-[4/3] flex items-center justify-center relative overflow-hidden mb-6 p-4">
+                      <img
+                        src={bike.image}
+                        alt={bike.name}
+                        loading="lazy"
+                        width="300"
+                        height="225"
+                        className="max-w-[90%] max-h-[90%] object-contain transition-transform duration-[1s] ease-out group-hover:scale-103"
+                      />
+                      <div className="absolute inset-0 bg-neutral-900/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <Maximize2 className="w-4 h-4 text-neutral-600" />
+                      </div>
+                    </div>
+
+                    {/* Brand Label */}
+                    <div className="flex justify-between items-center mb-2.5">
+                      <span className="text-primary text-[9px] font-bold uppercase tracking-widest">
+                        {bike.brand}
+                      </span>
+                      <span className="text-[10px] text-neutral-400 font-bold flex items-center gap-1">
+                        <span>★</span> {bike.rating}
+                      </span>
+                    </div>
+
+                    {/* Name in elegant Serif headings */}
+                    <h3 className="text-lg font-normal text-neutral-950 font-display group-hover:text-primary transition-colors mb-4 line-clamp-1 uppercase">
+                      {bike.name}
+                    </h3>
+
+                    {/* Simple Specs Clean Layout */}
+                    <div className="grid grid-cols-2 gap-4 pt-4 border-t border-neutral-100 mb-6 text-xs">
+                      <div>
+                        <span className="text-[8px] text-neutral-450 uppercase tracking-widest block mb-1 font-bold">Motorização</span>
+                        <span className="text-neutral-800 font-semibold block truncate">{bike.drivetrainShort}</span>
+                      </div>
+                      <div>
+                        <span className="text-[8px] text-neutral-450 uppercase tracking-widest block mb-1 font-bold">Bateria</span>
+                        <span className="text-neutral-800 font-semibold block truncate">{bike.suspensionShort}</span>
+                      </div>
+                    </div>
+
+                    {/* Tags block */}
+                    <div className="flex flex-wrap gap-1 mb-6">
+                      {bike.tags.map((tag, idx) => (
+                        <span key={idx} className="border border-neutral-200 text-neutral-500 text-[8px] font-medium uppercase tracking-wider px-2 py-0.5">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Price & Action Button */}
+                    <div className="mt-auto pt-4 border-t border-neutral-150 flex items-center justify-between gap-3">
+                      {bike.price && (
+                        <div>
+                          <span className="text-[8px] text-neutral-400 uppercase tracking-widest block font-bold">PVP Sugerido</span>
+                          <span className="text-sm text-neutral-900 font-bold whitespace-nowrap">
+                            {new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(bike.price)}
+                          </span>
+                        </div>
+                      )}
+                      <div className="bg-neutral-950 group-hover:bg-primary text-white text-[9px] font-bold uppercase tracking-widest text-center px-4 py-2.5 transition-colors shadow-sm ml-auto">
+                        {language === "en" ? "Details" : language === "es" ? "Detalle" : language === "fr" ? "Détails" : language === "de" ? "Details" : "Detalhes"}
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {activeTab === "specialities" && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-menu-fade">
-            {specialities.map((item, idx) => (
-              <div
-                key={item.id}
-                className="bg-white border border-[#E2DFD8] p-5 hover:border-neutral-450 hover:shadow-xl transition-all duration-500 text-left group flex flex-col justify-between rounded-2xl"
-                style={{ animationDelay: `${idx * 50}ms` }}
-              >
+        {/* View Full Catalog Link Button */}
+        <div className="text-center mb-20">
+          <Link
+            to={catalogPath}
+            className="inline-flex items-center gap-2 bg-primary hover:bg-[#E05300] text-white px-8 py-3.5 font-bold text-xs uppercase tracking-widest transition-all shadow-md hover:shadow-lg active:scale-98 border border-primary cursor-pointer"
+          >
+            {t("catalog.viewFull")}
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        {/* Services & Social Section Redesigned as Editorial Clean */}
+        <div className="border-t border-neutral-200 pt-16 text-left" id="servicos">
+          <div className="bg-white border border-neutral-200/80 p-6 md:p-10 text-neutral-900 relative shadow-sm">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+              
+              {/* Left Column: Services Header & Socials */}
+              <div className="lg:col-span-5 text-left flex flex-col justify-between pr-0 lg:pr-6">
                 <div>
-                  <div className="relative overflow-hidden mb-5 bg-[#FDFCFA] aspect-[4/3] rounded-xl border border-[#E2DFD8]/50">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-103"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-neutral-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <Eye className="w-5 h-5 text-white" />
-                    </div>
-                    {item.tag && (
-                      <span className="absolute top-3 left-3 bg-[#1A1A1A] text-white text-[8px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full">
-                        {item.tag}
-                      </span>
-                    )}
+                  <div className="inline-flex items-center gap-1.5 border border-primary/20 bg-primary/5 text-primary font-bold text-[9px] uppercase tracking-widest px-3 py-1 mb-4">
+                    <Settings className="w-3 h-3 animate-spin-slow" />
+                    {t("menu.tabCustom")}
                   </div>
-
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-[9px] uppercase tracking-wider text-neutral-400 font-semibold">
-                      {item.category}
-                    </span>
-                  </div>
-
-                  <h3 className="text-lg font-normal font-serif text-neutral-900 group-hover:text-primary transition-colors mb-3 uppercase">
-                    {item.title}
+                  <h3 className="text-2xl md:text-3xl font-normal font-display text-neutral-950 mb-4 uppercase">
+                    {t("menu.customTitle")}
                   </h3>
-                  <p className="text-xs text-neutral-600 font-normal leading-relaxed mb-6 font-sans">
-                    {item.desc}
+                  <div className="w-12 h-[1px] bg-primary mb-6"></div>
+                  <p className="text-neutral-550 text-xs md:text-sm leading-relaxed mb-8">
+                    {t("menu.customDesc")}
                   </p>
                 </div>
 
-                <div className="border-t border-[#E2DFD8]/40 pt-4 mt-auto flex justify-between items-center">
-                  <span className="text-[10px] text-neutral-400 font-semibold tracking-wider uppercase">
-                    Garfo da Costa
-                  </span>
-                  <span className="text-[10px] text-primary font-bold uppercase tracking-wider">
-                    {t("about.since")}
-                  </span>
+                {/* Clean Flat Social Buttons */}
+                <div className="grid grid-cols-2 gap-4 mt-auto">
+                  <a href="https://www.instagram.com/routen109mobilidade/" target="_blank" rel="noopener noreferrer"
+                    className="border border-neutral-200 bg-[#FCFBFA] hover:border-[#ee2a7b]/40 p-3 flex items-center gap-3 transition-all duration-200 group cursor-pointer">
+                    <div className="p-1.5 bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white shrink-0 flex items-center justify-center">
+                      <Instagram className="w-4 h-4 text-white" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-bold block text-neutral-900 uppercase tracking-wider">Instagram</span>
+                      <span className="text-[9px] text-neutral-450 block truncate">@routen109mobilidade</span>
+                    </div>
+                  </a>
+                  <a href="https://www.facebook.com/RouteN109/" target="_blank" rel="noopener noreferrer"
+                    className="border border-neutral-200 bg-[#FCFBFA] hover:border-[#1877F2]/40 p-3 flex items-center gap-3 transition-all duration-200 group cursor-pointer">
+                    <div className="p-1.5 bg-[#1877F2] text-white shrink-0 flex items-center justify-center">
+                      <Facebook className="w-4 h-4 text-white" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-bold block text-neutral-900 uppercase tracking-wider">Facebook</span>
+                      <span className="text-[9px] text-neutral-450 block truncate">RouteN109</span>
+                    </div>
+                  </a>
                 </div>
               </div>
-            ))}
-          </div>
-        )}
 
-        {activeTab === "executive" && (
-          <div className="max-w-4xl mx-auto animate-menu-fade">
-            <div className="bg-[#222222] border border-[#E2DFD8]/10 p-8 md:p-12 text-white text-left rounded-2xl relative overflow-hidden shadow-xl">
-              <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-primary/10 rounded-full filter blur-3xl pointer-events-none" />
-              
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-1.5 bg-[#D2ECE0]/10 border border-[#D2ECE0]/20 text-primary-light font-semibold text-[9px] uppercase tracking-widest px-3 py-1 rounded-full mb-4">
-                  <Compass className="w-3.5 h-3.5" />
-                  {t("menu.tabExecutive")}
-                </div>
-                
-                <h3 className="text-2xl md:text-3xl font-normal font-serif text-white mb-3 uppercase tracking-tight">
-                  {t("menu.execTitle")}
-                </h3>
-                <p className="text-neutral-400 text-xs font-normal leading-relaxed mb-10 max-w-2xl font-sans">
-                  {t("menu.execDesc")}
-                </p>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  <div className="border-r border-white/5 pr-4 last:border-none last:pr-0">
-                    <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-2.5 pb-1 border-b border-white/10 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary-light" />
-                      {t("menu.exec.fish")}
+              {/* Right Column: Three Columns of Technical Specs */}
+              <div className="lg:col-span-7 bg-[#FCFBFA] border border-neutral-200/80 p-6 md:p-8 flex flex-col justify-between">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                  
+                  <div>
+                    <h4 className="text-[10px] font-bold text-neutral-950 uppercase tracking-widest mb-3 pb-1.5 border-b border-neutral-200 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 bg-primary" />
+                      {t("menu.suspensions")}
                     </h4>
-                    <p className="text-xs text-neutral-400 font-normal leading-relaxed font-sans">
-                      {t("menu.exec.fishDesc")}
-                    </p>
-                  </div>
-
-                  <div className="border-r border-white/5 pr-4 last:border-none last:pr-0">
-                    <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-2.5 pb-1 border-b border-white/10 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary-light" />
-                      {t("menu.exec.meat")}
-                    </h4>
-                    <p className="text-xs text-neutral-400 font-normal leading-relaxed font-sans">
-                      {t("menu.exec.meatDesc")}
-                    </p>
+                    <p className="text-[11px] text-neutral-500 leading-relaxed mb-3">{t("menu.suspensionsDesc")}</p>
+                    <ul className="text-[11px] text-neutral-800 font-bold flex flex-col gap-1.5 list-none">
+                      <li>• Motores PMSM / Cubo</li>
+                      <li>• Controladores VESC / FOC</li>
+                    </ul>
                   </div>
 
                   <div>
-                    <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-2.5 pb-1 border-b border-white/10 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary-light" />
-                      {t("menu.exec.veg")}
+                    <h4 className="text-[10px] font-bold text-neutral-950 uppercase tracking-widest mb-3 pb-1.5 border-b border-neutral-200 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 bg-primary" />
+                      {t("menu.brakes")}
                     </h4>
-                    <p className="text-xs text-neutral-400 font-normal leading-relaxed font-sans">
-                      {t("menu.exec.vegDesc")}
-                    </p>
+                    <p className="text-[11px] text-neutral-500 leading-relaxed mb-3">{t("menu.brakesDesc")}</p>
+                    <ul className="text-[11px] text-neutral-800 font-bold flex flex-col gap-1.5 list-none">
+                      <li>• Sistemas CBS / ABS</li>
+                      <li>• Pastilhas Cerâmicas</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="text-[10px] font-bold text-neutral-950 uppercase tracking-widest mb-3 pb-1.5 border-b border-neutral-200 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 bg-primary" />
+                      {t("menu.wheels")}
+                    </h4>
+                    <p className="text-[11px] text-neutral-500 leading-relaxed mb-3">{t("menu.wheelsDesc")}</p>
+                    <ul className="text-[11px] text-neutral-800 font-bold flex flex-col gap-1.5 list-none">
+                      <li>• Células LG / Samsung</li>
+                      <li>• Smart BMS Bluetooth</li>
+                    </ul>
                   </div>
                 </div>
 
-                <div className="pt-8 mt-10 border-t border-white/10 text-center md:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
-                  <span className="text-[10px] text-neutral-400 font-semibold tracking-wider uppercase font-sans">
-                    {t("menu.execTitle")} • Horário: 12:00 – 15:00
-                  </span>
-                  <Link
-                    to={`${prefix}/${menuSlug}`}
-                    className="bg-white hover:bg-primary-light text-neutral-900 hover:text-[#1E362C] px-5 py-3 rounded-full font-semibold text-[9px] uppercase tracking-wider transition-colors shadow-md"
-                  >
-                    {t("hero.ctaBook")}
-                  </Link>
+                {/* Financial Text */}
+                <div className="pt-6 mt-6 border-t border-neutral-200/80">
+                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">{t("menu.financialTitle")}</h4>
+                  <p className="text-neutral-500 text-xs leading-relaxed font-normal">{t("menu.financialDesc")}</p>
                 </div>
               </div>
+
             </div>
           </div>
-        )}
+        </div>
+
       </div>
     </section>
   );

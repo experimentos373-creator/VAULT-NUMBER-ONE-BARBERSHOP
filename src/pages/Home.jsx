@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import Hero from "../components/Hero";
 import About from "../components/About";
 import Menu from "../components/Menu";
-import Gallery from "../components/Gallery";
 import Reviews from "../components/Reviews";
 import Location from "../components/Location";
 import { useLanguage } from "../context/LanguageContext";
@@ -12,17 +11,20 @@ export default function Home() {
   const { language } = useLanguage();
 
   useEffect(() => {
-    // 1. Dynamic Page Title & Meta Description based on active language
     const titles = {
-      pt: "Garfo da Costa | Cozinha de Autor pelo Chef Ricardo Perpétuo em Figueira da Foz",
-      en: "Garfo da Costa | Signature Cuisine by Chef Ricardo Perpétuo in Figueira da Foz",
-      fr: "Garfo da Costa | Cuisine d'Auteur par le Chef Ricardo Perpétuo à Figueira da Foz"
+      pt: "Route N109 | Stand & Oficina de Motos e Scooters Elétricas na Guia",
+      en: "Route N109 | Electric Motorcycles & Scooters Stand & Workshop in Guia",
+      es: "Route N109 | Tienda & Taller de Vehículos Eléctricos en Guia",
+      fr: "Route N109 | Stand & Atelier de Véhicules Électriques à Guia",
+      de: "Route N109 | E-Fahrzeugladen & Werkstatt in Guia"
     };
 
     const descs = {
-      pt: "Restaurante Garfo da Costa na Costa de Lavos, Figueira da Foz. Cozinha de autor liderada pelo Chef Ricardo Perpétuo, com peixe fresco e jantares vínicos.",
-      en: "Garfo da Costa Restaurant at Costa de Lavos, Figueira da Foz. Signature cuisine led by Chef Ricardo Perpétuo, featuring fresh fish and exclusive wine events.",
-      fr: "Restaurant Garfo da Costa à Costa de Lavos, Figueira da Foz. Cuisine d'auteur dirigée par le Chef Ricardo Perpétuo, avec du poisson frais et des soirées œnologiques."
+      pt: "Route N109 na Guia, Pombal. Stand e oficina especializada de motos, trotinetas e scooters elétricas. Baterias de lítio e assistência certificada.",
+      en: "Route N109 in Guia, Pombal. Specialized electric motorcycle, scooter and moped stand and workshop. Battery diagnostics and certified assistance.",
+      es: "Route N109 en Guia, Pombal. Stand y taller especializado en motos, scooters y patinetes eléctricos. Diagnóstico de baterías y asistencia certificada.",
+      fr: "Route N109 à Guia, Pombal. Stand et atelier spécialisé de motos, trottinettes et scooters électriques. Diagnostic de batterie et assistance certifiée.",
+      de: "Route N109 in Guia, Pombal. E-Fahrzeug Werkstatt und Stand. Batterie Diagnose und zertifizierte Unterstützung."
     };
 
     document.title = titles[language] || titles.pt;
@@ -32,16 +34,15 @@ export default function Home() {
       metaDescription.setAttribute("content", descs[language] || descs.pt);
     }
 
-    // 2. LocalBusiness & WebSite JSON-LD schemas
+    // JSON-LD Schemas
     const localBusinessSchema = {
       "@context": "https://schema.org",
-      "@type": "Restaurant",
-      "@id": `${config.domain}/#restaurant`,
-      "name": "Garfo da Costa",
+      "@type": "LocalBusiness",
+      "@id": `${config.domain}/#organization`,
+      "name": "Route N109",
       "image": `${config.domain}/favicon.png`,
       "url": config.domain,
       "telephone": config.telephone,
-      "servesCuisine": ["Portuguese", "Seafood", "Signature"],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": config.address.street,
@@ -57,65 +58,34 @@ export default function Home() {
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Thursday", "Friday"],
-          "opens": "12:00",
-          "closes": "15:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday"],
-          "opens": "19:00",
-          "closes": "22:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Tuesday"],
-          "opens": "12:00",
-          "closes": "15:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Thursday"],
-          "opens": "19:00",
-          "closes": "22:30"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Friday"],
-          "opens": "19:00",
-          "closes": "23:00"
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "19:00"
         },
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Saturday"],
-          "opens": "12:00",
-          "closes": "23:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Sunday"],
-          "opens": "12:00",
-          "closes": "22:00"
+          "opens": "09:00",
+          "closes": "13:00"
         }
       ],
       "sameAs": [
-        config.social.instagram,
-        config.social.facebook,
-        config.social.chefFacebook
+        "https://www.facebook.com/RouteN109/",
+        "https://www.instagram.com/routen109mobilidade/"
       ]
     };
 
     const websiteSchema = {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "Garfo da Costa",
+      "name": "Route N109",
       "url": config.domain
     };
 
     const script1 = document.createElement("script");
     script1.type = "application/ld+json";
     script1.text = JSON.stringify(localBusinessSchema);
-    script1.id = "restaurant-schema";
+    script1.id = "local-business-schema";
     document.head.appendChild(script1);
 
     const script2 = document.createElement("script");
@@ -124,7 +94,7 @@ export default function Home() {
     script2.id = "website-schema";
     document.head.appendChild(script2);
 
-    // 3. Dynamic Hreflang Tags for SEO indexing
+    // Hreflang tags
     const lPT = document.createElement("link");
     lPT.rel = "alternate";
     lPT.hreflang = "pt";
@@ -139,13 +109,6 @@ export default function Home() {
     lEN.id = "hreflang-en";
     document.head.appendChild(lEN);
 
-    const lFR = document.createElement("link");
-    lFR.rel = "alternate";
-    lFR.hreflang = "fr";
-    lFR.href = `${config.domain}/fr`;
-    lFR.id = "hreflang-fr";
-    document.head.appendChild(lFR);
-
     const lDefault = document.createElement("link");
     lDefault.rel = "alternate";
     lDefault.hreflang = "x-default";
@@ -154,30 +117,37 @@ export default function Home() {
     document.head.appendChild(lDefault);
 
     return () => {
-      const s1 = document.getElementById("restaurant-schema");
+      const s1 = document.getElementById("local-business-schema");
       const s2 = document.getElementById("website-schema");
       if (s1) s1.remove();
       if (s2) s2.remove();
 
       const hPT = document.getElementById("hreflang-pt");
       const hEN = document.getElementById("hreflang-en");
-      const hFR = document.getElementById("hreflang-fr");
       const hDefault = document.getElementById("hreflang-default");
       if (hPT) hPT.remove();
       if (hEN) hEN.remove();
-      if (hFR) hFR.remove();
       if (hDefault) hDefault.remove();
     };
   }, [language]);
 
   return (
     <>
+      {/* Hero Section */}
       <Hero />
+
+      {/* Main Content Sections */}
       <main>
+        {/* About Section */}
         <About />
+
+        {/* Products Catalog Section */}
         <Menu />
-        <Gallery />
+
+        {/* Customer Reviews Section */}
         <Reviews />
+
+        {/* Location & Weekly Opening Hours Section */}
         <Location />
       </main>
     </>

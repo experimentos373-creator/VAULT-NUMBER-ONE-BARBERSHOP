@@ -7,8 +7,9 @@ export default function WhatsAppButton() {
   const location = useLocation();
   const path = location.pathname;
 
+  // Resolve active key by removing language prefix if it exists to match the keys in config
   let activeKey = path;
-  const langPrefixes = ["/en", "/fr"];
+  const langPrefixes = ["/en", "/es", "/fr", "/de"];
   for (const prefix of langPrefixes) {
     if (path.startsWith(prefix + "/")) {
       activeKey = path.substring(prefix.length);
@@ -22,17 +23,20 @@ export default function WhatsAppButton() {
   const messagesMap = config.whatsappMessages[language] || config.whatsappMessages["pt"];
   const message = messagesMap[activeKey] || messagesMap["/"];
   const encodedText = encodeURIComponent(message);
-  const whatsappUrl = `https://api.whatsapp.com/send?phone=${config.whatsappNumber}&text=${encodedText}`;
+  const whatsappUrl = `https://wa.me/${config.whatsappNumber}?text=${encodedText}`;
 
   const ariaLabels = {
     pt: "Falar pelo WhatsApp",
     en: "Chat on WhatsApp",
-    fr: "Discuter sur WhatsApp"
+    es: "Chatear por WhatsApp",
+    fr: "Discuter sur WhatsApp",
+    de: "Auf WhatsApp chatten"
   };
   const ariaLabel = ariaLabels[language] || ariaLabels.pt;
 
   return (
-    <div className="fixed bottom-6 right-6 z-45" id="whatsapp-floating-button">
+    <div className="fixed bottom-6 right-6 z-40" id="whatsapp-floating-button">
+      {/* Floating WhatsApp Button */}
       <a
         href={whatsappUrl}
         target="_blank"
