@@ -88,23 +88,23 @@ export default function Menu() {
           <button 
             onClick={scrollLeft}
             disabled={currentIndex === 0}
-            className={`hidden md:flex absolute md:left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-none bg-white border border-neutral-250/70 shadow-sm text-neutral-800 hover:bg-neutral-950 hover:text-white hover:border-neutral-950 transition-all cursor-pointer active:scale-95 ${
+            className={`flex absolute left-0.5 sm:left-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-12 sm:h-12 items-center justify-center rounded-full bg-white/90 border border-neutral-200 shadow-md text-neutral-800 hover:bg-neutral-950 hover:text-white hover:border-neutral-950 transition-all cursor-pointer active:scale-95 ${
               currentIndex === 0 ? "opacity-30 pointer-events-none" : ""
             }`}
             aria-label="Anterior"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
 
           <button 
             onClick={scrollRight}
             disabled={currentIndex === maxIndex}
-            className={`hidden md:flex absolute md:right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-none bg-white border border-neutral-250/70 shadow-sm text-neutral-800 hover:bg-neutral-950 hover:text-white hover:border-neutral-950 transition-all cursor-pointer active:scale-95 ${
+            className={`flex absolute right-0.5 sm:right-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-12 sm:h-12 items-center justify-center rounded-full bg-white/90 border border-neutral-200 shadow-md text-neutral-800 hover:bg-neutral-950 hover:text-white hover:border-neutral-950 transition-all cursor-pointer active:scale-95 ${
               currentIndex === maxIndex ? "opacity-30 pointer-events-none" : ""
             }`}
             aria-label="Próximo"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
 
           <div 
