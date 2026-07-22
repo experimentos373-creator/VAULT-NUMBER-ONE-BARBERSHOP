@@ -125,60 +125,62 @@ export default function Menu() {
                 >
                   <Link
                     to={`${catalogPath}?bike=${bike.id}`}
-                    className="flex flex-col bg-white border border-neutral-200/80 rounded-none p-5 hover:border-primary transition-all duration-300 text-left group h-full relative shadow-sm hover:shadow-md cursor-pointer"
+                    className="flex flex-col bg-white border border-neutral-200/90 rounded-none p-5 text-left group h-full relative product-card-frame cursor-pointer"
                   >
                     {bike.isStar && (
-                      <div className="absolute top-4 left-4 z-10 bg-primary text-white text-[8px] font-bold uppercase tracking-widest px-2.5 py-1 flex items-center gap-1 shadow-sm">
+                      <div className="absolute top-4 left-4 z-10 bg-primary/10 text-primary border border-primary/30 backdrop-blur-md text-[8px] font-extrabold uppercase tracking-widest px-2.5 py-1 flex items-center gap-1 shadow-sm">
                         <Zap className="w-2.5 h-2.5 fill-current" /> {t("catalog.badge.star")}
                       </div>
                     )}
 
-                    {/* Image Area inside clean container */}
-                    <div className="bg-[#FCFBFA] border border-neutral-100 aspect-[4/3] flex items-center justify-center relative overflow-hidden mb-6 p-4">
+                    {/* Image Area inside Studio Background container with Realistic Vehicle Shadow */}
+                    <div className="product-studio-bg border border-neutral-100/90 aspect-[4/3] flex items-center justify-center relative overflow-hidden mb-5 p-5 group-hover:border-primary/20 transition-colors">
                       <img
                         src={bike.image}
                         alt={bike.name}
                         loading="lazy"
                         width="300"
                         height="225"
-                        className="max-w-[90%] max-h-[90%] object-contain transition-transform duration-[1s] ease-out group-hover:scale-103"
+                        className="max-w-[92%] max-h-[92%] object-contain vehicle-drop-shadow group-hover:scale-106"
                       />
-                      <div className="absolute inset-0 bg-neutral-900/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <Maximize2 className="w-4 h-4 text-neutral-600" />
+                      <div className="absolute inset-0 bg-neutral-950/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span className="bg-white/90 backdrop-blur-md text-neutral-900 border border-neutral-200 p-2 rounded-full shadow-md">
+                          <Maximize2 className="w-3.5 h-3.5 text-neutral-700" />
+                        </span>
                       </div>
                     </div>
 
-                    {/* Brand Label */}
+                    {/* Brand Label & Rating */}
                     <div className="flex justify-between items-center mb-2.5">
-                      <span className="text-primary text-[9px] font-bold uppercase tracking-widest">
+                      <span className="bg-neutral-100 text-neutral-800 text-[9px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-none border border-neutral-200/50">
                         {bike.brand}
                       </span>
-                      <span className="text-[10px] text-neutral-400 font-bold flex items-center gap-1">
-                        <span>★</span> {bike.rating}
+                      <span className="text-[10px] text-neutral-500 font-bold flex items-center gap-1">
+                        <span className="text-amber-500">★</span> {bike.rating}
                       </span>
                     </div>
 
-                    {/* Name in elegant Serif headings */}
-                    <h3 className="text-lg font-normal text-neutral-950 font-display group-hover:text-primary transition-colors mb-4 line-clamp-1 uppercase">
+                    {/* Vehicle Name */}
+                    <h3 className="text-lg font-normal text-neutral-950 font-display group-hover:text-primary transition-colors mb-4 line-clamp-1 uppercase tracking-tight">
                       {bike.name}
                     </h3>
 
-                    {/* Simple Specs Clean Layout */}
-                    <div className="grid grid-cols-2 gap-4 pt-4 border-t border-neutral-100 mb-6 text-xs">
+                    {/* Specs Grid */}
+                    <div className="grid grid-cols-2 gap-3 pt-3 border-t border-neutral-100 mb-5 text-xs">
                       <div>
-                        <span className="text-[8px] text-neutral-450 uppercase tracking-widest block mb-1 font-bold">Motorização</span>
-                        <span className="text-neutral-800 font-semibold block truncate">{bike.drivetrainShort}</span>
+                        <span className="text-[8px] text-neutral-400 uppercase tracking-widest block mb-0.5 font-bold">Motorização</span>
+                        <span className="text-neutral-800 font-bold block truncate text-[11px]">{bike.drivetrainShort}</span>
                       </div>
                       <div>
-                        <span className="text-[8px] text-neutral-450 uppercase tracking-widest block mb-1 font-bold">Bateria</span>
-                        <span className="text-neutral-800 font-semibold block truncate">{bike.suspensionShort}</span>
+                        <span className="text-[8px] text-neutral-400 uppercase tracking-widest block mb-0.5 font-bold">Bateria / Autonomia</span>
+                        <span className="text-neutral-800 font-bold block truncate text-[11px]">{bike.suspensionShort}</span>
                       </div>
                     </div>
 
-                    {/* Tags block */}
-                    <div className="flex flex-wrap gap-1 mb-6">
+                    {/* Feature Tags */}
+                    <div className="flex flex-wrap gap-1 mb-5">
                       {bike.tags.map((tag, idx) => (
-                        <span key={idx} className="border border-neutral-200 text-neutral-500 text-[8px] font-medium uppercase tracking-wider px-2 py-0.5">
+                        <span key={idx} className="bg-neutral-50 border border-neutral-200/70 text-neutral-600 text-[8px] font-bold uppercase tracking-wider px-2 py-0.5">
                           {tag}
                         </span>
                       ))}
@@ -189,7 +191,7 @@ export default function Menu() {
                       {bike.price && (
                         <div>
                           <span className="text-[8px] text-neutral-400 uppercase tracking-widest block font-bold">PVP Sugerido</span>
-                          <span className="text-sm text-neutral-900 font-bold whitespace-nowrap">
+                          <span className="text-sm text-neutral-950 font-extrabold whitespace-nowrap">
                             {new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(bike.price)}
                           </span>
                         </div>

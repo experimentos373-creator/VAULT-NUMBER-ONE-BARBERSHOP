@@ -1,4 +1,4 @@
-import { ArrowDown, Phone, Star } from "lucide-react";
+import { ArrowDown, Phone, Star, ShieldCheck, Zap } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function Hero() {
@@ -7,89 +7,125 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[85vh] bg-[#FCFBFA] text-[#111111] flex flex-col justify-center overflow-hidden pt-24 pb-12 md:pt-32 md:pb-20 border-b border-neutral-200/50"
+      className="relative min-h-[88vh] md:min-h-[92vh] flex flex-col justify-center overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24 text-white border-b border-neutral-800"
     >
-      {/* Delicate background grid representing blueprints/design precision */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#FF6600 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+      {/* Full-bleed Showroom Background Cover Image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/images/route109_hero.jpg"
+          alt="Showroom Route N109 - Motos e Scooters Elétricas"
+          fetchPriority="high"
+          className="w-full h-full object-cover object-center scale-105 filter brightness-[0.45] contrast-[1.1]"
+        />
+        {/* Layered Gradient Overlays for optimal readability & atmosphere */}
+        <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/95 via-neutral-950/80 to-neutral-950/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-neutral-950/60" />
+        <div 
+          className="absolute inset-0 opacity-[0.05] pointer-events-none" 
+          style={{ backgroundImage: 'radial-gradient(#FF6600 1.5px, transparent 1.5px)', backgroundSize: '32px 32px' }} 
+        />
+      </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="max-w-[1400px] mx-auto px-6 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
-        {/* Left 7 Columns: Editorial Text */}
-        <div className="lg:col-span-7 flex flex-col items-start text-left reveal-slide-left z-10 pr-0 lg:pr-8">
+        {/* Left Column: Full Editorial Content */}
+        <div className="lg:col-span-8 flex flex-col items-start text-left reveal-slide-left z-10 pr-0 lg:pr-6">
           
-          {/* Google Rating Badge */}
-          <div className="inline-flex items-center gap-2 bg-white border border-neutral-200 px-3.5 py-1.5 text-[10px] font-bold tracking-wider text-neutral-600 mb-6 rounded-full shadow-sm">
-            <div className="flex text-primary gap-0.5">
-              <Star className="w-3 h-3 fill-current text-[#FF6600]" />
-              <Star className="w-3 h-3 fill-current text-[#FF6600]" />
-              <Star className="w-3 h-3 fill-current text-[#FF6600]" />
-              <Star className="w-3 h-3 fill-current text-[#FF6600]" />
-              <Star className="w-3 h-3 fill-current text-[#FF6600]" />
+          {/* Top Badges Row */}
+          <div className="flex flex-wrap items-center gap-3 mb-6">
+            <div className="inline-flex items-center gap-2 bg-neutral-900/80 backdrop-blur-md border border-neutral-700/60 px-4 py-1.5 rounded-full shadow-lg">
+              <div className="flex text-primary gap-0.5">
+                <Star className="w-3.5 h-3.5 fill-current text-[#FF6600]" />
+                <Star className="w-3.5 h-3.5 fill-current text-[#FF6600]" />
+                <Star className="w-3.5 h-3.5 fill-current text-[#FF6600]" />
+                <Star className="w-3.5 h-3.5 fill-current text-[#FF6600]" />
+                <Star className="w-3.5 h-3.5 fill-current text-[#FF6600]" />
+              </div>
+              <span className="font-extrabold text-white text-xs">4.9</span>
+              <span className="text-neutral-600">|</span>
+              <span className="text-neutral-300 uppercase tracking-widest font-bold text-[9px]">43 Opiniões Google</span>
             </div>
-            <span className="font-extrabold text-neutral-900">4.9</span>
-            <span className="text-neutral-300">|</span>
-            <span className="text-neutral-500 uppercase tracking-widest font-bold text-[9px]">43 Opiniões Google</span>
+
+            <div className="inline-flex items-center gap-1.5 bg-primary/20 backdrop-blur-md border border-primary/40 text-primary px-3.5 py-1.5 rounded-full text-[9px] font-extrabold uppercase tracking-widest">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Showroom Aberto na Guia
+            </div>
           </div>
 
           {/* Premium Editorial Title */}
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-normal leading-[1.0] text-neutral-950 mb-4 font-display uppercase tracking-tight">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-normal leading-[1.0] text-white mb-6 font-display uppercase tracking-tight drop-shadow-md">
             {t("hero.title1")} <br />
             <span className="text-primary font-display italic font-light tracking-wide">{t("hero.title2")}</span>
           </h1>
 
-          <div className="w-20 h-[1px] bg-primary mb-6"></div>
+          <div className="w-24 h-[2px] bg-primary mb-6 shadow-sm"></div>
 
           {/* Subtitle */}
-          <p className="text-sm md:text-lg text-neutral-600 max-w-xl mb-6 md:mb-10 leading-relaxed font-normal">
+          <p className="text-base sm:text-lg md:text-xl text-neutral-200 max-w-2xl mb-8 md:mb-12 leading-relaxed font-normal drop-shadow">
             {t("hero.subtitle")}
           </p>
 
-          {/* Minimalist Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-8">
             <a
               href="#produtos"
-              className="bg-primary hover:bg-[#E05300] text-white px-8 py-3.5 rounded-none font-bold text-center transition-all duration-200 flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-md hover:shadow-lg hover:shadow-primary/10 active:scale-[0.98] border border-primary cursor-pointer"
+              className="bg-primary hover:bg-[#E05300] text-white px-9 py-4 rounded-none font-bold text-center transition-all duration-300 flex items-center justify-center gap-2.5 text-xs uppercase tracking-widest shadow-xl hover:shadow-primary/20 active:scale-[0.98] border border-primary cursor-pointer"
             >
               {t("hero.cta")}
-              <ArrowDown className="w-3.5 h-3.5" />
+              <ArrowDown className="w-4 h-4" />
             </a>
             <a
               href="tel:+351935141143"
-              className="bg-transparent hover:bg-neutral-100 text-neutral-900 px-8 py-3.5 rounded-none font-bold text-center transition-all duration-200 flex items-center justify-center gap-2 text-xs uppercase tracking-widest border border-neutral-300 cursor-pointer active:scale-[0.98]"
+              className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white px-9 py-4 rounded-none font-bold text-center transition-all duration-300 flex items-center justify-center gap-2.5 text-xs uppercase tracking-widest border border-white/30 cursor-pointer active:scale-[0.98]"
             >
-              <Phone className="w-3.5 h-3.5 text-primary" />
+              <Phone className="w-4 h-4 text-primary" />
               935 141 143
             </a>
           </div>
+
+          {/* Brands bar bottom */}
+          <div className="pt-6 border-t border-white/15 w-full flex flex-wrap items-center justify-between gap-4 text-xs text-neutral-400">
+            <span className="uppercase tracking-widest text-[9px] font-bold text-neutral-400">Marcas Oficiais:</span>
+            <div className="flex flex-wrap gap-4 sm:gap-6 font-semibold text-neutral-200 text-xs">
+              <span className="hover:text-primary transition-colors">NEOVOLT</span>
+              <span className="text-neutral-600">•</span>
+              <span className="hover:text-primary transition-colors">VOLTRISH</span>
+              <span className="text-neutral-600">•</span>
+              <span className="hover:text-primary transition-colors">VESPY</span>
+              <span className="text-neutral-600">•</span>
+              <span className="hover:text-primary transition-colors">LUNA</span>
+              <span className="text-neutral-600">•</span>
+              <span className="hover:text-primary transition-colors">RAIDER</span>
+            </div>
+          </div>
         </div>
 
-        {/* Right 5 Columns: Sleek Museum Frame Showroom Photo */}
-        <div className="lg:col-span-5 relative reveal-slide-right w-full flex justify-center lg:justify-end">
-          <div className="relative p-2 bg-white border border-neutral-250/60 shadow-lg w-full max-w-[440px] lg:max-w-full">
-            {/* Fine framing border */}
-            <div className="border border-neutral-100 overflow-hidden relative">
-              <img
-                src="/images/route109_hero.jpg"
-                alt="Showroom Route N109 - Motos e Scooters Elétricas"
-                fetchPriority="high"
-                width="600"
-                height="700"
-                className="w-full h-[280px] sm:h-[400px] md:h-[450px] object-cover hover:scale-105 transition-transform duration-[1.5s] ease-out"
-              />
+        {/* Right Column: Floating Highlights & Tech Specs Box */}
+        <div className="lg:col-span-4 relative reveal-slide-right hidden lg:flex flex-col gap-4">
+          <div className="bg-neutral-900/90 backdrop-blur-xl border border-neutral-700/80 p-6 shadow-2xl rounded-none text-left">
+            <div className="flex items-center gap-2 text-primary font-black text-xs uppercase tracking-widest mb-3">
+              <Zap className="w-4 h-4" /> Mobilidade Elétrica Sustentável
             </div>
-            {/* Caption style under image */}
-            <div className="mt-2 flex justify-between items-center text-[9px] uppercase tracking-widest text-neutral-400 font-bold px-1">
-              <span>Showroom Guia</span>
-              <span className="text-primary font-black">Route N109</span>
+            <p className="text-neutral-300 text-xs leading-relaxed mb-4">
+              Explore a nossa gama completa de motos, scooters e quadriciclos elétricos. Opções para condução com ou sem carta de condução.
+            </p>
+            <div className="grid grid-cols-2 gap-3 pt-3 border-t border-neutral-800 text-[10px]">
+              <div>
+                <span className="text-neutral-400 block font-bold uppercase">Garantia</span>
+                <span className="text-white font-extrabold">3 Anos de Fábrica</span>
+              </div>
+              <div>
+                <span className="text-neutral-400 block font-bold uppercase">Oficina</span>
+                <span className="text-white font-extrabold">Assistência Direta</span>
+              </div>
             </div>
           </div>
 
-          {/* Floating minimal label */}
-          <div className="absolute -bottom-4 left-4 md:-left-4 bg-neutral-950 text-white p-3.5 shadow-xl border border-neutral-800 flex items-center gap-3">
+          <div className="bg-primary/95 text-white p-5 border border-primary/50 shadow-xl flex items-center gap-3">
+            <ShieldCheck className="w-8 h-8 flex-shrink-0 text-white" />
             <div className="text-left">
-              <span className="text-[10px] font-black text-primary uppercase tracking-widest block mb-0.5">Marcas Premium</span>
-              <span className="text-[11px] font-semibold text-neutral-300">Neovolt · Voltrish · Vespy · Luna</span>
+              <span className="text-[10px] font-black uppercase tracking-widest block text-white/90">Aconselhamento Personalizado</span>
+              <span className="text-xs font-bold text-white">Visite a nossa loja na EN109 em Guia</span>
             </div>
           </div>
         </div>

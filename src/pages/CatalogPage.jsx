@@ -619,10 +619,10 @@ export default function CatalogPage() {
             {sortedBikes.map((bike) => (
               <div
                 key={bike.id}
-                className="flex flex-col bg-white border border-neutral-200 rounded-none p-5 hover:border-primary transition-all duration-300 text-left group h-full relative shadow-sm"
+                className="flex flex-col bg-white border border-neutral-200/90 rounded-none p-5 text-left group h-full relative product-card-frame"
               >
                 {bike.isStar && (
-                  <div className="absolute top-4 left-4 z-10 bg-[#FF6600]/10 text-primary border border-primary/20 text-[8px] font-bold uppercase tracking-widest px-2.5 py-1 shadow-sm flex items-center gap-1">
+                  <div className="absolute top-4 left-4 z-10 bg-primary/10 text-primary border border-primary/30 backdrop-blur-md text-[8px] font-extrabold uppercase tracking-widest px-2.5 py-1 shadow-sm flex items-center gap-1">
                     <span className="text-[10px] text-primary">★</span> {t("catalog.badge.star")}
                   </div>
                 )}
@@ -637,28 +637,31 @@ export default function CatalogPage() {
                   }`}
                   aria-label="Toggle Favorite"
                 >
-                  <Heart className={`w-3.5 h-3.5 ${favorites.includes(bike.id) ? "fill-current" : ""}`} />
+                  <Heart className={`w-3.5 h-3.5 ${favorites.includes(bike.id) ? "fill-current text-red-500" : ""}`} />
                 </button>
+
                 {/* Product Image Frame */}
                 <div 
                   onClick={() => openBikeModal(bike)}
-                  className="bg-[#FCFBFA] border border-neutral-100 rounded-none aspect-[4/3] flex items-center justify-center relative overflow-hidden mb-5 cursor-pointer p-4"
+                  className="product-studio-bg border border-neutral-100/90 rounded-none aspect-[4/3] flex items-center justify-center relative overflow-hidden mb-5 cursor-pointer p-5 group-hover:border-primary/20 transition-colors"
                 >
                   <img
                     src={bike.image}
                     alt={bike.name}
                     loading="lazy"
-                    className="max-w-full max-h-full object-contain scale-125 transition-transform duration-[1s] ease-out group-hover:scale-128 mix-blend-multiply"
+                    className="max-w-[92%] max-h-[92%] object-contain vehicle-drop-shadow group-hover:scale-106"
                   />
                   <div className="absolute inset-0 bg-neutral-950/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <Maximize2 className="w-4 h-4 text-neutral-650" />
+                    <span className="bg-white/90 backdrop-blur-md text-neutral-900 border border-neutral-200 p-2 rounded-full shadow-md">
+                      <Maximize2 className="w-3.5 h-3.5 text-neutral-700" />
+                    </span>
                   </div>
                 </div>
 
                 {/* Meta info (Brand Badge + Rating) */}
                 <div className="flex justify-between items-center mb-3">
                   <div className="flex gap-1.5 items-center">
-                    <span className="bg-neutral-100 text-neutral-800 text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-none">
+                    <span className="bg-neutral-100 text-neutral-800 text-[9px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-none border border-neutral-200/50">
                       {bike.brand}
                     </span>
                     {bike.specs.motor && (
@@ -667,8 +670,8 @@ export default function CatalogPage() {
                       </span>
                     )}
                   </div>
-                  <span className="text-[10px] text-neutral-400 font-bold flex items-center gap-1">
-                    <span className="text-yellow-400">★</span> {bike.rating}
+                  <span className="text-[10px] text-neutral-500 font-bold flex items-center gap-1">
+                    <span className="text-amber-500">★</span> {bike.rating}
                   </span>
                 </div>
 
@@ -681,31 +684,31 @@ export default function CatalogPage() {
                 </h2>
 
                 {/* Technical Specs (2 Columns) */}
-                <div className="grid grid-cols-2 gap-3 pt-3 border-t border-neutral-100/80 mb-3">
+                <div className="grid grid-cols-2 gap-3 pt-3 border-t border-neutral-100/80 mb-4">
                   <div>
-                    <span className="text-[8px] text-neutral-500 uppercase tracking-widest block mb-0.5 font-bold">
+                    <span className="text-[8px] text-neutral-400 uppercase tracking-widest block mb-0.5 font-bold">
                       {t("catalog.specs.drivetrain")}
                     </span>
-                    <span className="text-[11px] text-neutral-900 font-extrabold block truncate">
+                    <span className="text-[11px] text-neutral-900 font-bold block truncate">
                       {bike.drivetrainShort}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[8px] text-neutral-500 uppercase tracking-widest block mb-0.5 font-bold">
+                    <span className="text-[8px] text-neutral-400 uppercase tracking-widest block mb-0.5 font-bold">
                       {t("catalog.specs.suspension")}
                     </span>
-                    <span className="text-[11px] text-neutral-900 font-extrabold block truncate">
+                    <span className="text-[11px] text-neutral-900 font-bold block truncate">
                       {bike.suspensionShort}
                     </span>
                   </div>
                 </div>
 
                 {/* Technology Pills */}
-                <div className="flex flex-wrap gap-1 mb-4">
+                <div className="flex flex-wrap gap-1 mb-5">
                   {bike.tags.map((tag, idx) => (
                     <span 
                       key={idx}
-                      className="bg-neutral-100/70 text-neutral-600 text-[8px] font-extrabold px-1.5 py-0.5 rounded"
+                      className="bg-neutral-50 border border-neutral-200/70 text-neutral-600 text-[8px] font-bold uppercase tracking-wider px-2 py-0.5"
                     >
                       {tag}
                     </span>
@@ -719,7 +722,7 @@ export default function CatalogPage() {
                       <span className="text-[8px] text-neutral-400 uppercase tracking-widest block font-bold">
                         PVP Sugerido
                       </span>
-                      <span className="text-[13px] text-neutral-950 font-bold whitespace-nowrap">
+                      <span className="text-[13px] text-neutral-950 font-extrabold whitespace-nowrap">
                         {new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(bike.price)}
                       </span>
                     </div>
@@ -727,7 +730,7 @@ export default function CatalogPage() {
                   <div className="flex-1">
                     <button
                       onClick={() => openBikeModal(bike)}
-                      className="w-full bg-neutral-950 group-hover:bg-primary text-white text-[9px] font-bold uppercase tracking-widest text-center py-2.5 rounded-none transition-colors cursor-pointer border-none"
+                      className="w-full bg-neutral-950 group-hover:bg-primary text-white text-[9px] font-bold uppercase tracking-widest text-center py-2.5 rounded-none transition-colors cursor-pointer border-none shadow-sm"
                     >
                       {language === "en" ? "View" : language === "es" ? "Ver" : language === "fr" ? "Voir" : language === "de" ? "Ansehen" : "Detalhes"}
                     </button>
@@ -774,7 +777,7 @@ export default function CatalogPage() {
             </button>
 
             {/* Left Frame */}
-            <div className="w-full md:w-[60%] bg-white flex items-center justify-center p-1.5 md:p-2 border-b md:border-b-0 md:border-r border-neutral-200/60 h-[300px] sm:h-[350px] md:h-full relative overflow-hidden group select-none">
+            <div className="w-full md:w-[60%] product-studio-bg flex items-center justify-center p-4 border-b md:border-b-0 md:border-r border-neutral-200/60 h-[300px] sm:h-[350px] md:h-full relative overflow-hidden group select-none">
               {/* Expand to Fullscreen Button */}
               <button
                 onClick={() => setIsFullscreenImage(true)}
@@ -786,7 +789,7 @@ export default function CatalogPage() {
               </button>
 
               <div 
-                className="w-full h-full flex items-center justify-center overflow-hidden cursor-default relative"
+                className="w-full h-full flex items-center justify-center overflow-hidden cursor-default relative p-4"
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
                 onMouseUp={handleMouseUpOrLeave}
@@ -804,7 +807,7 @@ export default function CatalogPage() {
                     transformOrigin: "center center",
                     transition: isDragging ? "none" : "transform 0.2s ease-out"
                   }}
-                  className={`max-h-full max-w-full object-contain select-none mix-blend-multiply ${
+                  className={`max-h-[90%] max-w-[90%] object-contain select-none vehicle-drop-shadow ${
                     scale > baseScale ? (isDragging ? "cursor-grabbing" : "cursor-grab") : "cursor-zoom-in"
                   }`}
                   draggable="false"
