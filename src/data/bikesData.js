@@ -524,7 +524,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Triciclo Utilitário / Carga", en: "Utility Electric Tricycle", es: "Triciclo Eléctrico de Carga", fr: "Tricycle Électrique de Charge", de: "Lasten-Dreirad"
     },
-    image: "/images/vehicles/triciclo_kiev.png",
+    image: "/images/vehicles/triciclo_kiev_showcase.png",
     rating: "4.7 (12)",
     drivetrainShort: "Motor Roda Traseiro 500W-800W",
     suspensionShort: "Suspensão de Carga Traseira",
@@ -694,7 +694,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Triciclo de Lazer / Mobilidade", en: "3-Wheeled / 3-Seater Leisure Vehicle", es: "Triciclo de Movilidad 3 Plazas", fr: "Tricycle de Loisir / 3 places", de: "3-Rad 3-Sitzer Freizeitfahrzeug"
     },
-    image: "/images/vehicles/luna_qc.png",
+    image: "/images/vehicles/luna_qc_showcase.png",
     rating: "4.8 (19)",
     drivetrainShort: "Motor Traseiro 1000W com Diferencial",
     suspensionShort: "Suspensão Total Hidráulica",
@@ -728,7 +728,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Quadriciclo de Mobilidade Reduzida", en: "4-Wheeled Mobility Scooter", es: "Vehículo de Movilidad de 4 Ruedas", fr: "Scooter de Mobilité 4 roues", de: "4-Rad Seniorenmobil"
     },
-    image: "/images/vehicles/luna_qs.png",
+    image: "/images/vehicles/luna_qs_showcase.png",
     rating: "4.9 (23)",
     drivetrainShort: "Motor Traseiro 1000W com Diferencial",
     suspensionShort: "Suspensão Total Quadriciclo",
@@ -762,7 +762,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Triciclo de Lazer Familiar", en: "Leisure Family Tricycle (3-Seater)", es: "Triciclo de Ocio Familiar 3 Plazas", fr: "Tricycle de Loisir Familial 3 places", de: "Freizeit-Dreirad 3-Sitzer"
     },
-    image: "/images/vehicles/raider_mini33.png",
+    image: "/images/vehicles/raider_mini33_showcase.png",
     rating: "4.8 (17)",
     drivetrainShort: "Motor Traseiro 1000W com Diferencial",
     suspensionShort: "Suspensão Comfort Dupla",
@@ -796,7 +796,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Quadriciclo de Mobilidade com Capota", en: "Enclosed Mobility Scooter (4-Wheeled)", es: "Vehículo de Movilidad con Techo", fr: "Scooter de Mobilité avec Capote", de: "Kabinenroller Seniorenmobil"
     },
-    image: "/images/vehicles/tokio_extreme.png",
+    image: "/images/vehicles/tokio_extreme_showcase.png",
     rating: "5.0 (26)",
     drivetrainShort: "Motor Traseiro 1000W com Diferencial",
     suspensionShort: "Suspensão Total Elevada",

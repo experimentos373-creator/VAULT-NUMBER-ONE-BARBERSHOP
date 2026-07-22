@@ -109,20 +109,26 @@ export default function Hero() {
             <p className="text-neutral-300 text-xs leading-relaxed mb-4">
               Explore a nossa gama completa de motos, scooters e quadriciclos elétricos. Opções para condução com ou sem carta de condução.
             </p>
-            <div className="grid grid-cols-2 gap-3 pt-3 border-t border-neutral-800 text-[10px]">
-              <div>
-                <span className="text-neutral-400 block font-bold uppercase">Garantia</span>
-                <span className="text-white font-extrabold">3 Anos de Fábrica</span>
+            <div className="flex flex-col gap-2.5 pt-4 border-t border-neutral-800 text-xs">
+              <div className="bg-neutral-950/80 p-3 border border-neutral-800/80 rounded-none flex items-start gap-2.5">
+                <ShieldCheck className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-white font-extrabold text-xs block uppercase tracking-wider">2 Anos de Garantia</span>
+                  <span className="text-neutral-300 text-[11px] font-medium leading-tight block">Garantia total para o motor elétrico e controladora.</span>
+                </div>
               </div>
-              <div>
-                <span className="text-neutral-400 block font-bold uppercase">Oficina</span>
-                <span className="text-white font-extrabold">Assistência Direta</span>
+              <div className="bg-neutral-950/80 p-3 border border-neutral-800/80 rounded-none flex items-start gap-2.5">
+                <ShieldCheck className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-white font-extrabold text-xs block uppercase tracking-wider">6 Meses de Garantia</span>
+                  <span className="text-neutral-300 text-[11px] font-medium leading-tight block">Garantia dedicada para a bateria de tração.</span>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-primary/95 text-white p-5 border border-primary/50 shadow-xl flex items-center gap-3">
-            <ShieldCheck className="w-8 h-8 flex-shrink-0 text-white" />
+          <div className="bg-primary/95 text-white p-4 border border-primary/50 shadow-xl flex items-center gap-3">
+            <ShieldCheck className="w-7 h-7 flex-shrink-0 text-white" />
             <div className="text-left">
               <span className="text-[10px] font-black uppercase tracking-widest block text-white/90">Aconselhamento Personalizado</span>
               <span className="text-xs font-bold text-white">Visite a nossa loja na EN109 em Guia</span>
