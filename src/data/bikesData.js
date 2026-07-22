@@ -524,7 +524,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Triciclo Utilitário / Carga", en: "Utility Electric Tricycle", es: "Triciclo Eléctrico de Carga", fr: "Tricycle Électrique de Charge", de: "Lasten-Dreirad"
     },
-    image: "/images/vehicles/triciclo_kiev_showcase_v2.png",
+    image: "/images/vehicles/triciclo_kiev_showcase_v3.png",
     rating: "4.7 (12)",
     drivetrainShort: "Motor Roda Traseiro 500W-800W",
     suspensionShort: "Suspensão de Carga Traseira",
