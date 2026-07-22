@@ -117,7 +117,7 @@ export default function Navbar() {
   return (
     <div className="fixed top-0 left-0 w-full z-50 transition-all duration-300">
       {/* Announcement Bar */}
-      <div className="bg-neutral-900 text-neutral-200 text-[9px] font-extrabold tracking-widest uppercase py-2 text-center border-b border-neutral-800">
+      <div className="bg-neutral-900 text-neutral-200 text-[9px] font-extrabold tracking-widest uppercase py-1.5 text-center border-b border-neutral-800">
         {language === "en" 
           ? "Multi-brand Stand & Workshop • Electric Mobility Specialists"
           : language === "es"
@@ -133,8 +133,8 @@ export default function Navbar() {
       <nav
         className={`w-full transition-all duration-300 ${
           isScrolled || isMobileMenuOpen
-            ? "bg-white/95 backdrop-blur-md shadow-sm py-4 text-black border-b border-neutral-100"
-            : "bg-white/80 backdrop-blur-sm py-5 text-black border-b border-neutral-200/40"
+            ? "bg-white/95 backdrop-blur-md shadow-sm py-3 text-black border-b border-neutral-100"
+            : "bg-white/80 backdrop-blur-sm py-3.5 text-black border-b border-neutral-200/40"
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-6 flex justify-between items-center">

@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[88vh] md:min-h-[92vh] flex flex-col justify-center overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24 text-white border-b border-neutral-800"
+      className="relative min-h-[60vh] sm:min-h-[75vh] md:min-h-[85vh] lg:min-h-[90vh] flex flex-col justify-center overflow-hidden pt-20 pb-10 sm:pt-28 sm:pb-16 md:pt-36 md:pb-24 text-white border-b border-neutral-800"
     >
       {/* Full-bleed Showroom Background Cover Image */}
       <div className="absolute inset-0 z-0">
@@ -32,46 +32,46 @@ export default function Hero() {
         <div className="lg:col-span-8 flex flex-col items-start text-left reveal-slide-left z-10 pr-0 lg:pr-6">
           
           {/* Top Badges Row */}
-          <div className="flex flex-wrap items-center gap-3 mb-6">
-            <div className="inline-flex items-center gap-2 bg-neutral-900/90 backdrop-blur-md border border-neutral-700/80 px-4 py-1.5 rounded-full shadow-lg">
+          <div className="flex flex-wrap items-center gap-3 mb-4 sm:mb-6">
+            <div className="inline-flex items-center gap-2 bg-neutral-900/90 backdrop-blur-md border border-neutral-700/80 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full shadow-lg">
               <div className="flex text-primary gap-0.5">
-                <Star className="w-3.5 h-3.5 fill-current text-[#FF6600]" />
-                <Star className="w-3.5 h-3.5 fill-current text-[#FF6600]" />
-                <Star className="w-3.5 h-3.5 fill-current text-[#FF6600]" />
-                <Star className="w-3.5 h-3.5 fill-current text-[#FF6600]" />
-                <Star className="w-3.5 h-3.5 fill-current text-[#FF6600]" />
+                <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current text-[#FF6600]" />
+                <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current text-[#FF6600]" />
+                <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current text-[#FF6600]" />
+                <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current text-[#FF6600]" />
+                <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current text-[#FF6600]" />
               </div>
-              <span className="font-extrabold text-white text-xs">4.9</span>
-              <span className="text-neutral-600">|</span>
-              <span className="text-neutral-300 uppercase tracking-widest font-bold text-[9px]">43 Opiniões Google</span>
+              <span className="font-extrabold text-white text-[10px] sm:text-xs">4.9</span>
+              <span className="text-neutral-650">|</span>
+              <span className="text-neutral-300 uppercase tracking-widest font-bold text-[8px] sm:text-[9px]">43 Opiniões Google</span>
             </div>
           </div>
 
           {/* Premium Editorial Title */}
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-normal leading-[1.0] text-white mb-6 font-display uppercase tracking-tight drop-shadow-md">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-normal leading-[1.1] sm:leading-[1.0] text-white mb-4 sm:mb-6 font-display uppercase tracking-tight drop-shadow-md">
             {t("hero.title1")} <br />
             <span className="text-primary font-display italic font-light tracking-wide">{t("hero.title2")}</span>
           </h1>
 
-          <div className="w-24 h-[2px] bg-primary mb-6 shadow-sm"></div>
+          <div className="w-16 sm:w-24 h-[2px] bg-primary mb-4 sm:mb-6 shadow-sm"></div>
 
           {/* Subtitle */}
-          <p className="text-base sm:text-lg md:text-xl text-neutral-200 max-w-2xl mb-8 md:mb-12 leading-relaxed font-normal drop-shadow">
+          <p className="text-sm sm:text-base md:text-lg text-neutral-200 max-w-2xl mb-6 sm:mb-8 md:mb-12 leading-relaxed font-normal drop-shadow">
             {t("hero.subtitle")}
           </p>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-8">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-6 sm:mb-8">
             <a
               href="#produtos"
-              className="bg-primary hover:bg-[#E05300] text-white px-9 py-4 rounded-none font-bold text-center transition-all duration-300 flex items-center justify-center gap-2.5 text-xs uppercase tracking-widest shadow-xl hover:shadow-primary/20 active:scale-[0.98] border border-primary cursor-pointer"
+              className="bg-primary hover:bg-[#E05300] text-white px-6 py-3.5 sm:px-9 sm:py-4 rounded-none font-bold text-center transition-all duration-300 flex items-center justify-center gap-2.5 text-xs uppercase tracking-widest shadow-xl hover:shadow-primary/20 active:scale-[0.98] border border-primary cursor-pointer"
             >
               {t("hero.cta")}
               <ArrowDown className="w-4 h-4" />
             </a>
             <a
               href="tel:+351935141143"
-              className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white px-9 py-4 rounded-none font-bold text-center transition-all duration-300 flex items-center justify-center gap-2.5 text-xs uppercase tracking-widest border border-white/30 cursor-pointer active:scale-[0.98]"
+              className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white px-6 py-3.5 sm:px-9 sm:py-4 rounded-none font-bold text-center transition-all duration-300 flex items-center justify-center gap-2.5 text-xs uppercase tracking-widest border border-white/30 cursor-pointer active:scale-[0.98]"
             >
               <Phone className="w-4 h-4 text-primary" />
               935 141 143
@@ -79,17 +79,17 @@ export default function Hero() {
           </div>
 
           {/* Brands bar bottom */}
-          <div className="pt-6 border-t border-white/15 w-full flex flex-wrap items-center justify-between gap-4 text-xs text-neutral-400">
-            <span className="uppercase tracking-widest text-[9px] font-bold text-neutral-400">Marcas Oficiais:</span>
-            <div className="flex flex-wrap gap-4 sm:gap-6 font-semibold text-neutral-200 text-xs">
+          <div className="pt-4 sm:pt-6 border-t border-white/15 w-full flex flex-wrap items-center justify-center sm:justify-between gap-3 text-[10px] sm:text-xs text-neutral-450">
+            <span className="uppercase tracking-widest text-[8px] sm:text-[9px] font-bold text-neutral-450">Marcas Oficiais:</span>
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-6 font-semibold text-neutral-300">
               <span className="hover:text-primary transition-colors">NEOVOLT</span>
-              <span className="text-neutral-600">•</span>
+              <span className="text-neutral-700">•</span>
               <span className="hover:text-primary transition-colors">VOLTRISH</span>
-              <span className="text-neutral-600">•</span>
+              <span className="text-neutral-700">•</span>
               <span className="hover:text-primary transition-colors">VESPY</span>
-              <span className="text-neutral-600">•</span>
+              <span className="text-neutral-700">•</span>
               <span className="hover:text-primary transition-colors">LUNA</span>
-              <span className="text-neutral-600">•</span>
+              <span className="text-neutral-700">•</span>
               <span className="hover:text-primary transition-colors">RAIDER</span>
             </div>
           </div>
@@ -104,26 +104,20 @@ export default function Hero() {
             <p className="text-neutral-300 text-xs leading-relaxed mb-4">
               Explore a nossa gama completa de motos, scooters e quadriciclos elétricos. Opções para condução com ou sem carta de condução.
             </p>
-            <div className="flex flex-col gap-2.5 pt-4 border-t border-neutral-800 text-xs">
-              <div className="bg-neutral-950/80 p-3 border border-neutral-800/80 rounded-none flex items-start gap-2.5">
-                <ShieldCheck className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                <div>
-                  <span className="text-white font-extrabold text-xs block uppercase tracking-wider">2 Anos de Garantia</span>
-                  <span className="text-neutral-300 text-[11px] font-medium leading-tight block">Garantia total para o motor elétrico e controladora.</span>
-                </div>
+            <div className="grid grid-cols-2 gap-3 pt-3 border-t border-neutral-800 text-[10px]">
+              <div>
+                <span className="text-neutral-400 block font-bold uppercase">Garantia</span>
+                <span className="text-white font-extrabold">3 Anos de Fábrica</span>
               </div>
-              <div className="bg-neutral-950/80 p-3 border border-neutral-800/80 rounded-none flex items-start gap-2.5">
-                <ShieldCheck className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                <div>
-                  <span className="text-white font-extrabold text-xs block uppercase tracking-wider">6 Meses de Garantia</span>
-                  <span className="text-neutral-300 text-[11px] font-medium leading-tight block">Garantia dedicada para a bateria de tração.</span>
-                </div>
+              <div>
+                <span className="text-neutral-400 block font-bold uppercase">Oficina</span>
+                <span className="text-white font-extrabold">Assistência Direta</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-primary/95 text-white p-4 border border-primary/50 shadow-xl flex items-center gap-3">
-            <ShieldCheck className="w-7 h-7 flex-shrink-0 text-white" />
+          <div className="bg-primary/95 text-white p-5 border border-primary/50 shadow-xl flex items-center gap-3">
+            <ShieldCheck className="w-8 h-8 flex-shrink-0 text-white" />
             <div className="text-left">
               <span className="text-[10px] font-black uppercase tracking-widest block text-white/90">Aconselhamento Personalizado</span>
               <span className="text-xs font-bold text-white">Visite a nossa loja na EN109 em Guia</span>
