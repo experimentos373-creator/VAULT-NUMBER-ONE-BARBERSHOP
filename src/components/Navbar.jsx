@@ -133,20 +133,20 @@ export default function Navbar() {
       <nav
         className={`w-full transition-all duration-300 ${
           isScrolled || isMobileMenuOpen
-            ? "bg-white/95 backdrop-blur-md shadow-sm py-3 text-black border-b border-neutral-100"
-            : "bg-white/80 backdrop-blur-sm py-3.5 text-black border-b border-neutral-200/40"
+            ? "bg-white/95 backdrop-blur-md shadow-sm py-2.5 md:py-3 text-black border-b border-neutral-100"
+            : "bg-white/80 backdrop-blur-sm py-3 md:py-4 text-black border-b border-neutral-200/40"
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-6 flex justify-between items-center">
           {/* Logo */}
-          <Link to={prefix || "/"} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 group">
-            <div className="flex items-center gap-2">
-              <span className="w-3.5 h-3.5 bg-primary rounded-full inline-block animate-pulse"></span>
-              <span className="font-extrabold tracking-tighter text-xl font-display text-black uppercase">
+          <Link to={prefix || "/"} className="flex flex-row items-center gap-2 sm:gap-3 group">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 bg-primary rounded-full inline-block animate-pulse"></span>
+              <span className="font-extrabold tracking-tighter text-lg sm:text-xl font-display text-black uppercase">
                 Route<span className="text-primary font-black"> N109</span>
               </span>
             </div>
-            <span className="text-[9px] uppercase tracking-widest bg-neutral-900 text-neutral-100 px-2 py-0.5 font-bold rounded-sm self-start sm:self-auto">
+            <span className="text-[9px] uppercase tracking-widest bg-neutral-900 text-neutral-100 px-2 py-0.5 font-bold rounded-sm hidden sm:inline-block">
               Mobilidade Elétrica
             </span>
           </Link>

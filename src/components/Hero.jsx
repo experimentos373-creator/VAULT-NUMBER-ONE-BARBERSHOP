@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[60vh] sm:min-h-[75vh] md:min-h-[85vh] lg:min-h-[90vh] flex flex-col justify-center overflow-hidden pt-20 pb-10 sm:pt-28 sm:pb-16 md:pt-36 md:pb-24 text-white border-b border-neutral-800"
+      className="relative min-h-[60vh] sm:min-h-[75vh] md:min-h-[85vh] lg:min-h-[90vh] flex flex-col justify-center overflow-hidden pt-32 pb-10 sm:pt-36 sm:pb-16 md:pt-40 md:pb-24 text-white border-b border-neutral-800"
     >
       {/* Full-bleed Showroom Background Cover Image */}
       <div className="absolute inset-0 z-0">
