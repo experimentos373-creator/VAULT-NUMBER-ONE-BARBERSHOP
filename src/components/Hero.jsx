@@ -45,11 +45,6 @@ export default function Hero() {
               <span className="text-neutral-600">|</span>
               <span className="text-neutral-300 uppercase tracking-widest font-bold text-[9px]">43 Opiniões Google</span>
             </div>
-
-            <div className="inline-flex items-center gap-1.5 badge-luxury-gold px-3.5 py-1.5 rounded-full text-[9px] font-extrabold uppercase tracking-widest text-primary">
-              <Zap className="w-3 h-3 text-primary animate-pulse" />
-              Stand & Oficina de Mobilidade Elétrica
-            </div>
           </div>
 
           {/* Premium Editorial Title */}
