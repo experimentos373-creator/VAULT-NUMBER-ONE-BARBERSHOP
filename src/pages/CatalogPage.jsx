@@ -643,7 +643,7 @@ export default function CatalogPage() {
                 {/* Product Image Frame */}
                 <div 
                   onClick={() => openBikeModal(bike)}
-                  className="product-studio-bg border border-neutral-100/90 rounded-none aspect-[4/3] flex items-center justify-center relative overflow-hidden mb-5 cursor-pointer p-5 group-hover:border-primary/20 transition-colors"
+                  className="product-studio-bg card-studio-aura border border-neutral-100/90 rounded-none aspect-[4/3] flex items-center justify-center relative overflow-hidden mb-5 cursor-pointer p-5 group-hover:border-primary/20 transition-colors"
                 >
                   <img
                     src={bike.image}

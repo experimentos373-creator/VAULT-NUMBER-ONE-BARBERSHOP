@@ -33,7 +33,7 @@ export default function Hero() {
           
           {/* Top Badges Row */}
           <div className="flex flex-wrap items-center gap-3 mb-6">
-            <div className="inline-flex items-center gap-2 bg-neutral-900/80 backdrop-blur-md border border-neutral-700/60 px-4 py-1.5 rounded-full shadow-lg">
+            <div className="inline-flex items-center gap-2 bg-neutral-900/90 backdrop-blur-md border border-neutral-700/80 px-4 py-1.5 rounded-full shadow-lg">
               <div className="flex text-primary gap-0.5">
                 <Star className="w-3.5 h-3.5 fill-current text-[#FF6600]" />
                 <Star className="w-3.5 h-3.5 fill-current text-[#FF6600]" />
@@ -46,9 +46,9 @@ export default function Hero() {
               <span className="text-neutral-300 uppercase tracking-widest font-bold text-[9px]">43 Opiniões Google</span>
             </div>
 
-            <div className="inline-flex items-center gap-1.5 bg-primary/20 backdrop-blur-md border border-primary/40 text-primary px-3.5 py-1.5 rounded-full text-[9px] font-extrabold uppercase tracking-widest">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              Showroom Aberto na Guia
+            <div className="inline-flex items-center gap-1.5 badge-luxury-gold px-3.5 py-1.5 rounded-full text-[9px] font-extrabold uppercase tracking-widest text-primary">
+              <Zap className="w-3 h-3 text-primary animate-pulse" />
+              Stand & Oficina de Mobilidade Elétrica
             </div>
           </div>
 

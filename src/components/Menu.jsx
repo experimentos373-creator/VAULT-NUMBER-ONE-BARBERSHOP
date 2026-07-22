@@ -134,7 +134,7 @@ export default function Menu() {
                     )}
 
                     {/* Image Area inside Studio Background container with Realistic Vehicle Shadow */}
-                    <div className="product-studio-bg border border-neutral-100/90 aspect-[4/3] flex items-center justify-center relative overflow-hidden mb-5 p-5 group-hover:border-primary/20 transition-colors">
+                    <div className="product-studio-bg card-studio-aura border border-neutral-100/90 aspect-[4/3] flex items-center justify-center relative overflow-hidden mb-5 p-5 group-hover:border-primary/20 transition-colors">
                       <img
                         src={bike.image}
                         alt={bike.name}
