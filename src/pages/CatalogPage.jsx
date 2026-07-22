@@ -652,13 +652,6 @@ export default function CatalogPage() {
                   />
                 </div>
 
-                {/* Color Swatch Dot */}
-                <div className="flex gap-1.5 mb-3">
-                  <span className="w-4.5 h-4.5 rounded-full bg-[#111111] border border-primary p-0.5 flex items-center justify-center">
-                    <span className="w-full h-full rounded-full bg-primary" />
-                  </span>
-                </div>
-
                 {/* Product Title */}
                 <h2 
                   onClick={() => openBikeModal(bike)}

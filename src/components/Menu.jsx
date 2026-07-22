@@ -144,13 +144,6 @@ export default function Menu() {
                       />
                     </div>
 
-                    {/* Color Swatch Dot */}
-                    <div className="flex gap-1.5 mb-3">
-                      <span className="w-4.5 h-4.5 rounded-full bg-[#111111] border border-primary p-0.5 flex items-center justify-center">
-                        <span className="w-full h-full rounded-full bg-primary" />
-                      </span>
-                    </div>
-
                     {/* Vehicle Name */}
                     <h3 className="text-[14px] font-black text-neutral-900 font-display group-hover:text-primary transition-colors mb-3 uppercase tracking-tight line-clamp-1">
                       {bike.name}
