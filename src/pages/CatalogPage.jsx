@@ -619,18 +619,17 @@ export default function CatalogPage() {
             {sortedBikes.map((bike) => (
               <div
                 key={bike.id}
-                className="flex flex-col bg-white border border-neutral-200/90 rounded-none p-5 text-left group h-full relative product-card-frame"
+                className="flex flex-col bg-white border border-neutral-200/90 rounded-2xl p-5 text-left group h-full relative product-card-frame overflow-hidden shadow-sm"
               >
-                {bike.isStar && (
-                  <div className="absolute top-4 left-4 z-10 bg-primary/10 text-primary border border-primary/30 backdrop-blur-md text-[8px] font-extrabold uppercase tracking-widest px-2.5 py-1 shadow-sm flex items-center gap-1">
-                    <span className="text-[10px] text-primary">★</span> {t("catalog.badge.star")}
-                  </div>
-                )}
+                {/* Red Discount/Star Badge */}
+                <div className="absolute top-4 left-4 z-10 bg-red-600 text-white px-3 py-1 text-[9px] font-black uppercase rounded shadow-sm select-none">
+                  {bike.isStar ? "Destaque" : "15% DE DESCONTO"}
+                </div>
 
                 {/* Favorite Heart Button */}
                 <button
                   onClick={(e) => toggleFavorite(bike.id, e)}
-                  className={`absolute top-4 right-4 z-10 p-2 rounded-none backdrop-blur-md transition-all duration-200 border cursor-pointer shadow-sm ${
+                  className={`absolute top-4 right-4 z-10 p-2 rounded-full backdrop-blur-md transition-all duration-200 border cursor-pointer shadow-sm ${
                     favorites.includes(bike.id) 
                       ? "bg-red-500/10 text-red-500 border-red-500/30" 
                       : "bg-[#FCFBFA]/85 text-neutral-450 border-neutral-200 hover:text-neutral-800 hover:bg-[#FCFBFA]"
@@ -643,7 +642,7 @@ export default function CatalogPage() {
                 {/* Product Image Frame */}
                 <div 
                   onClick={() => openBikeModal(bike)}
-                  className="product-studio-bg card-studio-aura border border-neutral-100/90 rounded-none aspect-[4/3] flex items-center justify-center relative overflow-hidden mb-5 cursor-pointer p-5 group-hover:border-primary/20 transition-colors"
+                  className="product-studio-bg card-studio-aura border border-neutral-100/90 rounded-xl aspect-[4/3] flex items-center justify-center relative overflow-hidden mb-5 cursor-pointer p-5 group-hover:border-primary/20 transition-colors"
                 >
                   <img
                     src={bike.image}
@@ -651,89 +650,49 @@ export default function CatalogPage() {
                     loading="lazy"
                     className="max-w-[92%] max-h-[92%] object-contain vehicle-drop-shadow group-hover:scale-106"
                   />
-                  <div className="absolute inset-0 bg-neutral-950/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span className="bg-white/90 backdrop-blur-md text-neutral-900 border border-neutral-200 p-2 rounded-full shadow-md">
-                      <Maximize2 className="w-3.5 h-3.5 text-neutral-700" />
-                    </span>
-                  </div>
                 </div>
 
-                {/* Meta info (Brand Badge + Rating) */}
-                <div className="flex justify-between items-center mb-3">
-                  <div className="flex gap-1.5 items-center">
-                    <span className="bg-neutral-100 text-neutral-800 text-[9px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-none border border-neutral-200/50">
-                      {bike.brand}
-                    </span>
-                    {bike.specs.motor && (
-                      <span className="bg-primary/10 text-primary border border-primary/20 text-[8px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-none">
-                        {bike.category === "e-moto" ? "E-Moto / Scooter" : "Trotinete"}
-                      </span>
-                    )}
-                  </div>
-                  <span className="text-[10px] text-neutral-500 font-bold flex items-center gap-1">
-                    <span className="text-amber-500">★</span> {bike.rating}
+                {/* Color Swatch Dot */}
+                <div className="flex gap-1.5 mb-3">
+                  <span className="w-4.5 h-4.5 rounded-full bg-[#111111] border border-primary p-0.5 flex items-center justify-center">
+                    <span className="w-full h-full rounded-full bg-primary" />
                   </span>
                 </div>
 
                 {/* Product Title */}
                 <h2 
                   onClick={() => openBikeModal(bike)}
-                  className="text-base font-normal font-display uppercase tracking-tight text-neutral-900 group-hover:text-primary transition-colors cursor-pointer mb-4 line-clamp-1"
+                  className="text-[14px] font-black text-neutral-950 font-display group-hover:text-primary transition-colors cursor-pointer mb-3 uppercase tracking-tight line-clamp-1"
                 >
                   {bike.name}
                 </h2>
 
-                {/* Technical Specs (2 Columns) */}
-                <div className="grid grid-cols-2 gap-3 pt-3 border-t border-neutral-100/80 mb-4">
-                  <div>
-                    <span className="text-[8px] text-neutral-400 uppercase tracking-widest block mb-0.5 font-bold">
-                      {t("catalog.specs.drivetrain")}
-                    </span>
-                    <span className="text-[11px] text-neutral-900 font-bold block truncate">
-                      {bike.drivetrainShort}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-[8px] text-neutral-400 uppercase tracking-widest block mb-0.5 font-bold">
-                      {t("catalog.specs.suspension")}
-                    </span>
-                    <span className="text-[11px] text-neutral-900 font-bold block truncate">
-                      {bike.suspensionShort}
-                    </span>
-                  </div>
+                {/* Price Section */}
+                <div className="flex flex-wrap items-baseline gap-2 mb-5">
+                  <span className="text-red-500 line-through font-extrabold text-xs">
+                    {new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(Math.round(bike.price * 1.15 / 10) * 10)}
+                  </span>
+                  <span className="text-primary font-black text-xl sm:text-2xl">
+                    {new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(bike.price)}
+                  </span>
                 </div>
 
-                {/* Technology Pills */}
-                <div className="flex flex-wrap gap-1 mb-5">
-                  {bike.tags.map((tag, idx) => (
-                    <span 
-                      key={idx}
-                      className="bg-neutral-50 border border-neutral-200/70 text-neutral-600 text-[8px] font-bold uppercase tracking-wider px-2 py-0.5"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Action Buttons */}
-                <div className="mt-auto pt-3 border-t border-neutral-150 flex items-center justify-between gap-3">
-                  {bike.price && (
-                    <div className="flex flex-col">
-                      <span className="text-[8px] text-neutral-400 uppercase tracking-widest block font-bold">
-                        PVP Sugerido
-                      </span>
-                      <span className="text-[13px] text-neutral-950 font-extrabold whitespace-nowrap">
-                        {new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(bike.price)}
-                      </span>
-                    </div>
-                  )}
-                  <div className="flex-1">
-                    <button
-                      onClick={() => openBikeModal(bike)}
-                      className="w-full bg-neutral-950 group-hover:bg-primary text-white text-[9px] font-bold uppercase tracking-widest text-center py-2.5 rounded-none transition-colors cursor-pointer border-none shadow-sm"
-                    >
-                      {language === "en" ? "View" : language === "es" ? "Ver" : language === "fr" ? "Voir" : language === "de" ? "Ansehen" : "Detalhes"}
-                    </button>
+                {/* Specs Grid (3 spec cards at the bottom) */}
+                <div className="grid grid-cols-3 gap-1.5 pt-3 border-t border-neutral-100 mt-auto">
+                  <div className="bg-[#F8F9FA] rounded-lg p-1.5 flex flex-col items-center justify-center text-center border border-neutral-100 min-w-0">
+                    <Zap className="w-3.5 h-3.5 text-primary mb-1 flex-shrink-0" />
+                    <span className="text-[7px] text-neutral-400 uppercase tracking-wider font-bold block mb-0.5">Motor</span>
+                    <span className="text-neutral-800 font-extrabold text-[9px] block truncate max-w-full leading-none">{bike.powerNominal}</span>
+                  </div>
+                  <div className="bg-[#F8F9FA] rounded-lg p-1.5 flex flex-col items-center justify-center text-center border border-neutral-100 min-w-0">
+                    <Gauge className="w-3.5 h-3.5 text-primary mb-1 flex-shrink-0" />
+                    <span className="text-[7px] text-neutral-400 uppercase tracking-wider font-bold block mb-0.5">Velocidade</span>
+                    <span className="text-neutral-800 font-extrabold text-[9px] block truncate max-w-full leading-none">{bike.maxSpeed}</span>
+                  </div>
+                  <div className="bg-[#F8F9FA] rounded-lg p-1.5 flex flex-col items-center justify-center text-center border border-neutral-100 min-w-0">
+                    <Battery className="w-3.5 h-3.5 text-primary mb-1 flex-shrink-0" />
+                    <span className="text-[7px] text-neutral-400 uppercase tracking-wider font-bold block mb-0.5">Autonomia</span>
+                    <span className="text-neutral-800 font-extrabold text-[9px] block truncate max-w-full leading-none">{bike.autonomy}</span>
                   </div>
                 </div>
               </div>

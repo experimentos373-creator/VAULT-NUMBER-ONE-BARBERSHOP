@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Maximize2, Settings, Instagram, Facebook, ChevronLeft, ChevronRight, Zap } from "lucide-react";
+import { ArrowRight, Maximize2, Settings, Instagram, Facebook, ChevronLeft, ChevronRight, Zap, Gauge, Battery } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { bikes, catalogSlugs } from "../data/bikesData";
 
@@ -125,16 +125,15 @@ export default function Menu() {
                 >
                   <Link
                     to={`${catalogPath}?bike=${bike.id}`}
-                    className="flex flex-col bg-white border border-neutral-200/90 rounded-none p-5 text-left group h-full relative product-card-frame cursor-pointer"
+                    className="flex flex-col bg-white border border-neutral-200/90 rounded-2xl p-5 text-left group h-full relative product-card-frame cursor-pointer overflow-hidden shadow-sm"
                   >
-                    {bike.isStar && (
-                      <div className="absolute top-4 left-4 z-10 bg-primary/10 text-primary border border-primary/30 backdrop-blur-md text-[8px] font-extrabold uppercase tracking-widest px-2.5 py-1 flex items-center gap-1 shadow-sm">
-                        <Zap className="w-2.5 h-2.5 fill-current" /> {t("catalog.badge.star")}
-                      </div>
-                    )}
+                    {/* Red Discount/Star Badge */}
+                    <div className="absolute top-4 left-4 z-10 bg-red-600 text-white px-3 py-1 text-[9px] font-black uppercase rounded shadow-sm select-none">
+                      {bike.isStar ? "Destaque" : "15% DE DESCONTO"}
+                    </div>
 
                     {/* Image Area inside Studio Background container with Realistic Vehicle Shadow */}
-                    <div className="product-studio-bg card-studio-aura border border-neutral-100/90 aspect-[4/3] flex items-center justify-center relative overflow-hidden mb-5 p-5 group-hover:border-primary/20 transition-colors">
+                    <div className="product-studio-bg card-studio-aura border border-neutral-100/90 rounded-xl aspect-[4/3] flex items-center justify-center relative overflow-hidden mb-5 p-5 group-hover:border-primary/20 transition-colors">
                       <img
                         src={bike.image}
                         alt={bike.name}
@@ -143,61 +142,46 @@ export default function Menu() {
                         height="225"
                         className="max-w-[92%] max-h-[92%] object-contain vehicle-drop-shadow group-hover:scale-106"
                       />
-                      <div className="absolute inset-0 bg-neutral-950/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <span className="bg-white/90 backdrop-blur-md text-neutral-900 border border-neutral-200 p-2 rounded-full shadow-md">
-                          <Maximize2 className="w-3.5 h-3.5 text-neutral-700" />
-                        </span>
-                      </div>
                     </div>
 
-                    {/* Brand Label & Rating */}
-                    <div className="flex justify-between items-center mb-2.5">
-                      <span className="bg-neutral-100 text-neutral-800 text-[9px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-none border border-neutral-200/50">
-                        {bike.brand}
-                      </span>
-                      <span className="text-[10px] text-neutral-500 font-bold flex items-center gap-1">
-                        <span className="text-amber-500">★</span> {bike.rating}
+                    {/* Color Swatch Dot */}
+                    <div className="flex gap-1.5 mb-3">
+                      <span className="w-4.5 h-4.5 rounded-full bg-[#111111] border border-primary p-0.5 flex items-center justify-center">
+                        <span className="w-full h-full rounded-full bg-primary" />
                       </span>
                     </div>
 
                     {/* Vehicle Name */}
-                    <h3 className="text-lg font-normal text-neutral-950 font-display group-hover:text-primary transition-colors mb-4 line-clamp-1 uppercase tracking-tight">
+                    <h3 className="text-[14px] font-black text-neutral-900 font-display group-hover:text-primary transition-colors mb-3 uppercase tracking-tight line-clamp-1">
                       {bike.name}
                     </h3>
 
-                    {/* Specs Grid */}
-                    <div className="grid grid-cols-2 gap-3 pt-3 border-t border-neutral-100 mb-5 text-xs">
-                      <div>
-                        <span className="text-[8px] text-neutral-400 uppercase tracking-widest block mb-0.5 font-bold">Motorização</span>
-                        <span className="text-neutral-800 font-bold block truncate text-[11px]">{bike.drivetrainShort}</span>
-                      </div>
-                      <div>
-                        <span className="text-[8px] text-neutral-400 uppercase tracking-widest block mb-0.5 font-bold">Bateria / Autonomia</span>
-                        <span className="text-neutral-800 font-bold block truncate text-[11px]">{bike.suspensionShort}</span>
-                      </div>
+                    {/* Price Section */}
+                    <div className="flex flex-wrap items-baseline gap-2 mb-5">
+                      <span className="text-red-500 line-through font-extrabold text-xs">
+                        {new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(Math.round(bike.price * 1.15 / 10) * 10)}
+                      </span>
+                      <span className="text-primary font-black text-xl sm:text-2xl">
+                        {new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(bike.price)}
+                      </span>
                     </div>
 
-                    {/* Feature Tags */}
-                    <div className="flex flex-wrap gap-1 mb-5">
-                      {bike.tags.map((tag, idx) => (
-                        <span key={idx} className="bg-neutral-50 border border-neutral-200/70 text-neutral-600 text-[8px] font-bold uppercase tracking-wider px-2 py-0.5">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Price & Action Button */}
-                    <div className="mt-auto pt-4 border-t border-neutral-150 flex items-center justify-between gap-3">
-                      {bike.price && (
-                        <div>
-                          <span className="text-[8px] text-neutral-400 uppercase tracking-widest block font-bold">PVP Sugerido</span>
-                          <span className="text-sm text-neutral-950 font-extrabold whitespace-nowrap">
-                            {new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(bike.price)}
-                          </span>
-                        </div>
-                      )}
-                      <div className="bg-neutral-950 group-hover:bg-primary text-white text-[9px] font-bold uppercase tracking-widest text-center px-4 py-2.5 transition-colors shadow-sm ml-auto">
-                        {language === "en" ? "Details" : language === "es" ? "Detalle" : language === "fr" ? "Détails" : language === "de" ? "Details" : "Detalhes"}
+                    {/* Specs Grid (3 spec cards at the bottom) */}
+                    <div className="grid grid-cols-3 gap-1.5 pt-3 border-t border-neutral-100 mt-auto">
+                      <div className="bg-[#F8F9FA] rounded-lg p-1.5 flex flex-col items-center justify-center text-center border border-neutral-100 min-w-0">
+                        <Zap className="w-3.5 h-3.5 text-primary mb-1 flex-shrink-0" />
+                        <span className="text-[7px] text-neutral-400 uppercase tracking-wider font-bold block mb-0.5">Motor</span>
+                        <span className="text-neutral-800 font-extrabold text-[9px] block truncate max-w-full leading-none">{bike.powerNominal}</span>
+                      </div>
+                      <div className="bg-[#F8F9FA] rounded-lg p-1.5 flex flex-col items-center justify-center text-center border border-neutral-100 min-w-0">
+                        <Gauge className="w-3.5 h-3.5 text-primary mb-1 flex-shrink-0" />
+                        <span className="text-[7px] text-neutral-400 uppercase tracking-wider font-bold block mb-0.5">Velocidade</span>
+                        <span className="text-neutral-800 font-extrabold text-[9px] block truncate max-w-full leading-none">{bike.maxSpeed}</span>
+                      </div>
+                      <div className="bg-[#F8F9FA] rounded-lg p-1.5 flex flex-col items-center justify-center text-center border border-neutral-100 min-w-0">
+                        <Battery className="w-3.5 h-3.5 text-primary mb-1 flex-shrink-0" />
+                        <span className="text-[7px] text-neutral-400 uppercase tracking-wider font-bold block mb-0.5">Autonomia</span>
+                        <span className="text-neutral-800 font-extrabold text-[9px] block truncate max-w-full leading-none">{bike.autonomy}</span>
                       </div>
                     </div>
                   </Link>
