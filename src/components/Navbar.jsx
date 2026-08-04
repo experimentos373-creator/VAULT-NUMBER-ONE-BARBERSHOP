@@ -116,20 +116,6 @@ export default function Navbar() {
 
   return (
     <div className="fixed top-0 left-0 w-full z-50 transition-all duration-300">
-      {/* Announcement Bar */}
-      <div className="bg-neutral-900 text-neutral-200 text-[9px] font-extrabold tracking-widest uppercase py-1.5 text-center border-b border-neutral-800">
-        {language === "en" 
-          ? "Multi-brand Stand & Workshop • Electric Mobility Specialists"
-          : language === "es"
-          ? "Taller y Venta Multimarca • Especialistas en Movilidad Eléctrica"
-          : language === "fr"
-          ? "Atelier & Vente Multimarque • Spécialistes de la Mobilité Électrique"
-          : language === "de"
-          ? "Mehrmarken-Werkstatt & Verkauf • Spezialisten für Elektromobilität"
-          : "Stand & Oficina Multimarca • Especialistas em Mobilidade Elétrica"
-        }
-      </div>
-
       <nav
         className={`w-full transition-all duration-300 ${
           isScrolled || isMobileMenuOpen
@@ -140,8 +126,8 @@ export default function Navbar() {
         <div className="max-w-[1400px] mx-auto px-6 flex justify-between items-center">
           {/* Logo */}
           <Link to={prefix || "/"} className="flex flex-row items-center gap-2 sm:gap-3 group">
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <span className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 bg-primary rounded-full inline-block animate-pulse"></span>
+            <div className="flex items-center gap-2">
+              <img src="/logo.png" alt="Route 109 Logo" className="h-8 w-8 sm:h-9 sm:w-9 object-contain" />
               <span className="font-extrabold tracking-tighter text-lg sm:text-xl font-display text-black uppercase">
                 Route<span className="text-primary font-black"> N109</span>
               </span>
