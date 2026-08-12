@@ -1066,7 +1066,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Triciclo / Quadriciclo de Mobilidade", en: "Electric Vehicle", es: "Vehículo Eléctrico", fr: "Véhicule Électrique", de: "Elektrisches Fahrzeug"
     },
-    image: "/images/vehicles/luna_qc.webp",
+    image: "/images/vehicles/seventeen_qc_3_lugares.webp",
     rating: "4.8 (15)",
     drivetrainShort: "Quadriciclo Elétrico de Alta Performance",
     suspensionShort: "Suspensão Hidráulica Dianteira/Traseira",
@@ -1105,7 +1105,7 @@ export const bikes = [
     categoryLabel: {
       pt: "Triciclo / Quadriciclo de Mobilidade", en: "Electric Vehicle", es: "Vehículo Eléctrico", fr: "Véhicule Électrique", de: "Elektrisches Fahrzeug"
     },
-    image: "/images/vehicles/luna_qs.webp",
+    image: "/images/vehicles/seventeen_qs_4_rodas.webp",
     rating: "4.8 (15)",
     drivetrainShort: "Quadriciclo Elétrico de Grande Conforto",
     suspensionShort: "Suspensão Independente às 4 Rodas",
