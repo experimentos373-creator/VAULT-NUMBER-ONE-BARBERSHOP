@@ -624,10 +624,12 @@ export default function CatalogPage() {
                 key={bike.id}
                 className="flex flex-col bg-white border border-neutral-200/90 rounded-2xl p-5 text-left group h-full relative product-card-frame overflow-hidden shadow-sm"
               >
-                {/* Red Discount/Star Badge */}
-                <div className="absolute top-4 left-4 z-10 bg-red-600 text-white px-3 py-1 text-[9px] font-black uppercase rounded shadow-sm select-none">
-                  {bike.isStar ? "Destaque" : "15% DE DESCONTO"}
-                </div>
+                {/* Star Badge */}
+                {bike.isStar && (
+                  <div className="absolute top-4 left-4 z-10 bg-primary text-white px-3 py-1 text-[9px] font-black uppercase rounded shadow-sm select-none">
+                    Destaque
+                  </div>
+                )}
 
                 {/* Favorite Heart Button */}
                 <button
@@ -665,9 +667,6 @@ export default function CatalogPage() {
 
                 {/* Price Section */}
                 <div className="flex flex-wrap items-baseline gap-2 mb-5">
-                  <span className="text-red-500 line-through font-extrabold text-xs">
-                    {new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(Math.round(bike.price * 1.15 / 10) * 10)}
-                  </span>
                   <span className="text-primary font-black text-xl sm:text-2xl">
                     {new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(bike.price)}
                   </span>
