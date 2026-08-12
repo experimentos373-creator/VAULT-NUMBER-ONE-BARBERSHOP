@@ -18,7 +18,7 @@ export default function Hero() {
           decoding="async"
           width="1200"
           height="800"
-          className="w-full h-full object-cover object-[60%_20%] md:object-[50%_20%] scale-100 filter brightness-[0.70] contrast-[1.2]"
+          className="w-full h-full object-cover object-[60%_20%] md:object-[50%_20%] scale-100 filter brightness-[0.80] contrast-[1.4]"
         />
         {/* Layered Gradient Overlays for optimal readability & atmosphere */}
         <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/95 via-neutral-950/80 to-neutral-950/40" />
