@@ -112,6 +112,13 @@ export default function CatalogPage() {
 
   // Fullscreen Image States
   const [isFullscreenImage, setIsFullscreenImage] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
   const [fullscreenScale, setFullscreenScale] = useState(1);
   const [fullscreenPosition, setFullscreenPosition] = useState({ x: 0, y: 0 });
   const [isFullscreenDragging, setIsFullscreenDragging] = useState(false);
@@ -758,7 +765,7 @@ export default function CatalogPage() {
                   src={selectedBike.image} 
                   alt={selectedBike.name} 
                   style={{
-                    transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
+                    transform: `translate(${position.x}px, ${position.y}px) scale(${scale * (isMobile ? 1.35 : 1.0)})`,
                     transformOrigin: "center center",
                     transition: isDragging ? "none" : "transform 0.2s ease-out"
                   }}
