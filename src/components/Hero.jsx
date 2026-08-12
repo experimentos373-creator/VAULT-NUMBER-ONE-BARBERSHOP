@@ -12,10 +12,13 @@ export default function Hero() {
       {/* Full-bleed Showroom Background Cover Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/route109_hero.jpg"
+          src="/images/route109_hero.webp"
           alt="Showroom Route N109 - Motos e Scooters Elétricas"
           fetchPriority="high"
-          className="w-full h-full object-cover object-center scale-105 filter brightness-[0.45] contrast-[1.1]"
+          decoding="async"
+          width="1200"
+          height="800"
+          className="w-full h-full object-cover object-[50%_30%] md:object-center scale-100 filter brightness-[0.45] contrast-[1.1]"
         />
         {/* Layered Gradient Overlays for optimal readability & atmosphere */}
         <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/95 via-neutral-950/80 to-neutral-950/40" />
@@ -86,9 +89,9 @@ export default function Hero() {
               <span className="text-neutral-700">•</span>
               <span className="hover:text-primary transition-colors">VOLTRISH</span>
               <span className="text-neutral-700">•</span>
-              <span className="hover:text-primary transition-colors">VESPY</span>
+              <span className="hover:text-primary transition-colors">VORTEX</span>
               <span className="text-neutral-700">•</span>
-              <span className="hover:text-primary transition-colors">LUNA</span>
+              <span className="hover:text-primary transition-colors">SEVENTEEN</span>
               <span className="text-neutral-700">•</span>
               <span className="hover:text-primary transition-colors">RAIDER</span>
             </div>
