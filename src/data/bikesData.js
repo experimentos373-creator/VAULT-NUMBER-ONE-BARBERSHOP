@@ -118,7 +118,7 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade máxima de até 40km/h", "Autonomia de 40 a 60 km", "Travão de disco frente e atrás", "Alarme", "Bateria de Chumbo Ácido"],
+    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade máxima de até 40km/h", "Travão de disco frente e atrás", "Alarme", "Bateria de Chumbo Ácido"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
@@ -158,7 +158,7 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade máxima de até 40km/h", "Autonomia de 40 a 60 km", "Travão de disco frente e atrás", "Alarme", "Sensor de assento"],
+    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade máxima de até 40km/h", "Travão de disco frente e atrás", "Alarme", "Sensor de assento"],
     warranty: {
       motor: "2 anos de garantia moto",
       battery: "6 meses de garantia de bateria"
@@ -198,7 +198,7 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade máxima de até 20km/h", "Autonomia de 40 a 60 km", "Alarme", "Sensor de assento"],
+    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade máxima de até 20km/h", "Alarme", "Sensor de assento"],
     warranty: {
       motor: "2 anos de garantia moto",
       battery: "6 meses de garantia de bateria"
@@ -238,7 +238,7 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade máxima de até 25km/h", "Autonomia de 40 a 60 km", "Travão de disco frente e atrás", "Alarme", "Sensor de assento"],
+    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade de 25km/h", "Travão de disco frente e atrás", "Alarme", "Sensor de assento"],
     warranty: {
       motor: "2 anos de garantia moto",
       battery: "6 meses de garantia de bateria"
@@ -521,7 +521,8 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Top case", "Iluminação LED", "72 Volts", "Alarme"],
+    colors: ["Azul", "Vermelho", "Laranja"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
@@ -561,7 +562,8 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Top case", "Iluminação LED", "72 Volts", "Alarme"],
+    colors: ["Branco com Vermelho", "Preto com Vermelho", "Cinza"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
@@ -601,7 +603,8 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Top case", "Iluminação LED", "Alarme"],
+    colors: ["Preto", "Cinzento", "Branco"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
@@ -641,7 +644,7 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Iluminação LED", "Pneus Tubeless", "3 tipos de condução (Eco, Normal, Sport)", "Alarme"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
@@ -649,7 +652,7 @@ export const bikes = [
   },
   {
     id: "f9-voltrish",
-    price: 1480,
+    price: 1150,
     name: "F9 VOLTRISH",
     brand: "Voltrish",
     brandSlug: "voltrish",
@@ -681,7 +684,8 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede sem carta", "Travão de disco frente", "Top case", "Iluminação LED", "Alarme"],
+    colors: ["Amarela", "Laranja", "Azul"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
@@ -689,7 +693,7 @@ export const bikes = [
   },
   {
     id: "azores",
-    price: 1380,
+    price: 1250,
     name: "AZORES",
     brand: "Azores",
     brandSlug: "azores",
@@ -721,7 +725,7 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Top case", "Iluminação LED", "Alarme"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
@@ -761,15 +765,16 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede sem carta", "Alarme", "Travões de disco frente/trás"],
+    colors: ["Azul", "Vermelho"],
     warranty: {
-      motor: "2 anos de garantia motor e controladora",
+      motor: "2 anos de garantia moto",
       battery: "6 meses de garantia de bateria"
     }
   },
   {
     id: "rio-j2-72v",
-    price: 1480,
+    price: 1450,
     name: "RIO J2 72V",
     brand: "Rio",
     brandSlug: "rio",
@@ -801,7 +806,7 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Top case", "Iluminação LED", "Alarme"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
@@ -809,7 +814,7 @@ export const bikes = [
   },
   {
     id: "voltrish-21",
-    price: 1480,
+    price: 899,
     name: "VOLTRISH 21",
     brand: "Voltrish",
     brandSlug: "voltrish",
@@ -823,7 +828,7 @@ export const bikes = [
     drivetrainShort: "Motor Elétrico Voltrish 21",
     suspensionShort: "Suspensão Hidráulica Dianteira",
     maxSpeed: "25 km/h (Uso Sem Carta)",
-    autonomy: "40 a 60 km",
+    autonomy: "30 a 45 km",
     powerNominal: "250W",
     tags: ["Uso Sem Carta", "Mobilidade Sustentável"],
     specs: {
@@ -841,7 +846,8 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede sem carta", "Iluminação LED"],
+    colors: ["Preto"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
@@ -862,7 +868,7 @@ export const bikes = [
     rating: "4.8 (15)",
     drivetrainShort: "Triciclo de Mobilidade Conforto Vista",
     suspensionShort: "Suspensão Macia de Alto Conforto",
-    maxSpeed: "25 km/h",
+    maxSpeed: "40 km/h (3 Modos + Reverse)",
     autonomy: "40 a 60 km",
     powerNominal: "250W",
     tags: ["Uso Sem Carta", "Mobilidade Sustentável"],
@@ -881,15 +887,15 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade máxima de até 40km/h", "Travão de disco frente e atrás", "Alarme", "Sensor de assento"],
     warranty: {
-      motor: "2 anos de garantia motor e controladora",
+      motor: "2 anos de garantia moto",
       battery: "6 meses de garantia de bateria"
     }
   },
   {
     id: "triciclo-kiev",
-    price: 1780,
+    price: 1150,
     name: "TRICICULO KIEV",
     brand: "Kiev",
     brandSlug: "kiev",
@@ -902,8 +908,8 @@ export const bikes = [
     rating: "4.8 (15)",
     drivetrainShort: "Triciclo Kiev Mobilidade Urbana",
     suspensionShort: "Suspensão Dianteira Hidráulica",
-    maxSpeed: "25 km/h",
-    autonomy: "40 a 60 km",
+    maxSpeed: "40 km/h (Triciclo Compacto)",
+    autonomy: "35 a 40 km",
     powerNominal: "250W",
     tags: ["Uso Sem Carta", "Mobilidade Sustentável"],
     specs: {
@@ -921,15 +927,15 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade máxima de até 40km/h", "Alarme"],
     warranty: {
-      motor: "2 anos de garantia motor e controladora",
+      motor: "2 anos de garantia moto",
       battery: "6 meses de garantia de bateria"
     }
   },
   {
     id: "g2-pro-1050w",
-    price: 1180,
+    price: 899,
     name: "G2 Pro 1050W",
     brand: "G2",
     brandSlug: "g2",
@@ -942,8 +948,8 @@ export const bikes = [
     rating: "4.8 (15)",
     drivetrainShort: "Motor Elétrico G2 Pro 1050W",
     suspensionShort: "Suspensão Dupla por Braço Oscilante",
-    maxSpeed: "25 km/h (Limitado)",
-    autonomy: "40 a 60 km",
+    maxSpeed: "25 km/h (Limitado + 3 velocidades)",
+    autonomy: "60 km",
     powerNominal: "250W",
     tags: ["Uso Sem Carta", "Mobilidade Sustentável"],
     specs: {
@@ -961,7 +967,7 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Motor de 1050W", "Bateria de 48V 15Ah", "Velocidades: 15 / 30 / 45 km/h", "Peso máximo suportado: 120 kg"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
@@ -969,7 +975,7 @@ export const bikes = [
   },
   {
     id: "triciclo-fun-2-lugares",
-    price: 1680,
+    price: 1850,
     name: "TRICICULO FUN 2 LUGARES",
     brand: "Fun",
     brandSlug: "fun",
@@ -1001,18 +1007,19 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede sem carta", "Marcha-atrás", "Cesto de arrumação", "Iluminação LED", "Alarme"],
+    colors: ["Vermelho", "Verde", "Branco"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
     }
   },
   {
-    id: "seventeen-qc-3-lugares",
+    id: "luna-qc-3-lugares",
     price: 1870,
-    name: "SEVENTEEN QC 3 LUGARES",
-    brand: "Seventeen",
-    brandSlug: "seventeen",
+    name: "LUNA QC 3 LUGARES",
+    brand: "Luna",
+    brandSlug: "luna",
     isStar: true,
     category: "e-scooter",
     categoryLabel: {
@@ -1041,24 +1048,64 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede sem carta", "3 lugares", "Marcha-atrás", "Top case", "Iluminação LED", "Alarme"],
+    colors: ["Vermelho"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
     }
   },
   {
-    id: "seventeen-qs-4-rodas",
-    price: 1950,
-    name: "SEVENTEEN QS 4 RODAS",
-    brand: "Seventeen",
-    brandSlug: "seventeen",
+    id: "luna-qc",
+    price: 1999,
+    name: "LUNA-QC",
+    brand: "Luna",
+    brandSlug: "luna",
     isStar: true,
     category: "e-scooter",
     categoryLabel: {
       pt: "Triciclo / Quadriciclo de Mobilidade", en: "Electric Vehicle", es: "Vehículo Eléctrico", fr: "Véhicule Électrique", de: "Elektrisches Fahrzeug"
     },
-    image: "/images/vehicles/seventeen_qs_4_rodas.webp",
+    image: "/images/vehicles/luna_qc.webp",
+    rating: "4.8 (15)",
+    drivetrainShort: "Quadriciclo Elétrico de Alta Performance",
+    suspensionShort: "Suspensão Hidráulica Dianteira/Traseira",
+    maxSpeed: "25 km/h (Uso Sem Carta)",
+    autonomy: "40 a 60 km",
+    powerNominal: "250W",
+    tags: ["Uso Sem Carta", "Mobilidade Sustentável"],
+    specs: {
+      frame: "Chassi em liga de aço de alta resistência",
+      drivetrain: "Motor traseiro de cubo / transmissão elétrica",
+      suspension: "Forqueta dianteira hidráulica e amortecedores traseiros",
+      brakes: "Sistema de travagem de disco/tambor",
+      wheels: "Jantes de alta resistência com pneus tubeless",
+      motor: "Motor de 250W",
+      battery: "Bateria de Lítio / Chumbo Ácido ou Grafeno",
+      useKey: "bike.voltrish.use"
+    },
+    stats: {
+      terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
+      performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    },
+    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade máxima de até 25km/h", "Travão de disco frente e atrás", "Alarme", "Sensor de assento"],
+    warranty: {
+      motor: "2 anos de garantia moto",
+      battery: "6 meses de garantia de bateria"
+    }
+  },
+  {
+    id: "luna-qs-4-rodas",
+    price: 1950,
+    name: "LUNA QS 4 RODAS",
+    brand: "Luna",
+    brandSlug: "luna",
+    isStar: true,
+    category: "e-scooter",
+    categoryLabel: {
+      pt: "Triciclo / Quadriciclo de Mobilidade", en: "Electric Vehicle", es: "Vehículo Eléctrico", fr: "Véhicule Électrique", de: "Elektrisches Fahrzeug"
+    },
+    image: "/images/vehicles/luna_qs.webp",
     rating: "4.8 (15)",
     drivetrainShort: "Quadriciclo Elétrico de Grande Conforto",
     suspensionShort: "Suspensão Independente às 4 Rodas",
@@ -1081,7 +1128,7 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede 4 rodas", "Baterias de Chumbo 60V 20Ah", "Jantes 10", "Travão de disco", "3 velocidades", "Iluminação LED", "Banco em pele", "Alarme"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
@@ -1121,7 +1168,7 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede 3 rodas com 3 lugares", "Baterias de Chumbo 60V 20Ah", "3 velocidades", "Iluminação LED", "Travão no pé e nas mãos", "Alarme", "Bancos em pele", "Não necessita de carta de condução"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
@@ -1129,7 +1176,7 @@ export const bikes = [
   },
   {
     id: "rio-j2-60v",
-    price: 1380,
+    price: 1350,
     name: "RIO J2 60V",
     brand: "Rio",
     brandSlug: "rio",
@@ -1161,7 +1208,7 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Encosto para 2ª pessoa", "Iluminação LED", "Alarme"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
@@ -1169,7 +1216,7 @@ export const bikes = [
   },
   {
     id: "triciclo-space-3-lugares",
-    price: 1850,
+    price: 1870,
     name: "Triciculo Space 3 lugares",
     brand: "Space",
     brandSlug: "space",
@@ -1201,7 +1248,8 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede sem carta", "3 lugares", "Marcha-atrás", "Top case", "Iluminação LED", "Alarme"],
+    colors: ["Vermelho", "Verde", "Branco"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
@@ -1241,7 +1289,8 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede sem carta", "Travão de disco frente", "Iluminação LED", "Alarme"],
+    colors: ["Laranja", "Azul", "Vermelha"],
     warranty: {
       motor: "2 anos de garantia motor e controladora",
       battery: "6 meses de garantia de bateria"
@@ -1249,7 +1298,7 @@ export const bikes = [
   },
   {
     id: "mx1-rio",
-    price: 1380,
+    price: 1150,
     name: "Mx1 Rio",
     brand: "Rio",
     brandSlug: "rio",
@@ -1281,15 +1330,15 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede sem carta", "Alarme"],
     warranty: {
-      motor: "2 anos de garantia motor e controladora",
+      motor: "2 anos de garantia moto",
       battery: "6 meses de garantia de bateria"
     }
   },
   {
     id: "acm-power-es-049",
-    price: 1180,
+    price: 1700,
     name: "ACM Power Es-049",
     brand: "ACM",
     brandSlug: "acm",
@@ -1302,7 +1351,7 @@ export const bikes = [
     rating: "4.8 (15)",
     drivetrainShort: "Motor Elétrico ACM Power 049",
     suspensionShort: "Suspensão Urbana Conforto",
-    maxSpeed: "25 km/h (Sem Carta)",
+    maxSpeed: "50 km/h (Alta Performance)",
     autonomy: "40 a 60 km",
     powerNominal: "250W",
     tags: ["Uso Sem Carta", "Mobilidade Sustentável"],
@@ -1321,15 +1370,15 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade máxima de até 50km/h", "Travão de disco frente e atrás", "Alarme"],
     warranty: {
-      motor: "2 anos de garantia motor e controladora",
+      motor: "2 anos de garantia moto",
       battery: "6 meses de garantia de bateria"
     }
   },
   {
     id: "acm-power-es-55",
-    price: 1250,
+    price: 1550,
     name: "ACM Power Es-55",
     brand: "ACM",
     brandSlug: "acm",
@@ -1342,7 +1391,7 @@ export const bikes = [
     rating: "4.8 (15)",
     drivetrainShort: "Motor Elétrico ACM Power 055",
     suspensionShort: "Suspensão Hidráulica Dianteira",
-    maxSpeed: "25 km/h (Sem Carta)",
+    maxSpeed: "50 km/h (Alta Performance)",
     autonomy: "40 a 60 km",
     powerNominal: "250W",
     tags: ["Uso Sem Carta", "Mobilidade Sustentável"],
@@ -1361,9 +1410,9 @@ export const bikes = [
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
   ,
-    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade máxima de até 50km/h", "Travão de disco frente e atrás", "Alarme"],
     warranty: {
-      motor: "2 anos de garantia motor e controladora",
+      motor: "2 anos de garantia moto",
       battery: "6 meses de garantia de bateria"
     }
   }
