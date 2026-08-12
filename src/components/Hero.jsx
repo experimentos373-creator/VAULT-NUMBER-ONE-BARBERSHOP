@@ -18,11 +18,11 @@ export default function Hero() {
           decoding="async"
           width="1200"
           height="800"
-          className="w-full h-full object-cover object-[60%_20%] md:object-[50%_20%] scale-100"
+          className="w-full h-full object-cover object-[60%_20%] md:object-[50%_20%] scale-100 filter brightness-[0.80] contrast-[1.4]"
         />
         {/* Layered Gradient Overlays for optimal readability & atmosphere */}
-        <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/90 via-neutral-950/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/80 via-neutral-950/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-neutral-950/30" />
         <div 
           className="absolute inset-0 opacity-[0.05] pointer-events-none" 
           style={{ backgroundImage: 'radial-gradient(#FF6600 1.5px, transparent 1.5px)', backgroundSize: '32px 32px' }} 
