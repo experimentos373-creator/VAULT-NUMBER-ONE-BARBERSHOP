@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { ArrowLeft, X, Phone, Maximize2, Search, ZoomIn, ZoomOut, RefreshCw, SlidersHorizontal, Heart, Filter, Zap, Battery, Cpu, Wrench, Circle, Shield, Activity, Gauge, TrendingUp, Info, Compass, MapPin, Mountain, Trees } from "lucide-react";
+import { ArrowLeft, X, Phone, Maximize2, Search, ZoomIn, ZoomOut, RefreshCw, SlidersHorizontal, Heart, Filter, Zap, Battery, Cpu, Wrench, Circle, Shield, Activity, Gauge, TrendingUp, Info, Compass, MapPin, Mountain, Trees, Check } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { bikes } from "../data/bikesData";
 
