@@ -1,102 +1,8 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { ArrowLeft, X, Phone, Maximize2, Search, ZoomIn, ZoomOut, RefreshCw, SlidersHorizontal, Heart, Filter, Zap, Battery, Cpu, Wrench, Circle, Shield, Activity, Gauge, TrendingUp, Info, Compass, MapPin, Mountain, Trees, ChevronDown } from "lucide-react";
+import { ArrowLeft, X, Phone, Maximize2, Search, ZoomIn, ZoomOut, RefreshCw, SlidersHorizontal, Heart, Filter, Zap, Battery, Cpu, Wrench, Circle, Shield, Activity, Gauge, TrendingUp, Info, Compass, MapPin, Mountain, Trees } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { bikes } from "../data/bikesData";
-
-function CustomSelect({ label, value, options, onChange }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const containerRef = useRef(null);
-
-  const selectedOpt = options.find((o) => o.value === value) || options[0];
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (containerRef.current && !containerRef.current.contains(e.target)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  return (
-    <div className="flex flex-col text-left relative" ref={containerRef}>
-      {label && (
-        <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5 px-1">
-          {label}
-        </label>
-      )}
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className={`w-full h-10 bg-white border rounded-lg text-xs font-bold px-3 flex items-center justify-between shadow-sm transition-all cursor-pointer select-none ${
-          isOpen ? "border-primary ring-2 ring-primary/20 text-neutral-900" : "border-neutral-300 hover:border-neutral-400 text-neutral-800"
-        }`}
-      >
-        <span className="truncate">{selectedOpt.label}</span>
-        <ChevronDown className={`w-3.5 h-3.5 text-neutral-400 shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180 text-primary" : ""}`} />
-      </button>
-
-      {isOpen && (
-        <div className="absolute top-full left-0 mt-1.5 w-full min-w-[150px] bg-white border border-neutral-200/90 rounded-xl shadow-xl py-1.5 z-50 animate-menu-fade">
-          {options.map((opt) => (
-            <button
-              key={opt.value}
-              type="button"
-              onClick={() => {
-                onChange(opt.value);
-                setIsOpen(false);
-              }}
-              className={`w-full text-left px-3.5 py-2 text-xs font-bold flex items-center justify-between hover:bg-primary/5 hover:text-primary transition-colors cursor-pointer ${
-                value === opt.value ? "text-primary bg-primary/5 font-black" : "text-neutral-700 font-semibold"
-              }`}
-            >
-              <span className="truncate">{opt.label}</span>
-              {value === opt.value && <span className="w-1.5 h-1.5 bg-primary rounded-full shrink-0 ml-2" />}
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-const catOptions = [
-  { value: "all", label: "Todas" },
-  { value: "scooter", label: "Scooters" },
-  { value: "mobilidade", label: "Mobilidade reduzida" },
-  { value: "triciclo", label: "Triciclos" },
-  { value: "citycoco", label: "Citycoco" },
-];
-
-const priceOptions = [
-  { value: "all", label: "Todos" },
-  { value: "under1k", label: "Até 1.000 €" },
-  { value: "1kto1.5k", label: "1.000 € – 1.500 €" },
-  { value: "1.5kto2k", label: "1.500 € – 2.000 €" },
-  { value: "over2k", label: "+2.000 €" },
-];
-
-const wheelsOptions = [
-  { value: "all", label: "Todas" },
-  { value: "2rodas", label: "2 rodas" },
-  { value: "3rodas", label: "3 rodas" },
-  { value: "4rodas", label: "4 rodas" },
-];
-
-const licenseOptions = [
-  { value: "all", label: "Todos" },
-  { value: "sem_carta", label: "Sem carta" },
-  { value: "com_carta", label: "Com carta" },
-];
-
-const seatsOptions = [
-  { value: "all", label: "Todos" },
-  { value: "1lugar", label: "1 lugar" },
-  { value: "2lugares", label: "2 lugares" },
-  { value: "3lugares", label: "3+ lugares" },
-];
 
 export default function CatalogPage() {
   const { t, language } = useLanguage();
@@ -106,12 +12,11 @@ export default function CatalogPage() {
   const bikeFilter = searchParams.get("bike");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const [catFilter, setCatFilter] = useState("all");
   const [priceFilter, setPriceFilter] = useState("all");
-  const [wheelsFilter, setWheelsFilter] = useState("all");
-  const [licenseFilter, setLicenseFilter] = useState("all");
-  const [seatsFilter, setSeatsFilter] = useState("all");
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [materialFilter, setMaterialFilter] = useState("all");
+  const [motorFilter, setMotorFilter] = useState("all");
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+  const [showCategoryFilters, setShowCategoryFilters] = useState(false);
 
   const filterTexts = {
     advancedFilters: {
@@ -347,115 +252,56 @@ export default function CatalogPage() {
     document.title = titles[language] || titles.pt;
   }, [language]);
 
-  const activeFilterCount = 
-    (catFilter !== "all" ? 1 : 0) +
-    (priceFilter !== "all" ? 1 : 0) +
-    (wheelsFilter !== "all" ? 1 : 0) +
-    (licenseFilter !== "all" ? 1 : 0) +
-    (seatsFilter !== "all" ? 1 : 0);
-
-  const clearAllFilters = () => {
-    setCatFilter("all");
-    setPriceFilter("all");
-    setWheelsFilter("all");
-    setLicenseFilter("all");
-    setSeatsFilter("all");
-    setSearchQuery("");
-    const newParams = new URLSearchParams(searchParams);
-    newParams.delete("categoria");
-    newParams.delete("marca");
-    setSearchParams(newParams);
-  };
+  const categories = [
+    { id: "all", label: t("catalog.filter.all") },
+    { id: "e-moto", label: t("catalog.filter.emoto") },
+    { id: "e-scooter", label: t("catalog.filter.escooter") }
+  ];
 
   let filteredBikes = bikes;
-
+  if (activeFilter !== "all") {
+    if (activeFilter === "favoritos") {
+      filteredBikes = filteredBikes.filter(b => favorites.includes(b.id));
+    } else {
+      filteredBikes = filteredBikes.filter(b => b.category === activeFilter);
+    }
+  }
   if (activeBrand !== "all") {
     filteredBikes = filteredBikes.filter(b => b.brandSlug === activeBrand);
   }
 
-  if (activeFilter === "favoritos") {
-    filteredBikes = filteredBikes.filter(b => favorites.includes(b.id));
+  // Price Filter
+  if (priceFilter === "under5000") {
+    filteredBikes = filteredBikes.filter(b => b.price <= 5000);
+  } else if (priceFilter === "5000to8000") {
+    filteredBikes = filteredBikes.filter(b => b.price > 5000 && b.price <= 8000);
+  } else if (priceFilter === "over8000") {
+    filteredBikes = filteredBikes.filter(b => b.price > 8000);
   }
 
-  // 1. Categoria Filter
-  if (catFilter !== "all") {
-    filteredBikes = filteredBikes.filter(b => {
-      const nameLower = b.name.toLowerCase();
-      const catLabel = (b.categoryLabel?.pt || "").toLowerCase();
-
-      if (catFilter === "citycoco") {
-        return nameLower.includes("citycoco") || nameLower.includes("london") || nameLower.includes("zoa") || nameLower.includes("scooty") || nameLower.includes("gox") || nameLower.includes("go.x");
-      }
-      if (catFilter === "triciclo") {
-        return nameLower.includes("triciclo") || nameLower.includes("triciculo") || nameLower.includes("3 rodas") || nameLower.includes("kiev") || nameLower.includes("space") || nameLower.includes("fun") || catLabel.includes("triciclo");
-      }
-      if (catFilter === "mobilidade") {
-        return nameLower.includes("mobilidade") || nameLower.includes("4 rodas") || nameLower.includes("tokio 3") || nameLower.includes("vista 3") || catLabel.includes("mobilidade") || catLabel.includes("quadriciclo");
-      }
-      if (catFilter === "scooter") {
-        return !nameLower.includes("4 rodas") && !nameLower.includes("quadriciclo") && !nameLower.includes("triciclo") && !nameLower.includes("triciculo") && !nameLower.includes("mobilidade");
-      }
-      return true;
-    });
+  // Battery Filter (materialFilter variable represents Battery Type: Lítio vs Chumbo)
+  if (materialFilter === "carbon") {
+    filteredBikes = filteredBikes.filter(b => 
+      b.specs.battery && (b.specs.battery.toLowerCase().includes("lítio") || b.specs.battery.toLowerCase().includes("lithium") || b.specs.battery.toLowerCase().includes("lons"))
+    );
+  } else if (materialFilter === "alloy") {
+    filteredBikes = filteredBikes.filter(b => 
+      b.specs.battery && (b.specs.battery.toLowerCase().includes("chumbo") || b.specs.battery.toLowerCase().includes("lead"))
+    );
   }
 
-  // 2. Preço Filter
-  if (priceFilter === "under1k") {
-    filteredBikes = filteredBikes.filter(b => b.price <= 1000);
-  } else if (priceFilter === "1kto1.5k") {
-    filteredBikes = filteredBikes.filter(b => b.price > 1000 && b.price <= 1500);
-  } else if (priceFilter === "1.5kto2k") {
-    filteredBikes = filteredBikes.filter(b => b.price > 1500 && b.price <= 2000);
-  } else if (priceFilter === "over2k") {
-    filteredBikes = filteredBikes.filter(b => b.price > 2000);
-  }
-
-  // 3. N.º de rodas Filter
-  if (wheelsFilter === "4rodas") {
+  // Motor Filter (motorFilter variable represents Motor Power: bosch = Under 3kW, djiavinox = Over 3kW)
+  if (motorFilter === "bosch") {
     filteredBikes = filteredBikes.filter(b => {
-      const nameLower = b.name.toLowerCase();
-      return nameLower.includes("4 rodas") || nameLower.includes("quadriciclo");
+      const motorDesc = (b.specs.motor || "").toLowerCase();
+      const tagsDesc = b.tags.join(" ").toLowerCase();
+      return motorDesc.includes("250w") || motorDesc.includes("2000w") || tagsDesc.includes("0.25kw") || tagsDesc.includes("2000w");
     });
-  } else if (wheelsFilter === "3rodas") {
+  } else if (motorFilter === "djiavinox") {
     filteredBikes = filteredBikes.filter(b => {
-      const nameLower = b.name.toLowerCase();
-      return nameLower.includes("3 rodas") || nameLower.includes("triciclo") || nameLower.includes("triciculo") || nameLower.includes("3 lugares");
-    });
-  } else if (wheelsFilter === "2rodas") {
-    filteredBikes = filteredBikes.filter(b => {
-      const nameLower = b.name.toLowerCase();
-      return !nameLower.includes("4 rodas") && !nameLower.includes("3 rodas") && !nameLower.includes("triciclo") && !nameLower.includes("triciculo") && !nameLower.includes("quadriciclo");
-    });
-  }
-
-  // 4. Carta Filter
-  if (licenseFilter === "com_carta") {
-    filteredBikes = filteredBikes.filter(b => {
-      const tagsLower = b.tags.map(t => t.toLowerCase()).join(" ");
-      return tagsLower.includes("com carta") || tagsLower.includes("requer carta") || b.maxSpeed === "> 45 km/h";
-    });
-  } else if (licenseFilter === "sem_carta") {
-    filteredBikes = filteredBikes.filter(b => {
-      const tagsLower = b.tags.map(t => t.toLowerCase()).join(" ");
-      return !tagsLower.includes("com carta") && !tagsLower.includes("requer carta");
-    });
-  }
-
-  // 5. N.º de lugares Filter
-  if (seatsFilter === "3lugares") {
-    filteredBikes = filteredBikes.filter(b => {
-      const nameLower = b.name.toLowerCase();
-      return nameLower.includes("3 lugares") || nameLower.includes("triplo");
-    });
-  } else if (seatsFilter === "2lugares") {
-    filteredBikes = filteredBikes.filter(b => {
-      const nameLower = b.name.toLowerCase();
-      return nameLower.includes("2 lugares") || nameLower.includes("duplo");
-    });
-  } else if (seatsFilter === "1lugar") {
-    filteredBikes = filteredBikes.filter(b => {
-      const nameLower = b.name.toLowerCase();
-      return !nameLower.includes("3 lugares") && !nameLower.includes("2 lugares") && !nameLower.includes("duplo") && !nameLower.includes("triplo");
+      const motorDesc = (b.specs.motor || "").toLowerCase();
+      const tagsDesc = b.tags.join(" ").toLowerCase();
+      return motorDesc.includes("3800w") || motorDesc.includes("4000w") || motorDesc.includes("5000w") || motorDesc.includes("6000w") || motorDesc.includes("10.000w") || motorDesc.includes("10000w") || tagsDesc.includes("3800w") || tagsDesc.includes("4000w") || tagsDesc.includes("5000w") || tagsDesc.includes("6000w") || tagsDesc.includes("10.000w");
     });
   }
 
@@ -464,7 +310,9 @@ export default function CatalogPage() {
     filteredBikes = filteredBikes.filter(b => 
       b.name.toLowerCase().includes(q) ||
       b.brand.toLowerCase().includes(q) ||
-      b.tags.some(tag => tag.toLowerCase().includes(q))
+      b.tags.some(tag => tag.toLowerCase().includes(q)) ||
+      (b.specs.motor && b.specs.motor.toLowerCase().includes(q)) ||
+      (b.specs.battery && b.specs.battery.toLowerCase().includes(q))
     );
   }
 
@@ -544,136 +392,229 @@ export default function CatalogPage() {
             )}
           </div>
 
-          {/* Mobile Filter Button */}
-          <div className="md:hidden flex justify-center mb-6 px-4">
-            <button
-              onClick={() => setMobileFiltersOpen(true)}
-              className="w-full max-w-xs inline-flex items-center justify-center gap-2 px-6 py-3.5 text-xs font-black uppercase tracking-widest bg-primary text-white shadow-md active:scale-98 transition-all cursor-pointer"
-            >
-              <SlidersHorizontal className="w-4 h-4" />
-              <span>Filtros</span>
-              {activeFilterCount > 0 && (
-                <span className="bg-white text-primary rounded-full w-5 h-5 text-[10px] font-black flex items-center justify-center ml-1">
-                  {activeFilterCount}
-                </span>
-              )}
-            </button>
-          </div>
+          {/* Filter Buttons Row */}
+          <div className="flex flex-col items-center justify-center mb-8">
+            <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center">
+              {/* Category Filters Toggle */}
+              <button
+                onClick={() => { setShowCategoryFilters(!showCategoryFilters); setShowAdvancedFilters(false); }}
+                className={`inline-flex items-center gap-2 px-5 py-3 text-xs font-bold uppercase tracking-widest rounded-none transition-all duration-205 border cursor-pointer shadow-sm ${
+                  showCategoryFilters 
+                    ? "bg-primary text-white border-primary" 
+                    : "bg-white border-neutral-300 hover:bg-neutral-50 text-neutral-900"
+                }`}
+              >
+                <Filter className="w-3.5 h-3.5" />
+                {language === "pt" ? "Filtros" : language === "es" ? "Filtros" : language === "fr" ? "Filtres" : language === "de" ? "Filter" : "Filters"}
+                {activeFilter !== "all" && activeFilter !== "favoritos" && (
+                  <span className={`text-[10px] font-bold rounded-none h-4 w-4 flex items-center justify-center ml-1 ${showCategoryFilters ? "bg-white text-primary" : "bg-primary text-white"}`}>
+                    1
+                  </span>
+                )}
+              </button>
 
-          {/* Mobile Filter Drawer Overlay */}
-          {mobileFiltersOpen && (
-            <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-end animate-fade-in md:hidden">
-              <div className="w-full max-w-xs bg-white h-full p-6 overflow-y-auto flex flex-col justify-between shadow-2xl">
-                <div>
-                  <div className="flex items-center justify-between pb-4 border-b border-neutral-200 mb-6">
-                    <div className="flex items-center gap-2">
-                      <SlidersHorizontal className="w-4 h-4 text-primary" />
-                      <h3 className="font-black text-sm uppercase tracking-wider text-neutral-900">Filtros</h3>
-                    </div>
-                    <button 
-                      onClick={() => setMobileFiltersOpen(false)}
-                      className="p-2 text-neutral-400 hover:text-neutral-900 bg-transparent border-none cursor-pointer"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
-                  </div>
+              {/* Favorites Toggle */}
+              <button
+                onClick={() => {
+                  const newFilter = activeFilter === "favoritos" ? "all" : "favoritos";
+                  handleCategoryFilterChange(newFilter);
+                  setShowCategoryFilters(false);
+                  setShowAdvancedFilters(false);
+                }}
+                className={`inline-flex items-center gap-2 px-5 py-3 text-xs font-bold uppercase tracking-widest rounded-none transition-all duration-205 border cursor-pointer shadow-sm ${
+                  activeFilter === "favoritos" 
+                    ? "bg-red-650 text-white border-red-650" 
+                    : "bg-white border-neutral-300 hover:bg-neutral-50 text-neutral-900"
+                }`}
+              >
+                <Heart className={`w-3.5 h-3.5 ${activeFilter === "favoritos" ? "fill-current text-red-500" : ""}`} />
+                {language === "pt" ? "Favoritos" : language === "es" ? "Favoritos" : language === "fr" ? "Favoris" : language === "de" ? "Favoriten" : "Favorites"}
+                {favorites.length > 0 && (
+                  <span className={`text-[10px] font-bold rounded-none h-4 w-4 flex items-center justify-center ml-1 ${
+                    activeFilter === "favoritos" ? "bg-white text-red-500" : "bg-red-500 text-white"
+                  }`}>
+                    {favorites.length}
+                  </span>
+                )}
+              </button>
 
-                  <div className="space-y-5 text-left">
-                    {/* Categoria */}
-                    <CustomSelect label="Categoria" value={catFilter} options={catOptions} onChange={setCatFilter} />
+              {/* Advanced Filters Toggle */}
+              <button
+                onClick={() => { setShowAdvancedFilters(!showAdvancedFilters); setShowCategoryFilters(false); }}
+                className={`inline-flex items-center gap-2 px-5 py-3 text-xs font-bold uppercase tracking-widest rounded-none transition-all duration-205 border cursor-pointer shadow-sm ${
+                  showAdvancedFilters 
+                    ? "bg-primary text-white border-primary" 
+                    : "bg-white border-neutral-300 hover:bg-neutral-50 text-neutral-900"
+                }`}
+              >
+                <SlidersHorizontal className="w-3.5 h-3.5" />
+                {getFilterText("advancedFilters")}
+                {(priceFilter !== "all" || materialFilter !== "all" || motorFilter !== "all") && (
+                  <span className={`text-[10px] font-bold rounded-none h-4 w-4 flex items-center justify-center ml-1 ${showAdvancedFilters ? "bg-white text-primary" : "bg-primary text-white"}`}>
+                    { (priceFilter !== "all" ? 1 : 0) + (materialFilter !== "all" ? 1 : 0) + (motorFilter !== "all" ? 1 : 0) }
+                  </span>
+                )}
+              </button>
+            </div>
 
-                    {/* Preço */}
-                    <CustomSelect label="Preço" value={priceFilter} options={priceOptions} onChange={setPriceFilter} />
-
-                    {/* N.º de rodas */}
-                    <CustomSelect label="N.º de rodas" value={wheelsFilter} options={wheelsOptions} onChange={setWheelsFilter} />
-
-                    {/* Carta */}
-                    <CustomSelect label="Carta" value={licenseFilter} options={licenseOptions} onChange={setLicenseFilter} />
-
-                    {/* N.º de lugares */}
-                    <CustomSelect label="N.º de lugares" value={seatsFilter} options={seatsOptions} onChange={setSeatsFilter} />
-                  </div>
-                </div>
-
-                <div className="pt-6 border-t border-neutral-200 space-y-3">
-                  {activeFilterCount > 0 && (
+            {/* Category Filters Panel */}
+            {showCategoryFilters && (
+              <div className="w-full max-w-2xl mt-6 p-6 bg-[#FCFBFA] border border-neutral-200 rounded-none shadow-sm animate-fade-in text-left">
+                <div className="flex justify-between items-center mb-4 border-b border-neutral-200 pb-2">
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-neutral-950">
+                    {language === "pt" ? "Categoria" : language === "es" ? "Categoría" : language === "fr" ? "Catégorie" : language === "de" ? "Kategorie" : "Category"}
+                  </h3>
+                  {activeFilter !== "all" && (
                     <button
-                      onClick={clearAllFilters}
-                      className="w-full py-2.5 text-xs font-bold uppercase tracking-wider text-neutral-500 hover:text-red-500 border border-neutral-200 bg-white transition-colors cursor-pointer"
+                      onClick={() => {
+                        handleCategoryFilterChange("all");
+                      }}
+                      className="text-[10px] text-neutral-400 hover:text-red-500 font-extrabold uppercase tracking-wider bg-transparent border-none cursor-pointer transition-colors"
                     >
-                      Limpar Filtros ({activeFilterCount})
+                      {language === "pt" ? "Limpar" : "Clear"}
                     </button>
                   )}
-                  <button
-                    onClick={() => setMobileFiltersOpen(false)}
-                    className="w-full py-3.5 bg-primary text-white text-xs font-black uppercase tracking-widest shadow-md cursor-pointer"
-                  >
-                    Ver Resultados ({filteredBikes.length})
-                  </button>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  {categories.map((cat, idx) => {
+                    const isLastOdd = categories.length % 2 !== 0 && idx === categories.length - 1;
+                    return (
+                    <button
+                      key={cat.id}
+                      onClick={() => {
+                        handleCategoryFilterChange(cat.id);
+                        setShowCategoryFilters(false);
+                      }}
+                      className={`text-center px-3 py-2.5 text-xs font-semibold rounded-none border transition-all duration-200 cursor-pointer ${
+                        isLastOdd ? "col-span-2 max-w-[50%] mx-auto" : ""
+                      } ${
+                        activeFilter === cat.id
+                          ? "bg-primary text-white border-primary"
+                          : "bg-white text-neutral-600 border-neutral-200 hover:bg-[#FCFBFA] hover:text-neutral-900"
+                      }`}
+                    >
+                      {cat.label}
+                    </button>
+                    );
+                  })}
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Desktop Filter Toolbar */}
-          <div className="hidden md:block max-w-7xl mx-auto mb-10">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3.5 items-end bg-neutral-50/90 border border-neutral-200 p-5 rounded-2xl shadow-sm">
-              {/* Categoria */}
-              <CustomSelect label="Categoria" value={catFilter} options={catOptions} onChange={setCatFilter} />
+            {/* Advanced Filters Panel */}
+            {showAdvancedFilters && (
+              <div className="w-full max-w-4xl mt-6 p-6 bg-[#FCFBFA] border border-neutral-200 rounded-none shadow-sm animate-fade-in grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                {/* Price Filter */}
+                <div>
+                  <div className="flex justify-between items-center mb-3 border-b border-neutral-200 pb-1.5">
+                    <h3 className="text-xs font-black uppercase tracking-wider text-neutral-800">
+                      {getFilterText("price")}
+                    </h3>
+                    <button
+                      onClick={() => {
+                        setPriceFilter("all");
+                        setMaterialFilter("all");
+                        setMotorFilter("all");
+                        setSearchQuery("");
+                        const newParams = new URLSearchParams(searchParams);
+                        newParams.delete("categoria");
+                        newParams.delete("marca");
+                        setSearchParams(newParams);
+                      }}
+                      className="text-[10px] text-neutral-400 hover:text-red-500 font-extrabold uppercase tracking-wider bg-transparent border-none cursor-pointer transition-colors"
+                    >
+                      {language === "pt" ? "Limpar Filtros" : "Clear Filters"}
+                    </button>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    {[
+                      { id: "all", label: getFilterText("priceAll") },
+                      { id: "under5000", label: getFilterText("under5k") },
+                      { id: "5000to8000", label: getFilterText("between5k8k") },
+                      { id: "over8000", label: getFilterText("over8k") }
+                    ].map((opt) => (
+                      <button
+                        key={opt.id}
+                        onClick={() => setPriceFilter(opt.id)}
+                        className={`text-left px-3 py-2 text-xs font-semibold rounded-none border transition-all duration-200 cursor-pointer ${
+                          priceFilter === opt.id
+                            ? "bg-primary text-white border-primary"
+                            : "bg-white text-neutral-600 border-neutral-200 hover:bg-[#FCFBFA] hover:text-neutral-900"
+                        }`}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
-              {/* Preço */}
-              <CustomSelect label="Preço" value={priceFilter} options={priceOptions} onChange={setPriceFilter} />
+                {/* Propulsion Filter */}
+                <div>
+                  <h3 className="text-xs font-black uppercase tracking-wider text-neutral-800 mb-3 border-b border-neutral-200 pb-1.5">
+                    {getFilterText("motor")}
+                  </h3>
+                  <div className="flex flex-col gap-2">
+                    {[
+                      { id: "all", label: getFilterText("motorAll") },
+                      { id: "bosch", label: getFilterText("motorBosch") },
+                      { id: "djiavinox", label: getFilterText("motorAvinox") }
+                    ].map((opt) => (
+                      <button
+                        key={opt.id}
+                        onClick={() => setMotorFilter(opt.id)}
+                        className={`text-left px-3 py-2 text-xs font-semibold rounded-none border transition-all duration-200 cursor-pointer ${
+                          motorFilter === opt.id
+                            ? "bg-primary text-white border-primary"
+                            : "bg-white text-neutral-600 border-neutral-200 hover:bg-[#FCFBFA] hover:text-neutral-900"
+                        }`}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
-              {/* N.º de rodas */}
-              <CustomSelect label="N.º de rodas" value={wheelsFilter} options={wheelsOptions} onChange={setWheelsFilter} />
+                {/* Frame Material Filter */}
+                <div>
+                  <h3 className="text-xs font-black uppercase tracking-wider text-neutral-800 mb-3 border-b border-neutral-200 pb-1.5">
+                    {getFilterText("frame")}
+                  </h3>
+                  <div className="flex flex-col gap-2 mb-4">
+                    {[
+                      { id: "all", label: getFilterText("frameAll") },
+                      { id: "carbon", label: getFilterText("frameCarbon") },
+                      { id: "alloy", label: getFilterText("frameAlloy") }
+                    ].map((opt) => (
+                      <button
+                        key={opt.id}
+                        onClick={() => setMaterialFilter(opt.id)}
+                        className={`text-left px-3 py-2 text-xs font-semibold rounded-none border transition-all duration-200 cursor-pointer ${
+                          materialFilter === opt.id
+                            ? "bg-primary text-white border-primary"
+                            : "bg-white text-neutral-600 border-neutral-200 hover:bg-[#FCFBFA] hover:text-neutral-900"
+                        }`}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
 
-              {/* Carta */}
-              <CustomSelect label="Carta" value={licenseFilter} options={licenseOptions} onChange={setLicenseFilter} />
-
-              {/* N.º de lugares */}
-              <CustomSelect label="N.º de lugares" value={seatsFilter} options={seatsOptions} onChange={setSeatsFilter} />
-
-              {/* Guardados / Favoritos */}
-              <div className="flex flex-col text-left">
-                <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5 px-1">Guardados</label>
-                <button
-                  onClick={() => {
-                    const newFilter = activeFilter === "favoritos" ? "all" : "favoritos";
-                    handleCategoryFilterChange(newFilter);
-                  }}
-                  className={`w-full h-10 rounded-lg text-xs font-bold uppercase tracking-wider border shadow-sm transition-all cursor-pointer inline-flex items-center justify-center gap-1.5 ${
-                    activeFilter === "favoritos" 
-                      ? "bg-red-500 text-white border-red-500 hover:bg-red-600" 
-                      : "bg-white text-neutral-800 border-neutral-300 hover:border-neutral-400 hover:bg-neutral-50/50"
-                  }`}
-                >
-                  <Heart className={`w-3.5 h-3.5 ${activeFilter === "favoritos" ? "fill-current text-white" : "text-neutral-500"}`} />
-                  <span>Favoritos ({favorites.length})</span>
-                </button>
+                  {(priceFilter !== "all" || materialFilter !== "all" || motorFilter !== "all") && (
+                    <button
+                      onClick={() => {
+                        setPriceFilter("all");
+                        setMaterialFilter("all");
+                        setMotorFilter("all");
+                      }}
+                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-neutral-900 hover:bg-red-650 text-white text-xs font-bold uppercase tracking-widest rounded-none transition-all duration-200 border-none cursor-pointer"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                      {getFilterText("clearFilters")}
+                    </button>
+                  )}
+                </div>
               </div>
-
-              {/* Limpar Filtros */}
-              <div className="flex flex-col text-left">
-                <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5 px-1">Ações</label>
-                {activeFilterCount > 0 ? (
-                  <button
-                    onClick={clearAllFilters}
-                    className="w-full h-10 rounded-lg bg-neutral-200 hover:bg-red-500 hover:text-white text-neutral-800 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer inline-flex items-center justify-center gap-1 shadow-sm"
-                  >
-                    <X className="w-3.5 h-3.5" />
-                    <span>Limpar ({activeFilterCount})</span>
-                  </button>
-                ) : (
-                  <button
-                    disabled
-                    className="w-full h-10 rounded-lg bg-neutral-100/60 border border-neutral-200/60 text-neutral-400 text-xs font-bold uppercase tracking-wider cursor-not-allowed inline-flex items-center justify-center opacity-60"
-                  >
-                    Sem Filtros
-                  </button>
-                )}
-              </div>
-            </div>
+            )}
           </div>
 
           {/* Bike Grid — High-fidelity E-commerce Cards */}
@@ -706,18 +647,12 @@ export default function CatalogPage() {
                   onClick={() => openBikeModal(bike)}
                   className="product-studio-bg card-studio-aura border border-neutral-100/90 rounded-xl aspect-[4/3] flex items-center justify-center relative overflow-hidden mb-5 cursor-pointer p-5 group-hover:border-primary/20 transition-colors"
                 >
-                  {bike.image ? (
-                    <img
-                      src={bike.image}
-                      alt={bike.name}
-                      loading="lazy"
-                      className="max-w-[92%] max-h-[92%] object-contain vehicle-drop-shadow group-hover:scale-106"
-                    />
-                  ) : (
-                    <div className="flex flex-col items-center justify-center text-neutral-400 select-none">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-400/60">Em Breve</span>
-                    </div>
-                  )}
+                  <img
+                    src={bike.image}
+                    alt={bike.name}
+                    loading="lazy"
+                    className="max-w-[92%] max-h-[92%] object-contain vehicle-drop-shadow group-hover:scale-106"
+                  />
                 </div>
 
                 {/* Product Title */}
@@ -742,17 +677,17 @@ export default function CatalogPage() {
                 <div className="grid grid-cols-3 gap-1.5 pt-3 border-t border-neutral-100 mt-auto">
                   <div className="bg-[#F8F9FA] rounded-lg p-1.5 flex flex-col items-center justify-center text-center border border-neutral-100 min-w-0">
                     <Zap className="w-3.5 h-3.5 text-primary mb-1 flex-shrink-0" />
-                    <span className="text-[7.5px] text-neutral-600 uppercase tracking-wider font-extrabold block mb-0.5">Motor</span>
+                    <span className="text-[7px] text-neutral-400 uppercase tracking-wider font-bold block mb-0.5">Motor</span>
                     <span className="text-neutral-800 font-extrabold text-[9px] block truncate max-w-full leading-none">{bike.powerNominal}</span>
                   </div>
                   <div className="bg-[#F8F9FA] rounded-lg p-1.5 flex flex-col items-center justify-center text-center border border-neutral-100 min-w-0">
                     <Gauge className="w-3.5 h-3.5 text-primary mb-1 flex-shrink-0" />
-                    <span className="text-[7.5px] text-neutral-600 uppercase tracking-wider font-extrabold block mb-0.5">Velocidade</span>
+                    <span className="text-[7px] text-neutral-400 uppercase tracking-wider font-bold block mb-0.5">Velocidade</span>
                     <span className="text-neutral-800 font-extrabold text-[9px] block truncate max-w-full leading-none">{bike.maxSpeed}</span>
                   </div>
                   <div className="bg-[#F8F9FA] rounded-lg p-1.5 flex flex-col items-center justify-center text-center border border-neutral-100 min-w-0">
                     <Battery className="w-3.5 h-3.5 text-primary mb-1 flex-shrink-0" />
-                    <span className="text-[7.5px] text-neutral-600 uppercase tracking-wider font-extrabold block mb-0.5">Autonomia</span>
+                    <span className="text-[7px] text-neutral-400 uppercase tracking-wider font-bold block mb-0.5">Autonomia</span>
                     <span className="text-neutral-800 font-extrabold text-[9px] block truncate max-w-full leading-none">{bike.autonomy}</span>
                   </div>
                 </div>
@@ -781,27 +716,27 @@ export default function CatalogPage() {
 
       {/* Modern Compact Single-Screen Modal with Specs & Performance Stats Tabs */}
       {selectedBike && (
-        <div className="fixed inset-0 w-full h-full flex items-center justify-center z-50 p-4 sm:p-6 md:p-8 animate-fade-in bg-neutral-950/70 backdrop-blur-sm overscroll-none">
+        <div className="fixed inset-0 w-full h-full flex items-center justify-center z-50 p-4 sm:p-6 md:p-8 animate-fade-in bg-neutral-950/70 backdrop-blur-sm">
           <div className="absolute inset-0 w-full h-full cursor-default" onClick={closeModal} />
           
           {/* Main Modal Box */}
-          <div className="bg-white text-neutral-900 border border-neutral-200 w-full max-w-6xl rounded-none shadow-2xl relative z-10 flex flex-col md:flex-row overflow-hidden max-h-[92vh] h-[90vh] md:h-[620px] overscroll-contain animate-scale-up">
+          <div className="bg-white text-neutral-900 border border-neutral-200 w-full max-w-6xl rounded-none shadow-2xl relative z-10 flex flex-col md:flex-row overflow-hidden max-h-[90vh] md:h-[620px] animate-scale-up">
             
             {/* Close Button */}
             <button
               onClick={closeModal}
-              className="absolute top-3 right-3 text-neutral-500 hover:text-neutral-900 bg-white/90 hover:bg-neutral-100 p-2.5 rounded-none border border-neutral-200 transition-colors z-30 cursor-pointer shadow-md"
+              className="absolute top-4 right-4 text-neutral-500 hover:text-neutral-900 bg-neutral-100 p-2 rounded-none border border-neutral-200 transition-colors z-20 cursor-pointer"
               aria-label={t("catalog.modal.close")}
             >
-              <X className="w-5 h-5 text-neutral-800" />
+              <X className="w-4 h-4" />
             </button>
 
-            {/* Left Frame (Product Image Area) - 30% Height on Mobile */}
-            <div className="w-full md:w-[60%] product-studio-bg flex items-center justify-center p-2 sm:p-4 border-b md:border-b-0 md:border-r border-neutral-200/60 h-[30vh] min-h-[220px] sm:h-[280px] md:h-full relative overflow-hidden group select-none shrink-0">
+            {/* Left Frame */}
+            <div className="w-full md:w-[60%] product-studio-bg flex items-center justify-center p-4 border-b md:border-b-0 md:border-r border-neutral-200/60 h-[300px] sm:h-[350px] md:h-full relative overflow-hidden group select-none">
               {/* Expand to Fullscreen Button */}
               <button
                 onClick={() => setIsFullscreenImage(true)}
-                className="absolute top-3 left-3 bg-neutral-950/80 hover:bg-primary text-white p-2 rounded-none border-none transition-all duration-300 z-20 cursor-pointer flex items-center justify-center shadow-lg"
+                className="absolute top-3 left-3 bg-neutral-950 hover:bg-primary text-white p-2 rounded-none border-none transition-all duration-300 z-10 cursor-pointer flex items-center justify-center shadow-lg"
                 title="Expand Image"
                 aria-label="Expand Image to Fullscreen"
               >
@@ -809,7 +744,7 @@ export default function CatalogPage() {
               </button>
 
               <div 
-                className="w-full h-full flex items-center justify-center overflow-hidden cursor-default relative p-1 sm:p-2"
+                className="w-full h-full flex items-center justify-center overflow-hidden cursor-default relative p-4"
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
                 onMouseUp={handleMouseUpOrLeave}
@@ -819,25 +754,19 @@ export default function CatalogPage() {
                 onTouchEnd={handleMouseUpOrLeave}
                 onDoubleClick={handleDoubleClick}
               >
-                {selectedBike.image ? (
-                  <img 
-                    src={selectedBike.image} 
-                    alt={selectedBike.name} 
-                    style={{
-                      transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
-                      transformOrigin: "center center",
-                      transition: isDragging ? "none" : "transform 0.2s ease-out"
-                    }}
-                    className={`max-h-[92%] max-w-[92%] object-contain select-none vehicle-drop-shadow ${
-                      scale > baseScale ? (isDragging ? "cursor-grabbing" : "cursor-grab") : "cursor-zoom-in"
-                    }`}
-                    draggable="false"
-                  />
-                ) : (
-                  <div className="flex flex-col items-center justify-center text-neutral-400 select-none p-10">
-                    <span className="text-[14px] font-bold uppercase tracking-wider text-neutral-400/60">Fotografia Em Breve</span>
-                  </div>
-                )}
+                <img 
+                  src={selectedBike.image} 
+                  alt={selectedBike.name} 
+                  style={{
+                    transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
+                    transformOrigin: "center center",
+                    transition: isDragging ? "none" : "transform 0.2s ease-out"
+                  }}
+                  className={`max-h-[90%] max-w-[90%] object-contain select-none vehicle-drop-shadow ${
+                    scale > baseScale ? (isDragging ? "cursor-grabbing" : "cursor-grab") : "cursor-zoom-in"
+                  }`}
+                  draggable="false"
+                />
               </div>
 
               {/* Floating Zoom Controls */}
@@ -885,8 +814,14 @@ export default function CatalogPage() {
                     className="ml-1 w-7 h-7 flex items-center justify-center rounded-none bg-neutral-950 hover:bg-primary text-white cursor-pointer transition-colors border-none"
                     title="Reset"
                   >
-             {/* Right Frame */}
-            <div className="w-full md:w-[40%] p-6 md:p-10 flex flex-col justify-between flex-1 min-h-0 md:h-full bg-[#FCFBFA] overflow-hidden">
+                    <RefreshCw className="w-3 h-3" />
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Right Frame */}
+            <div className="w-full md:w-[40%] p-8 md:p-10 flex flex-col justify-between h-full bg-[#FCFBFA] overflow-hidden">
               
               {/* Header Title Area (Fixed) */}
               <div className="mb-4">
@@ -899,7 +834,7 @@ export default function CatalogPage() {
                     <span className="text-yellow-450">★</span> {selectedBike.rating}
                   </span>
                 </div>
- 
+
                 {/* Bike Title & Favorite Heart Button */}
                 <div className="flex justify-between items-start gap-4">
                   <h3 className="text-xl md:text-2xl font-normal font-display uppercase tracking-tight text-neutral-950 leading-tight flex-1">
@@ -928,9 +863,9 @@ export default function CatalogPage() {
                   </div>
                 )}
               </div>
- 
+
               {/* Scrollable Content Container (No tabs, all details in a single view) */}
-              <div className="flex-1 overflow-y-auto pr-2 mb-4 min-h-0 space-y-8 overscroll-contain">
+              <div className="flex-1 overflow-y-auto pr-2 mb-4 min-h-0 space-y-8">
                 
                 {/* Quick Specs Block (sem muitas palavras) */}
                 <div className="border-b border-neutral-200/60 pb-6 mb-2 text-left">
@@ -964,6 +899,39 @@ export default function CatalogPage() {
                     })}
                   </div>
                 </div>
+
+                {/* Highlights & Features */}
+                {selectedBike.features && selectedBike.features.length > 0 && (
+                  <div>
+                    <h4 className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest mb-3 pb-1.5 border-b border-neutral-200/60 font-sans">
+                      {language === "pt" ? "Equipamento & Destaques" : "Features & Equipment"}
+                    </h4>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-left">
+                      {selectedBike.features.map((feat, i) => (
+                        <li key={i} className="flex items-center gap-2 text-[11px] font-semibold text-neutral-800">
+                          <span className="w-1.5 h-1.5 bg-primary rounded-full shrink-0" />
+                          <span>{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Available Colors */}
+                {selectedBike.colors && selectedBike.colors.length > 0 && (
+                  <div>
+                    <h4 className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest mb-3 pb-1.5 border-b border-neutral-200/60 font-sans">
+                      {language === "pt" ? "Cores Disponíveis" : "Available Colors"}
+                    </h4>
+                    <div className="flex flex-wrap gap-2 text-left">
+                      {selectedBike.colors.map((color, i) => (
+                        <span key={i} className="bg-neutral-100 border border-neutral-200 text-neutral-800 text-[10px] font-bold px-2.5 py-1 rounded-none">
+                          {color}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* Performance stats (sem muitas palavras) */}
                 <div>
@@ -1009,40 +977,47 @@ export default function CatalogPage() {
                 </div>
 
                 {/* Warranty Section */}
-                <div className="pt-6 border-t border-neutral-200/60 text-left">
-                  <h4 className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest mb-4 font-sans flex items-center gap-1.5">
-                    <Shield className="w-3.5 h-3.5 text-primary shrink-0" />
-                    {language === "pt" ? "Garantia Route N109" : "Warranty Route N109"}
-                  </h4>
-                  <div className="bg-white border border-neutral-200/60 p-4 space-y-3">
-                    <div className="flex items-start gap-3">
-                      <div className="p-1 bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 shrink-0 mt-0.5">
-                        <Shield className="w-3.5 h-3.5" />
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="text-[10px] font-bold text-neutral-800 uppercase tracking-wider font-sans">
-                          {language === "pt" ? "2 Anos de Garantia" : "2 Years Warranty"}
-                        </span>
-                        <span className="text-[11px] text-neutral-500 font-normal mt-0.5">
-                          {language === "pt" ? "Garantia total para o motor elétrico e controladora." : "Full coverage for the electric motor and controller."}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="p-1 bg-primary/10 text-primary border border-primary/20 shrink-0 mt-0.5">
-                        <Battery className="w-3.5 h-3.5" />
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="text-[10px] font-bold text-neutral-800 uppercase tracking-wider font-sans">
-                          {language === "pt" ? "6 Meses de Garantia" : "6 Months Warranty"}
-                        </span>
-                        <span className="text-[11px] text-neutral-500 font-normal mt-0.5">
-                          {language === "pt" ? "Garantia dedicada para a bateria de tração." : "Dedicated coverage for the battery pack."}
-                        </span>
-                      </div>
+                {/* Warranty Section */}
+                {selectedBike.warranty && (
+                  <div className="pt-6 border-t border-neutral-200/60 text-left">
+                    <h4 className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest mb-4 font-sans flex items-center gap-1.5">
+                      <Shield className="w-3.5 h-3.5 text-primary shrink-0" />
+                      {language === "pt" ? "Garantia Route N109" : "Warranty Route N109"}
+                    </h4>
+                    <div className="bg-white border border-neutral-200/60 p-4 space-y-3">
+                      {selectedBike.warranty.motor && (
+                        <div className="flex items-start gap-3">
+                          <div className="p-1 bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 shrink-0 mt-0.5">
+                            <Shield className="w-3.5 h-3.5" />
+                          </div>
+                          <div className="flex flex-col">
+                            <span className="text-[10px] font-bold text-neutral-850 uppercase tracking-wider font-sans">
+                              {language === "pt" ? "Motor & Componentes" : "Motor & Components"}
+                            </span>
+                            <span className="text-[11px] text-neutral-600 font-normal mt-0.5">
+                              {selectedBike.warranty.motor}
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                      {selectedBike.warranty.battery && (
+                        <div className="flex items-start gap-3">
+                          <div className="p-1 bg-primary/10 text-primary border border-primary/20 shrink-0 mt-0.5">
+                            <Battery className="w-3.5 h-3.5" />
+                          </div>
+                          <div className="flex flex-col">
+                            <span className="text-[10px] font-bold text-neutral-850 uppercase tracking-wider font-sans">
+                              {language === "pt" ? "Bateria de Tração" : "Traction Battery"}
+                            </span>
+                            <span className="text-[11px] text-neutral-600 font-normal mt-0.5">
+                              {selectedBike.warranty.battery}
+                            </span>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
+                )}
 
               </div>
 

@@ -36,6 +36,12 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede sem carta", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia moto",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
     id: "neovolt-standard",
@@ -70,13 +76,20 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Top case", "Iluminação LED", "Alarme"],
+    colors: ["Preto com Azul", "Preto com Vermelho"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
     id: "vortex-fox",
     price: 1250,
     name: "Vortex Fox",
-    brand: "Vortex",
-    brandSlug: "vortex",
+    brand: "Vespy",
+    brandSlug: "vespy",
     isStar: true,
     category: "e-scooter",
     categoryLabel: {
@@ -86,7 +99,7 @@ export const bikes = [
     rating: "4.8 (15)",
     drivetrainShort: "Motor Elétrico Vortex Fox 60V",
     suspensionShort: "Forqueta Hidráulica e Duplo Amortecedor",
-    maxSpeed: "25 km/h (Uso Sem Carta)",
+    maxSpeed: "40 km/h (Uso Sem Carta)",
     autonomy: "40 a 60 km",
     powerNominal: "250W",
     tags: ["Uso Sem Carta", "Mobilidade Sustentável"],
@@ -103,6 +116,12 @@ export const bikes = [
     stats: {
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    }
+  ,
+    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade máxima de até 40km/h", "Autonomia de 40 a 60 km", "Travão de disco frente e atrás", "Alarme", "Bateria de Chumbo Ácido"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
     }
   },
   {
@@ -120,7 +139,7 @@ export const bikes = [
     rating: "4.8 (15)",
     drivetrainShort: "Motor Elétrico com Marcha-Atrás e Diferencial",
     suspensionShort: "Suspensão Conforto Tripla para Mobilidade Reduzida",
-    maxSpeed: "25 km/h (3 Modos + Reverse)",
+    maxSpeed: "40 km/h (3 Modos + Reverse)",
     autonomy: "40 a 60 km",
     powerNominal: "250W",
     tags: ["Uso Sem Carta", "Mobilidade Sustentável"],
@@ -138,6 +157,12 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade máxima de até 40km/h", "Autonomia de 40 a 60 km", "Travão de disco frente e atrás", "Alarme", "Sensor de assento"],
+    warranty: {
+      motor: "2 anos de garantia moto",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
     id: "tokio-i32-4-rodas",
@@ -154,7 +179,7 @@ export const bikes = [
     rating: "4.8 (15)",
     drivetrainShort: "Quadriciclo Elétrico com Tração Estável",
     suspensionShort: "Suspensão Independente às 4 Rodas",
-    maxSpeed: "25 km/h (4 Rodas Estáveis)",
+    maxSpeed: "20 km/h (4 Rodas Estáveis)",
     autonomy: "40 a 60 km",
     powerNominal: "250W",
     tags: ["Uso Sem Carta", "Mobilidade Sustentável"],
@@ -171,6 +196,12 @@ export const bikes = [
     stats: {
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    }
+  ,
+    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade máxima de até 20km/h", "Autonomia de 40 a 60 km", "Alarme", "Sensor de assento"],
+    warranty: {
+      motor: "2 anos de garantia moto",
+      battery: "6 meses de garantia de bateria"
     }
   },
   {
@@ -206,6 +237,12 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede que não necessita de carta de habilitação", "Velocidade máxima de até 25km/h", "Autonomia de 40 a 60 km", "Travão de disco frente e atrás", "Alarme", "Sensor de assento"],
+    warranty: {
+      motor: "2 anos de garantia moto",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
     id: "neovolt-we-ride-72v",
@@ -239,6 +276,13 @@ export const bikes = [
     stats: {
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Top case", "Iluminação LED", "Alarme"],
+    colors: ["Preto", "Cinzento", "Branco"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
     }
   },
   {
@@ -274,13 +318,19 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Top case", "Iluminação LED", "72 Volts", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
-    id: "vortex-sky",
-    price: 1250,
-    name: "Vortex Sky",
-    brand: "Vortex",
-    brandSlug: "vortex",
+    id: "vespy-sky",
+    price: 1180,
+    name: "Vespy Sky",
+    brand: "Vespy",
+    brandSlug: "vespy",
     isStar: false,
     category: "e-scooter",
     categoryLabel: {
@@ -307,6 +357,12 @@ export const bikes = [
     stats: {
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    }
+  ,
+    features: ["Velocípede sem carta", "60V 20aH Bateria de Chumbo", "Travão de disco frente e atrás", "Marcha-Atrás", "Top case", "Iluminação LED", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
     }
   },
   {
@@ -342,6 +398,13 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Top case", "Iluminação LED", "72 Volts", "Alarme"],
+    colors: ["Branco com Vermelho", "Cinza com Vermelho"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
     id: "scooty-250-power",
@@ -359,7 +422,7 @@ export const bikes = [
     drivetrainShort: "Motor Elétrico Scooty 250 Power",
     suspensionShort: "Suspensão Hidráulica Dianteira",
     maxSpeed: "25 km/h (Uso Sem Carta)",
-    autonomy: "40 a 60 km",
+    autonomy: "40 a 70 km",
     powerNominal: "250W",
     tags: ["Uso Sem Carta", "Mobilidade Sustentável"],
     specs: {
@@ -375,6 +438,12 @@ export const bikes = [
     stats: {
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    }
+  ,
+    features: ["Velocípede sem carta", "72V 20aH Bateria de Chumbo", "Travão de disco frente e atrás", "Top case", "Iluminação LED", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
     }
   },
   {
@@ -410,6 +479,13 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Top case", "Iluminação LED", "72 Volts", "Alarme"],
+    colors: ["Cinza", "Preto"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
     id: "neovolt-flow",
@@ -443,6 +519,12 @@ export const bikes = [
     stats: {
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
     }
   },
   {
@@ -478,6 +560,12 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
     id: "neovolt-go-x",
@@ -511,6 +599,12 @@ export const bikes = [
     stats: {
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
     }
   },
   {
@@ -546,8 +640,13 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
+    }
   },
-
   {
     id: "f9-voltrish",
     price: 1480,
@@ -580,6 +679,12 @@ export const bikes = [
     stats: {
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
     }
   },
   {
@@ -615,6 +720,12 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
     id: "we-fun",
@@ -648,6 +759,12 @@ export const bikes = [
     stats: {
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
     }
   },
   {
@@ -683,6 +800,12 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
     id: "voltrish-21",
@@ -716,6 +839,12 @@ export const bikes = [
     stats: {
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
     }
   },
   {
@@ -751,6 +880,12 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
     id: "triciclo-kiev",
@@ -784,6 +919,12 @@ export const bikes = [
     stats: {
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
     }
   },
   {
@@ -819,6 +960,12 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
     id: "triciclo-fun-2-lugares",
@@ -852,6 +999,12 @@ export const bikes = [
     stats: {
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
     }
   },
   {
@@ -887,6 +1040,12 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
     id: "seventeen-qs-4-rodas",
@@ -920,6 +1079,12 @@ export const bikes = [
     stats: {
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
     }
   },
   {
@@ -955,6 +1120,12 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
     id: "rio-j2-60v",
@@ -988,6 +1159,12 @@ export const bikes = [
     stats: {
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
     }
   },
   {
@@ -1023,6 +1200,12 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
     id: "seventeen-sporte",
@@ -1056,6 +1239,12 @@ export const bikes = [
     stats: {
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
     }
   },
   {
@@ -1091,6 +1280,12 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
     id: "acm-power-es-049",
@@ -1125,6 +1320,12 @@ export const bikes = [
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
     }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
+    }
   },
   {
     id: "acm-power-es-55",
@@ -1158,6 +1359,12 @@ export const bikes = [
     stats: {
       terrains: { highway: 5, urban: 90, climbing: 35, range: 45, offroad: 10 },
       performance: { battery: 50, agility: 80, power: 40, weight: 60 }
+    }
+  ,
+    features: ["Velocípede sem carta", "Travão de disco frente e atrás", "Alarme"],
+    warranty: {
+      motor: "2 anos de garantia motor e controladora",
+      battery: "6 meses de garantia de bateria"
     }
   }
 ];
