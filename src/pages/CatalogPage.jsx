@@ -821,43 +821,43 @@ export default function CatalogPage() {
             </div>
 
             {/* Right Frame */}
-            <div className="w-full md:w-[40%] p-8 md:p-10 flex flex-col justify-between h-full bg-[#FCFBFA] overflow-hidden">
+            <div className="w-full md:w-[40%] p-6 md:p-8 flex flex-col justify-between flex-1 min-h-0 md:h-full bg-[#FCFBFA] overflow-hidden">
               
               {/* Header Title Area (Fixed) */}
               <div className="mb-4">
                 {/* Category & Badge */}
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-primary font-bold uppercase text-[9px] tracking-widest bg-primary/10 px-2.5 py-1">
+                <div className="flex items-center justify-between gap-3 mb-3">
+                  <span className="text-primary font-extrabold uppercase text-[8px] tracking-widest bg-primary/10 px-3 py-1.5 rounded-none border border-primary/20">
                     {selectedBike.categoryLabel[language] || selectedBike.categoryLabel.pt}
                   </span>
-                  <span className="text-[10px] text-neutral-450 font-bold flex items-center gap-1 md:mr-10">
-                    <span className="text-yellow-450">★</span> {selectedBike.rating}
+                  <span className="text-[10px] text-neutral-500 font-extrabold flex items-center gap-1 bg-neutral-100 border border-neutral-200/50 px-2.5 py-1 md:mr-8 shadow-sm">
+                    <span className="text-yellow-500">★</span> {selectedBike.rating}
                   </span>
                 </div>
 
                 {/* Bike Title & Favorite Heart Button */}
-                <div className="flex justify-between items-start gap-4">
-                  <h3 className="text-xl md:text-2xl font-normal font-display uppercase tracking-tight text-neutral-950 leading-tight flex-1">
+                <div className="flex justify-between items-center gap-4">
+                  <h3 className="text-2xl md:text-3xl font-black font-display uppercase tracking-tight text-neutral-950 leading-none flex-1">
                     {selectedBike.name}
                   </h3>
                   <button
                     onClick={(e) => toggleFavorite(selectedBike.id, e)}
-                    className={`p-2 rounded-none transition-all duration-200 border cursor-pointer flex items-center justify-center shadow-sm ${
+                    className={`p-2.5 rounded-full transition-all duration-300 border cursor-pointer flex items-center justify-center shadow-sm hover:scale-105 ${
                       favorites.includes(selectedBike.id)
-                        ? "bg-red-50 text-red-500 border-red-200"
+                        ? "bg-red-500 text-white border-red-500 hover:bg-red-600"
                         : "bg-white text-neutral-450 border-neutral-200 hover:text-neutral-850 hover:bg-[#FCFBFA]"
                     }`}
                     aria-label="Toggle Favorite"
                   >
-                    <Heart className={`w-4 h-4 ${favorites.includes(selectedBike.id) ? "fill-current" : ""}`} />
+                    <Heart className={`w-4 h-4 ${favorites.includes(selectedBike.id) ? "fill-current text-white" : ""}`} />
                   </button>
                 </div>
                 {selectedBike.price && (
-                  <div className="mt-2.5 flex items-baseline gap-2">
-                    <span className="text-[9px] text-neutral-450 font-bold uppercase tracking-wider">
+                  <div className="mt-4 flex items-center justify-between bg-neutral-100/60 border border-neutral-200/40 p-3">
+                    <span className="text-[10px] text-neutral-500 font-extrabold uppercase tracking-widest">
                       PVP Sugerido:
                     </span>
-                    <span className="text-xl md:text-2xl font-bold text-neutral-950 font-display">
+                    <span className="text-2xl md:text-3xl font-black text-primary font-display leading-none">
                       {new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(selectedBike.price)}
                     </span>
                   </div>
@@ -867,9 +867,12 @@ export default function CatalogPage() {
               {/* Scrollable Content Container (No tabs, all details in a single view) */}
               <div className="flex-1 overflow-y-auto pr-2 mb-4 min-h-0 space-y-8">
                 
-                {/* Quick Specs Block (sem muitas palavras) */}
-                <div className="border-b border-neutral-200/60 pb-6 mb-2 text-left">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5">
+                 {/* Quick Specs Block (Premium Grid Cards) */}
+                <div className="pb-2 text-left">
+                  <h4 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3.5 pb-1.5 border-b border-neutral-200/60 font-sans">
+                    {language === "pt" ? "Especificações Chave" : "Key Specifications"}
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {[
                       { label: "Motor / Potência", value: selectedBike.powerNominal || selectedBike.drivetrainShort, icon: Zap },
                       { 
@@ -884,13 +887,13 @@ export default function CatalogPage() {
                     ].map((spec, i) => {
                       const IconComponent = spec.icon;
                       return (
-                        <div key={i} className="flex items-start gap-3 min-w-0">
-                          <div className="p-1.5 bg-primary/5 text-primary border border-primary/10 shrink-0 mt-0.5">
-                            <IconComponent className="w-3.5 h-3.5" />
+                        <div key={i} className="bg-neutral-50/70 border border-neutral-200/40 p-3.5 flex items-start gap-3 transition-all hover:bg-neutral-50 hover:border-neutral-250">
+                          <div className="p-2 bg-white text-primary border border-neutral-200/60 shadow-sm shrink-0 rounded-none">
+                            <IconComponent className="w-4 h-4" />
                           </div>
                           <div className="flex flex-col min-w-0">
-                            <span className="text-[8px] font-bold text-neutral-450 uppercase tracking-widest font-sans">{spec.label}</span>
-                            <span className={`text-[11px] font-semibold leading-relaxed ${spec.highlight ? "text-primary font-black" : "text-neutral-900"}`}>
+                            <span className="text-[8px] font-bold text-neutral-400 uppercase tracking-widest font-sans leading-none">{spec.label}</span>
+                            <span className={`text-[11px] font-extrabold leading-tight mt-1.5 break-words ${spec.highlight ? "text-primary font-black" : "text-neutral-850"}`}>
                               {spec.value}
                             </span>
                           </div>
@@ -903,14 +906,14 @@ export default function CatalogPage() {
                 {/* Highlights & Features */}
                 {selectedBike.features && selectedBike.features.length > 0 && (
                   <div>
-                    <h4 className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest mb-3 pb-1.5 border-b border-neutral-200/60 font-sans">
+                    <h4 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3.5 pb-1.5 border-b border-neutral-200/60 font-sans">
                       {language === "pt" ? "Equipamento & Destaques" : "Features & Equipment"}
                     </h4>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-left">
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5 text-left">
                       {selectedBike.features.map((feat, i) => (
-                        <li key={i} className="flex items-center gap-2 text-[11px] font-semibold text-neutral-800">
-                          <span className="w-1.5 h-1.5 bg-primary rounded-full shrink-0" />
-                          <span>{feat}</span>
+                        <li key={i} className="flex items-start gap-2 text-[11px] font-bold text-neutral-700">
+                          <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                          <span className="leading-snug">{feat}</span>
                         </li>
                       ))}
                     </ul>
@@ -933,12 +936,12 @@ export default function CatalogPage() {
                   </div>
                 )}
 
-                {/* Performance stats (sem muitas palavras) */}
+                {/* Performance stats */}
                 <div>
-                  <h4 className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest mb-4 pb-1.5 border-b border-neutral-200 font-sans">
+                  <h4 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-4 pb-1.5 border-b border-neutral-200/60 font-sans">
                     {language === "pt" ? "Estatísticas & Desempenho" : "Stats & Performance"}
                   </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
                     {[
                       { label: "Autonomia", value: selectedBike.stats?.performance?.battery || 50, icon: Gauge },
                       { label: "Potência de Pico", value: selectedBike.stats?.performance?.power || 50, icon: Zap },
@@ -960,12 +963,12 @@ export default function CatalogPage() {
                               {label}
                             </span>
                           </div>
-                          <div className="flex gap-1 bg-neutral-100 p-0.5 mt-1">
+                          <div className="flex gap-0.5 bg-neutral-100 p-0.5 mt-2">
                             {[1, 2, 3, 4, 5].map((step) => (
                               <div 
                                 key={step} 
-                                className={`h-1.5 flex-1 transition-all duration-300 ${
-                                  step <= level ? color : "bg-neutral-200"
+                                className={`h-1 flex-1 transition-all duration-300 ${
+                                  step <= level ? color : "bg-neutral-200/60"
                                 }`}
                               />
                             ))}
@@ -977,14 +980,13 @@ export default function CatalogPage() {
                 </div>
 
                 {/* Warranty Section */}
-                {/* Warranty Section */}
                 {selectedBike.warranty && (
                   <div className="pt-6 border-t border-neutral-200/60 text-left">
-                    <h4 className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest mb-4 font-sans flex items-center gap-1.5">
+                    <h4 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-4 font-sans flex items-center gap-1.5">
                       <Shield className="w-3.5 h-3.5 text-primary shrink-0" />
                       {language === "pt" ? "Garantia Route N109" : "Warranty Route N109"}
                     </h4>
-                    <div className="bg-white border border-neutral-200/60 p-4 space-y-3">
+                    <div className="bg-neutral-50/50 border border-neutral-200/60 border-l-4 border-l-primary p-4 space-y-4 shadow-sm">
                       {selectedBike.warranty.motor && (
                         <div className="flex items-start gap-3">
                           <div className="p-1 bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 shrink-0 mt-0.5">
@@ -1025,9 +1027,9 @@ export default function CatalogPage() {
               <div className="pt-4 border-t border-neutral-200/80">
                 <button
                   onClick={handleRequestQuote}
-                  className="w-full bg-primary hover:bg-[#E05300] text-white py-3.5 px-6 rounded-none font-bold text-xs uppercase tracking-widest text-center flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer border-none outline-none"
+                  className="w-full bg-primary hover:bg-[#E05300] text-white py-4 px-6 rounded-none font-black text-xs uppercase tracking-widest text-center flex items-center justify-center gap-2.5 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 cursor-pointer border-none outline-none"
                 >
-                  <Phone className="w-3.5 h-3.5 fill-current text-white" />
+                  <Phone className="w-4 h-4 fill-current text-white animate-pulse" />
                   {t("catalog.modal.cta")}
                 </button>
               </div>
