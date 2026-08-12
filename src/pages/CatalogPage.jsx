@@ -732,7 +732,7 @@ export default function CatalogPage() {
             </button>
 
             {/* Left Frame */}
-            <div className="w-full md:w-[60%] product-studio-bg flex items-center justify-center p-4 border-b md:border-b-0 md:border-r border-neutral-200/60 h-[300px] sm:h-[350px] md:h-full relative overflow-hidden group select-none">
+            <div className="w-full md:w-[60%] product-studio-bg flex items-center justify-center p-2 sm:p-4 border-b md:border-b-0 md:border-r border-neutral-200/60 h-[30vh] min-h-[220px] sm:h-[280px] md:h-full relative overflow-hidden group select-none shrink-0">
               {/* Expand to Fullscreen Button */}
               <button
                 onClick={() => setIsFullscreenImage(true)}
@@ -762,7 +762,7 @@ export default function CatalogPage() {
                     transformOrigin: "center center",
                     transition: isDragging ? "none" : "transform 0.2s ease-out"
                   }}
-                  className={`max-h-[90%] max-w-[90%] object-contain select-none vehicle-drop-shadow ${
+                  className={`max-h-[105%] max-w-[105%] md:max-h-[90%] md:max-w-[90%] object-contain select-none vehicle-drop-shadow ${
                     scale > baseScale ? (isDragging ? "cursor-grabbing" : "cursor-grab") : "cursor-zoom-in"
                   }`}
                   draggable="false"
