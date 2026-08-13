@@ -13,10 +13,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/lisbon_sx.webp",
     "rating": "4.8 (15)",
@@ -78,10 +78,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/neovolt_standard.webp",
     "rating": "4.8 (15)",
@@ -145,10 +145,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/vespy_sky.webp",
     "rating": "4.8 (15)",
@@ -216,10 +216,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/neovolt_gox.webp",
     "rating": "4.8 (15)",
@@ -286,10 +286,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/neovolt_gox.webp",
     "rating": "4.9 (18)",
@@ -356,10 +356,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/neovolt_weride.webp",
     "rating": "4.8 (15)",
@@ -419,10 +419,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/voltrish_london_xrp.webp",
     "rating": "4.8 (15)",
@@ -483,10 +483,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/s4_gow.webp",
     "rating": "4.8 (15)",
@@ -551,10 +551,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/scooty_250_power.webp",
     "rating": "4.8 (15)",
@@ -615,10 +615,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/zoa_72v.webp",
     "rating": "4.8 (15)",
@@ -679,10 +679,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/neovolt_flow.webp",
     "rating": "4.8 (15)",
@@ -743,10 +743,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/neovolt_pulse.webp",
     "rating": "4.8 (15)",
@@ -807,10 +807,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/vision_sport.webp",
     "rating": "4.8 (15)",
@@ -871,10 +871,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/f9_voltrish.webp",
     "rating": "4.8 (15)",
@@ -930,10 +930,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/azores.webp",
     "rating": "4.8 (15)",
@@ -989,10 +989,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/we_fun.webp",
     "rating": "4.8 (15)",
@@ -1046,10 +1046,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/rio_j2_60v.webp",
     "rating": "4.8 (15)",
@@ -1105,10 +1105,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/rio_j2_72v.webp",
     "rating": "4.8 (15)",
@@ -1164,10 +1164,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/voltrish_21.webp",
     "rating": "4.8 (15)",
@@ -1217,13 +1217,13 @@ export const bikes = [
     "brand": "Vista",
     "brandSlug": "vista",
     "isStar": true,
-    "category": "e-scooter",
+    "category": "e-trike",
     "categoryLabel": {
       "pt": "Triciclo / Quadriciclo de Mobilidade",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Mobility Trike / Quad",
+      "es": "Triciclo / Cuadriciclo de Movilidad",
+      "fr": "Tricycle / Quad de Mobilité",
+      "de": "Mobilitätsdreirad / Quad"
     },
     "image": "/images/vehicles/vista_3_rodas.webp",
     "rating": "4.8 (15)",
@@ -1281,13 +1281,13 @@ export const bikes = [
     "brand": "Kiev",
     "brandSlug": "kiev",
     "isStar": false,
-    "category": "e-scooter",
+    "category": "e-trike",
     "categoryLabel": {
       "pt": "Triciclo / Quadriciclo de Mobilidade",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Mobility Trike / Quad",
+      "es": "Triciclo / Cuadriciclo de Movilidad",
+      "fr": "Tricycle / Quad de Mobilité",
+      "de": "Mobilitätsdreirad / Quad"
     },
     "image": "/images/vehicles/triciclo_kiev.webp",
     "rating": "4.8 (15)",
@@ -1338,7 +1338,7 @@ export const bikes = [
     "brand": "G2",
     "brandSlug": "g2",
     "isStar": false,
-    "category": "e-scooter",
+    "category": "e-trotineta",
     "categoryLabel": {
       "pt": "Trotineta Elétrica",
       "en": "Electric Scooter",
@@ -1396,13 +1396,13 @@ export const bikes = [
     "brand": "Fun",
     "brandSlug": "fun",
     "isStar": false,
-    "category": "e-scooter",
+    "category": "e-trike",
     "categoryLabel": {
       "pt": "Triciclo / Quadriciclo de Mobilidade",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Mobility Trike / Quad",
+      "es": "Triciclo / Cuadriciclo de Movilidad",
+      "fr": "Tricycle / Quad de Mobilité",
+      "de": "Mobilitätsdreirad / Quad"
     },
     "image": "/images/vehicles/triciclo_fun.webp",
     "rating": "4.8 (15)",
@@ -1455,13 +1455,13 @@ export const bikes = [
     "brand": "Luna",
     "brandSlug": "luna",
     "isStar": true,
-    "category": "e-scooter",
+    "category": "e-trike",
     "categoryLabel": {
       "pt": "Triciclo / Quadriciclo de Mobilidade",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Mobility Trike / Quad",
+      "es": "Triciclo / Cuadriciclo de Movilidad",
+      "fr": "Tricycle / Quad de Mobilité",
+      "de": "Mobilitätsdreirad / Quad"
     },
     "image": "/images/vehicles/luna_qc_3_lugares.webp",
     "rating": "4.8 (15)",
@@ -1523,13 +1523,13 @@ export const bikes = [
     "brand": "Luna",
     "brandSlug": "luna",
     "isStar": false,
-    "category": "e-scooter",
+    "category": "e-trike",
     "categoryLabel": {
       "pt": "Triciclo / Quadriciclo de Mobilidade",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Mobility Trike / Quad",
+      "es": "Triciclo / Cuadriciclo de Movilidad",
+      "fr": "Tricycle / Quad de Mobilité",
+      "de": "Mobilitätsdreirad / Quad"
     },
     "image": "/images/vehicles/luna_qc.webp",
     "rating": "4.8 (15)",
@@ -1586,13 +1586,13 @@ export const bikes = [
     "brand": "Luna",
     "brandSlug": "luna",
     "isStar": true,
-    "category": "e-scooter",
+    "category": "e-trike",
     "categoryLabel": {
       "pt": "Triciclo / Quadriciclo de Mobilidade",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Mobility Trike / Quad",
+      "es": "Triciclo / Cuadriciclo de Movilidad",
+      "fr": "Tricycle / Quad de Mobilité",
+      "de": "Mobilitätsdreirad / Quad"
     },
     "image": "/images/vehicles/luna_qs_4_rodas.webp",
     "rating": "4.8 (15)",
@@ -1653,13 +1653,13 @@ export const bikes = [
     "brand": "Voltrish",
     "brandSlug": "voltrish",
     "isStar": false,
-    "category": "e-scooter",
+    "category": "e-trike",
     "categoryLabel": {
       "pt": "Triciclo / Quadriciclo de Mobilidade",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Mobility Trike / Quad",
+      "es": "Triciclo / Cuadriciclo de Movilidad",
+      "fr": "Tricycle / Quad de Mobilité",
+      "de": "Mobilitätsdreirad / Quad"
     },
     "image": "/images/vehicles/tokio_i32_4_rodas.webp",
     "rating": "4.8 (15)",
@@ -1716,13 +1716,13 @@ export const bikes = [
     "brand": "Voltrish",
     "brandSlug": "voltrish",
     "isStar": true,
-    "category": "e-scooter",
+    "category": "e-trike",
     "categoryLabel": {
       "pt": "Triciclo / Quadriciclo de Mobilidade",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Mobility Trike / Quad",
+      "es": "Triciclo / Cuadriciclo de Movilidad",
+      "fr": "Tricycle / Quad de Mobilité",
+      "de": "Mobilitätsdreirad / Quad"
     },
     "image": "/images/vehicles/tokio_extreme_4_rodas.webp",
     "rating": "4.8 (15)",
@@ -1780,13 +1780,13 @@ export const bikes = [
     "brand": "Space",
     "brandSlug": "space",
     "isStar": false,
-    "category": "e-scooter",
+    "category": "e-trike",
     "categoryLabel": {
       "pt": "Triciclo / Quadriciclo de Mobilidade",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Mobility Trike / Quad",
+      "es": "Triciclo / Cuadriciclo de Movilidad",
+      "fr": "Tricycle / Quad de Mobilité",
+      "de": "Mobilitätsdreirad / Quad"
     },
     "image": "/images/vehicles/triciclo_space_3_lugares.webp",
     "rating": "4.8 (15)",
@@ -1843,10 +1843,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/seventeen_sporte.webp",
     "rating": "4.8 (15)",
@@ -1901,10 +1901,10 @@ export const bikes = [
     "category": "e-scooter",
     "categoryLabel": {
       "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
     },
     "image": "/images/vehicles/mx1_rio.webp",
     "rating": "4.8 (15)",
@@ -1954,13 +1954,13 @@ export const bikes = [
     "brand": "ACM Power",
     "brandSlug": "acm-power",
     "isStar": false,
-    "category": "e-scooter",
+    "category": "e-moto",
     "categoryLabel": {
-      "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "pt": "Moto Elétrica",
+      "en": "Electric Motorcycle",
+      "es": "Moto Eléctrica",
+      "fr": "Moto Électrique",
+      "de": "Elektromotorrad"
     },
     "image": "/images/vehicles/acm_power_es049.webp",
     "rating": "4.8 (15)",
@@ -2012,13 +2012,13 @@ export const bikes = [
     "brand": "ACM Power",
     "brandSlug": "acm-power",
     "isStar": false,
-    "category": "e-scooter",
+    "category": "e-moto",
     "categoryLabel": {
-      "pt": "Velocípede / Scooter Elétrica",
-      "en": "Electric Vehicle",
-      "es": "Vehículo Eléctrico",
-      "fr": "Véhicule Électrique",
-      "de": "Elektrisches Fahrzeug"
+      "pt": "Moto Elétrica",
+      "en": "Electric Motorcycle",
+      "es": "Moto Eléctrica",
+      "fr": "Moto Électrique",
+      "de": "Elektromotorrad"
     },
     "image": "/images/vehicles/acm_power_es55.webp",
     "rating": "4.8 (15)",

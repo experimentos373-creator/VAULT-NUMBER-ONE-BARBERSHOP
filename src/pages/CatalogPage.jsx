@@ -31,14 +31,14 @@ export default function CatalogPage() {
     priceAll: {
       pt: "Todos os Preços", en: "All Prices", es: "Todos los precios", fr: "Tous les prix", de: "Alle Preise"
     },
-    under5k: {
-      pt: "Até 5.000 €", en: "Under 5,000 €", es: "Hasta 5.000 €", fr: "Jusqu'à 5 000 €", de: "Unter 5.000 €"
+    under1200: {
+      pt: "Até 1.200 €", en: "Under 1,200 €", es: "Hasta 1.200 €", fr: "Jusqu'à 1 200 €", de: "Unter 1.200 €"
     },
-    between5k8k: {
-      pt: "5.000 € - 8.000 €", en: "5,000 € - 8,000 €", es: "5.000 € - 8.000 €", fr: "5 000 € - 8 000 €", de: "5.000 € - 8.000 €"
+    between1200and1600: {
+      pt: "1.200 € - 1.600 €", en: "1,200 € - 1,600 €", es: "1.200 € - 1.600 €", fr: "1 200 € - 1 600 €", de: "1.200 € - 1.600 €"
     },
-    over8k: {
-      pt: "Mais de 8.000 €", en: "Over 8,000 €", es: "Más de 8.000 €", fr: "Plus de 8 000 €", de: "Über 8.000 €"
+    over1600: {
+      pt: "Mais de 1.600 €", en: "Over 1,600 €", es: "Más de 1.600 €", fr: "Plus de 1 600 €", de: "Über 1.600 €"
     },
     motor: {
       pt: "Potência do Motor", en: "Motor Power", es: "Potencia del motor", fr: "Puissance du moteur", de: "Motorleistung"
@@ -46,23 +46,23 @@ export default function CatalogPage() {
     motorAll: {
       pt: "Todas as Potências", en: "All Power Levels", es: "Todas las potencias", fr: "Toutes les puissances", de: "Alle Leistungsstufen"
     },
-    motorBosch: {
-      pt: "Até 3 kW", en: "Under 3 kW", es: "Hasta 3 kW", fr: "Jusqu'à 3 kW", de: "Unter 3 kW"
+    motor250w: {
+      pt: "250W (Sem Carta)", en: "250W (No License)", es: "250W (Sin Carnet)", fr: "250W (Sans Permis)", de: "250W (Ohne Führerschein)"
     },
-    motorAvinox: {
-      pt: "Mais de 3 kW", en: "Over 3 kW", es: "Más de 3 kW", fr: "Plus de 3 kW", de: "Über 3 kW"
+    motorHigh: {
+      pt: "Alta Potência (1000W+)", en: "High Power (1000W+)", es: "Alta Potencia (1000W+)", fr: "Haute Puissance (1000W+)", de: "Hohe Leistung (1000W+)"
     },
     frame: {
-      pt: "Tipo de Bateria", en: "Battery Type", es: "Tipo de batería", fr: "Type de batterie", de: "Batterietyp"
+      pt: "Voltagem / Bateria", en: "Battery Voltage", es: "Voltaje / Batería", fr: "Tension / Batterie", de: "Spannung / Batterie"
     },
     frameAll: {
       pt: "Todas as Baterias", en: "All Batteries", es: "Todas las baterías", fr: "Toutes les batteries", de: "Alle Batterietypen"
     },
-    frameCarbon: {
-      pt: "Lítio", en: "Lithium", es: "Litio", fr: "Lithium", de: "Lithium"
+    battery60v: {
+      pt: "60 Volts", en: "60 Volts", es: "60 Voltios", fr: "60 Volts", de: "60 Volt"
     },
-    frameAlloy: {
-      pt: "Chumbo-Ácido", en: "Lead-Acid", es: "Plomo-Ácido", fr: "Plomb-Acide", de: "Blei-Säure"
+    battery72v: {
+      pt: "72 Volts", en: "72 Volts", es: "72 Voltios", fr: "72 Volts", de: "72 Volt"
     }
   };
 
@@ -253,9 +253,11 @@ export default function CatalogPage() {
   }, [language]);
 
   const categories = [
-    { id: "all", label: t("catalog.filter.all") },
-    { id: "e-moto", label: t("catalog.filter.emoto") },
-    { id: "e-scooter", label: t("catalog.filter.escooter") }
+    { id: "all", label: language === "pt" ? "Todos os Veículos" : language === "es" ? "Todos los Vehículos" : language === "fr" ? "Tous les Véhicules" : language === "de" ? "Alle Fahrzeuge" : "All Vehicles" },
+    { id: "e-scooter", label: language === "pt" ? "Scooters & Velocípedes" : language === "es" ? "Scooters y Ciclomotores" : language === "fr" ? "Scooters Électriques" : language === "de" ? "Elektroroller" : "Electric Scooters" },
+    { id: "e-trike", label: language === "pt" ? "Triciclos & Mobilidade" : language === "es" ? "Triciclos y Movilidad" : language === "fr" ? "Tricycles & Mobilité" : language === "de" ? "Mobilitätsdreiräder" : "Trikes & Mobility" },
+    { id: "e-trotineta", label: language === "pt" ? "Trotinetas" : language === "es" ? "Patinetes" : language === "fr" ? "Trottinettes" : language === "de" ? "Tretroller" : "Kick Scooters" },
+    { id: "e-moto", label: language === "pt" ? "Motos Elétricas" : language === "es" ? "Motos Eléctricas" : language === "fr" ? "Motos Électriques" : language === "de" ? "Elektromotorräder" : "Electric Motorcycles" }
   ];
 
   let filteredBikes = bikes;
@@ -271,37 +273,41 @@ export default function CatalogPage() {
   }
 
   // Price Filter
-  if (priceFilter === "under5000") {
-    filteredBikes = filteredBikes.filter(b => b.price <= 5000);
-  } else if (priceFilter === "5000to8000") {
-    filteredBikes = filteredBikes.filter(b => b.price > 5000 && b.price <= 8000);
-  } else if (priceFilter === "over8000") {
-    filteredBikes = filteredBikes.filter(b => b.price > 8000);
+  if (priceFilter === "under1200") {
+    filteredBikes = filteredBikes.filter(b => b.price <= 1200);
+  } else if (priceFilter === "1200to1600") {
+    filteredBikes = filteredBikes.filter(b => b.price > 1200 && b.price <= 1600);
+  } else if (priceFilter === "over1600") {
+    filteredBikes = filteredBikes.filter(b => b.price > 1600);
   }
 
-  // Battery Filter (materialFilter variable represents Battery Type: Lítio vs Chumbo)
-  if (materialFilter === "carbon") {
+  // Battery Filter (60V vs 72V vs all)
+  if (materialFilter === "battery60v") {
     filteredBikes = filteredBikes.filter(b => 
-      b.specs.battery && (b.specs.battery.toLowerCase().includes("lítio") || b.specs.battery.toLowerCase().includes("lithium") || b.specs.battery.toLowerCase().includes("lons"))
+      (b.name && b.name.toLowerCase().includes("60v")) ||
+      (b.specs.battery && b.specs.battery.toLowerCase().includes("60")) ||
+      b.tags.some(t => t.toLowerCase().includes("60v"))
     );
-  } else if (materialFilter === "alloy") {
+  } else if (materialFilter === "battery72v") {
     filteredBikes = filteredBikes.filter(b => 
-      b.specs.battery && (b.specs.battery.toLowerCase().includes("chumbo") || b.specs.battery.toLowerCase().includes("lead"))
+      (b.name && b.name.toLowerCase().includes("72v")) ||
+      (b.specs.battery && b.specs.battery.toLowerCase().includes("72")) ||
+      b.tags.some(t => t.toLowerCase().includes("72v"))
     );
   }
 
-  // Motor Filter (motorFilter variable represents Motor Power: bosch = Under 3kW, djiavinox = Over 3kW)
-  if (motorFilter === "bosch") {
+  // Motor Filter
+  if (motorFilter === "motor250w") {
     filteredBikes = filteredBikes.filter(b => {
       const motorDesc = (b.specs.motor || "").toLowerCase();
       const tagsDesc = b.tags.join(" ").toLowerCase();
-      return motorDesc.includes("250w") || motorDesc.includes("2000w") || tagsDesc.includes("0.25kw") || tagsDesc.includes("2000w");
+      return motorDesc.includes("250w") || tagsDesc.includes("sem carta");
     });
-  } else if (motorFilter === "djiavinox") {
+  } else if (motorFilter === "motorHigh") {
     filteredBikes = filteredBikes.filter(b => {
       const motorDesc = (b.specs.motor || "").toLowerCase();
       const tagsDesc = b.tags.join(" ").toLowerCase();
-      return motorDesc.includes("3800w") || motorDesc.includes("4000w") || motorDesc.includes("5000w") || motorDesc.includes("6000w") || motorDesc.includes("10.000w") || motorDesc.includes("10000w") || tagsDesc.includes("3800w") || tagsDesc.includes("4000w") || tagsDesc.includes("5000w") || tagsDesc.includes("6000w") || tagsDesc.includes("10.000w");
+      return motorDesc.includes("1050w") || tagsDesc.includes("alta performance");
     });
   }
 
@@ -529,9 +535,9 @@ export default function CatalogPage() {
                   <div className="flex flex-col gap-2">
                     {[
                       { id: "all", label: getFilterText("priceAll") },
-                      { id: "under5000", label: getFilterText("under5k") },
-                      { id: "5000to8000", label: getFilterText("between5k8k") },
-                      { id: "over8000", label: getFilterText("over8k") }
+                      { id: "under1200", label: getFilterText("under1200") },
+                      { id: "1200to1600", label: getFilterText("between1200and1600") },
+                      { id: "over1600", label: getFilterText("over1600") }
                     ].map((opt) => (
                       <button
                         key={opt.id}
@@ -556,8 +562,8 @@ export default function CatalogPage() {
                   <div className="flex flex-col gap-2">
                     {[
                       { id: "all", label: getFilterText("motorAll") },
-                      { id: "bosch", label: getFilterText("motorBosch") },
-                      { id: "djiavinox", label: getFilterText("motorAvinox") }
+                      { id: "motor250w", label: getFilterText("motor250w") },
+                      { id: "motorHigh", label: getFilterText("motorHigh") }
                     ].map((opt) => (
                       <button
                         key={opt.id}
@@ -574,7 +580,7 @@ export default function CatalogPage() {
                   </div>
                 </div>
 
-                {/* Frame Material Filter */}
+                {/* Battery Voltage Filter */}
                 <div>
                   <h3 className="text-xs font-black uppercase tracking-wider text-neutral-800 mb-3 border-b border-neutral-200 pb-1.5">
                     {getFilterText("frame")}
@@ -582,8 +588,8 @@ export default function CatalogPage() {
                   <div className="flex flex-col gap-2 mb-4">
                     {[
                       { id: "all", label: getFilterText("frameAll") },
-                      { id: "carbon", label: getFilterText("frameCarbon") },
-                      { id: "alloy", label: getFilterText("frameAlloy") }
+                      { id: "battery60v", label: getFilterText("battery60v") },
+                      { id: "battery72v", label: getFilterText("battery72v") }
                     ].map((opt) => (
                       <button
                         key={opt.id}
