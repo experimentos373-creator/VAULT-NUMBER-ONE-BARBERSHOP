@@ -2115,6 +2115,58 @@ export const bikes = [
         "weight": 60
       }
     }
+  },
+  {
+    "id": "tokio-3-rodas-mobilidade",
+    "price": 1850,
+    "name": "Tokio 3 rodas mobilidade reduzida",
+    "brand": "Voltrish",
+    "brandSlug": "voltrish",
+    "isStar": false,
+    "category": "e-trike",
+    "categoryLabel": {
+      "pt": "Triciclo / Quadriciclo de Mobilidade",
+      "en": "Mobility Trike / Quad",
+      "es": "Triciclo / Cuadriciclo de Movilidad",
+      "fr": "Tricycle / Quad de Mobilité",
+      "de": "Mobilitätsdreirad / Quad"
+    },
+    "image": "/images/vehicles/tokio_3_rodas.webp",
+    "rating": "4.8 (15)",
+    "drivetrainShort": "Motor Elétrico com Marcha-Atrás e Diferencial",
+    "suspensionShort": "Suspensão Conforto Tripla para Mobilidade Reduzida",
+    "maxSpeed": "25 km/h (3 Modos + Reverse)",
+    "autonomy": "40 a 60 km",
+    "powerNominal": "250W",
+    "tags": [
+      "Uso Sem Carta",
+      "Mobilidade Sustentável"
+    ],
+    "specs": {
+      "frame": "Chassi em liga de aço de alta resistência",
+      "drivetrain": "Motor traseiro de cubo / transmissão elétrica",
+      "suspension": "Forqueta dianteira hidráulica e amortecedores traseiros",
+      "brakes": "Sistema de travagem de disco/tambor",
+      "wheels": "Jantes de alta resistência com pneus tubeless",
+      "motor": "Motor de 250W",
+      "battery": "60V 20aH Bateria de Chumbo / Lítio",
+      "useKey": "bike.voltrish.use"
+    },
+    "stats": {
+      "terrains": {
+        "highway": 5,
+        "urban": 90,
+        "climbing": 35,
+        "range": 45,
+        "offroad": 10
+      },
+      "performance": {
+        "battery": 50,
+        "agility": 80,
+        "power": 40,
+        "weight": 60
+      }
+    }
   }
 ];
 
