@@ -2062,6 +2062,59 @@ export const bikes = [
       "Travão de disco frente e atrás",
       "Alarme"
     ]
+  },
+  {
+    "id": "vortex-fox",
+    "price": 1250,
+    "name": "Vortex Fox",
+    "brand": "Vortex",
+    "brandSlug": "vortex",
+    "isStar": true,
+    "category": "e-scooter",
+    "categoryLabel": {
+      "pt": "Velocípede / Scooter Elétrica",
+      "en": "Electric Scooter / Moped",
+      "es": "Vehículo Eléctrico / Scooter",
+      "fr": "Véhicule Électrique / Scooter",
+      "de": "Elektroroller / Moped"
+    },
+    "image": "/images/vehicles/vortex_fox.webp",
+    "rating": "4.8 (15)",
+    "drivetrainShort": "Motor Elétrico Vortex Fox 60V",
+    "suspensionShort": "Forqueta Hidráulica e Duplo Amortecedor",
+    "maxSpeed": "25 km/h (Uso Sem Carta)",
+    "autonomy": "40 a 60 km",
+    "powerNominal": "250W",
+    "tags": [
+      "Uso Sem Carta",
+      "60V",
+      "Mobilidade Sustentável"
+    ],
+    "specs": {
+      "frame": "Chassi em liga de aço de alta resistência",
+      "drivetrain": "Motor traseiro de cubo / transmissão elétrica",
+      "suspension": "Forqueta dianteira hidráulica e amortecedores traseiros",
+      "brakes": "Sistema de travagem de disco/tambor",
+      "wheels": "Jantes de alta resistência com pneus tubeless",
+      "motor": "Motor de 250W",
+      "battery": "60V 20aH Bateria de Chumbo / Lítio",
+      "useKey": "bike.voltrish.use"
+    },
+    "stats": {
+      "terrains": {
+        "highway": 5,
+        "urban": 90,
+        "climbing": 35,
+        "range": 45,
+        "offroad": 10
+      },
+      "performance": {
+        "battery": 50,
+        "agility": 80,
+        "power": 40,
+        "weight": 60
+      }
+    }
   }
 ];
 
