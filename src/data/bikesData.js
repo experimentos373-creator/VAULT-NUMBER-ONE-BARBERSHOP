@@ -1449,77 +1449,9 @@ export const bikes = [
     ]
   },
   {
-    "id": "luna-qc-3-lugares",
-    "price": 1870,
-    "name": "LUNA QC 3 LUGARES",
-    "brand": "Luna",
-    "brandSlug": "luna",
-    "isStar": true,
-    "category": "e-trike",
-    "categoryLabel": {
-      "pt": "Triciclo / Quadriciclo de Mobilidade",
-      "en": "Mobility Trike / Quad",
-      "es": "Triciclo / Cuadriciclo de Movilidad",
-      "fr": "Tricycle / Quad de Mobilité",
-      "de": "Mobilitätsdreirad / Quad"
-    },
-    "image": "/images/vehicles/luna_qc_3_lugares.webp",
-    "rating": "4.8 (15)",
-    "drivetrainShort": "Triciclo Elétrico Familiar 3 Lugares",
-    "suspensionShort": "Suspensão Traseira Dupla Reforçada Carga",
-    "maxSpeed": "25 km/h (3 Velocidades + Reverse)",
-    "autonomy": "40 a 60 km",
-    "powerNominal": "250W",
-    "tags": [
-      "Uso Sem Carta",
-      "3 Lugares",
-      "Mobilidade Sustentável"
-    ],
-    "specs": {
-      "frame": "Chassi em liga de aço de alta resistência",
-      "drivetrain": "Motor traseiro de cubo / transmissão elétrica",
-      "suspension": "Forqueta dianteira hidráulica e amortecedores traseiros",
-      "brakes": "Sistema de travagem de disco/tambor",
-      "wheels": "Jantes de alta resistência com pneus tubeless",
-      "motor": "Motor de 250W",
-      "battery": "Bateria de Lítio / Chumbo Ácido ou Grafeno",
-      "useKey": "bike.voltrish.use"
-    },
-    "stats": {
-      "terrains": {
-        "highway": 5,
-        "urban": 90,
-        "climbing": 35,
-        "range": 45,
-        "offroad": 10
-      },
-      "performance": {
-        "battery": 50,
-        "agility": 80,
-        "power": 40,
-        "weight": 60
-      }
-    },
-    "features": [
-      "Velocípede sem carta",
-      "3 lugares",
-      "Marcha-atrás",
-      "Top case",
-      "Iluminação LED",
-      "Alarme"
-    ],
-    "colors": [
-      "Vermelho"
-    ],
-    "warranty": {
-      "motor": "2 anos de garantia motor e controladora",
-      "battery": "6 meses de garantia de bateria"
-    }
-  },
-  {
     "id": "luna-qc",
     "price": 1999,
-    "name": "LUNA-QC",
+    "name": "LUNA QC 3 LUGARES",
     "brand": "Luna",
     "brandSlug": "luna",
     "isStar": false,
@@ -1533,13 +1465,14 @@ export const bikes = [
     },
     "image": "/images/vehicles/luna_qc.webp",
     "rating": "4.8 (15)",
-    "drivetrainShort": "Quadriciclo Elétrico de Alta Performance",
+    "drivetrainShort": "Triciclo Elétrico Familiar 3 Lugares",
     "suspensionShort": "Suspensão Hidráulica Dianteira/Traseira",
     "maxSpeed": "25 km/h (Uso Sem Carta)",
     "autonomy": "40 a 60 km",
     "powerNominal": "250W",
     "tags": [
       "Uso Sem Carta",
+      "3 Lugares",
       "Mobilidade Sustentável"
     ],
     "specs": {
@@ -1582,7 +1515,7 @@ export const bikes = [
   {
     "id": "luna-qs-4-rodas",
     "price": 1950,
-    "name": "LUNA QS 4 RODAS RAIDER",
+    "name": "LUNA-QC",
     "brand": "Luna",
     "brandSlug": "luna",
     "isStar": true,
@@ -2166,6 +2099,74 @@ export const bikes = [
         "power": 40,
         "weight": 60
       }
+    }
+  },
+  {
+    "id": "raider-mini-33-3-rodas",
+    "price": 1850,
+    "name": "RAIDER MINI 33 3 Rodas 3 Lugares",
+    "brand": "Raider",
+    "brandSlug": "raider",
+    "isStar": false,
+    "category": "e-trike",
+    "categoryLabel": {
+      "pt": "Triciclo / Quadriciclo de Mobilidade",
+      "en": "Mobility Trike / Quad",
+      "es": "Triciclo / Cuadriciclo de Movilidad",
+      "fr": "Tricycle / Quad de Mobilité",
+      "de": "Mobilitätsdreirad / Quad"
+    },
+    "image": "/images/vehicles/raider_mini_33.webp",
+    "rating": "4.8 (10)",
+    "drivetrainShort": "Triciclo Elétrico com Marcha-Atrás e Diferencial",
+    "suspensionShort": "Suspensão Hidráulica Reforçada Traseira",
+    "maxSpeed": "25 km/h (3 Velocidades + Reverse)",
+    "autonomy": "40 a 60 km",
+    "powerNominal": "250W",
+    "tags": [
+      "Uso Sem Carta",
+      "3 Lugares",
+      "Mobilidade Sustentável"
+    ],
+    "specs": {
+      "frame": "Chassi em liga de aço de alta resistência",
+      "drivetrain": "Motor traseiro de cubo / transmissão elétrica",
+      "suspension": "Forqueta dianteira hidráulica e amortecedores traseiros",
+      "brakes": "Sistema de travagem de disco/tambor",
+      "wheels": "Jantes de alta resistência com pneus tubeless",
+      "motor": "Motor de 250W",
+      "battery": "60V 20aH Bateria de Chumbo / Lítio",
+      "useKey": "bike.voltrish.use"
+    },
+    "stats": {
+      "terrains": {
+        "highway": 5,
+        "urban": 90,
+        "climbing": 35,
+        "range": 45,
+        "offroad": 10
+      },
+      "performance": {
+        "battery": 50,
+        "agility": 80,
+        "power": 40,
+        "weight": 60
+      }
+    },
+    "features": [
+      "Velocípede sem carta",
+      "3 lugares",
+      "Marcha-atrás",
+      "Top case",
+      "Iluminação LED",
+      "Alarme"
+    ],
+    "colors": [
+      "Preto"
+    ],
+    "warranty": {
+      "motor": "2 anos de garantia motor",
+      "battery": "6 meses de garantia de bateria"
     }
   }
 ];
