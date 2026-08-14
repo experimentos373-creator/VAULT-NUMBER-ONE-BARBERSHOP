@@ -2103,7 +2103,7 @@ export const bikes = [
   },
   {
     "id": "raider-mini-33-3-rodas",
-    "price": 1850,
+    "price": 1780,
     "name": "RAIDER MINI 33 3 Rodas 3 Lugares",
     "brand": "Raider",
     "brandSlug": "raider",
@@ -2118,8 +2118,8 @@ export const bikes = [
     },
     "image": "/images/vehicles/raider_mini_33.webp",
     "rating": "4.8 (10)",
-    "drivetrainShort": "Triciclo Elétrico com Marcha-Atrás e Diferencial",
-    "suspensionShort": "Suspensão Hidráulica Reforçada Traseira",
+    "drivetrainShort": "Triciclo Elétrico 3 Lugares 60V",
+    "suspensionShort": "Suspensão Hidráulica Dianteira e Traseira",
     "maxSpeed": "25 km/h (3 Velocidades + Reverse)",
     "autonomy": "40 a 60 km",
     "powerNominal": "250W",
@@ -2135,7 +2135,7 @@ export const bikes = [
       "brakes": "Sistema de travagem de disco/tambor",
       "wheels": "Jantes de alta resistência com pneus tubeless",
       "motor": "Motor de 250W",
-      "battery": "60V 20aH Bateria de Chumbo / Lítio",
+      "battery": "60V 20Ah Bateria de Chumbo",
       "useKey": "bike.voltrish.use"
     },
     "stats": {
@@ -2154,12 +2154,15 @@ export const bikes = [
       }
     },
     "features": [
-      "Velocípede sem carta",
-      "3 lugares",
-      "Marcha-atrás",
-      "Top case",
-      "Iluminação LED",
-      "Alarme"
+      "Velocípede 3 rodas com 3 lugares",
+      "Autonomia de 40 a 60km por carga",
+      "Baterias de chumbo 60V 20Ah",
+      "3 velocidades",
+      "Iluminação de LED",
+      "Travão no pé e nas mãos",
+      "Alarme",
+      "Bancos em pele",
+      "Não necessita de carta de condução"
     ],
     "colors": [
       "Preto"
