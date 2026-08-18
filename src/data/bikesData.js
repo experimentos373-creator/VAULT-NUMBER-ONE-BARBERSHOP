@@ -1633,7 +1633,7 @@ export const bikes = [
   },
   {
     "id": "luna-qc-3-lugares",
-    "price": 1999,
+    "price": 1870,
     "name": "LUNA QC 3 LUGARES",
     "brand": "Luna",
     "brandSlug": "luna",
@@ -1846,7 +1846,7 @@ export const bikes = [
   {
     "id": "tokio-extreme-4-rodas-capota",
     "price": 2300,
-    "name": "Tokio EXTREME 4 rodas com capota",
+    "name": "Tokio EXTREME 4 rodas com capota/cabine",
     "brand": "Voltrish",
     "brandSlug": "voltrish",
     "isStar": true,
@@ -2108,13 +2108,13 @@ export const bikes = [
     "brand": "ACM Power",
     "brandSlug": "acm-power",
     "isStar": false,
-    "category": "e-moto",
+    "category": "e-trike",
     "categoryLabel": {
-      "pt": "Moto Elétrica",
-      "en": "Electric Motorcycle",
-      "es": "Moto Eléctrica",
-      "fr": "Moto Électrique",
-      "de": "Elektromotorrad"
+      "pt": "Triciclo / Quadriciclo de Mobilidade",
+      "en": "Mobility Trike / Quad",
+      "es": "Triciclo / Cuadriciclo de Movilidad",
+      "fr": "Tricycle / Quad de Mobilité",
+      "de": "Mobilitätsdreirad / Quad"
     },
     "image": "/images/vehicles/acm_power_es049.webp",
     "rating": "4.8 (15)",
@@ -2171,13 +2171,13 @@ export const bikes = [
     "brand": "ACM Power",
     "brandSlug": "acm-power",
     "isStar": false,
-    "category": "e-moto",
+    "category": "e-trike",
     "categoryLabel": {
-      "pt": "Moto Elétrica",
-      "en": "Electric Motorcycle",
-      "es": "Moto Eléctrica",
-      "fr": "Moto Électrique",
-      "de": "Elektromotorrad"
+      "pt": "Triciclo / Quadriciclo de Mobilidade",
+      "en": "Mobility Trike / Quad",
+      "es": "Triciclo / Cuadriciclo de Movilidad",
+      "fr": "Tricycle / Quad de Mobilité",
+      "de": "Mobilitätsdreirad / Quad"
     },
     "image": "/images/vehicles/acm_power_es55.webp",
     "rating": "4.8 (15)",
