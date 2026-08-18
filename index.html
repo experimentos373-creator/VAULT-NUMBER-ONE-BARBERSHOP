@@ -10,13 +10,19 @@
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="L3PQxZ5otBYi0qMxrKUsztqOUzwV_bnqOX2zBymKzKA" />
     
-    <!-- Google Analytics (GA4) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q7H0TZE5P4"></script>
+    <!-- Google Analytics (GA4) - Deferred load to keep main thread fast for 90+ Lighthouse -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-Q7H0TZE5P4');
+
+      window.addEventListener('load', function() {
+        var script = document.createElement('script');
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-Q7H0TZE5P4';
+        script.async = true;
+        document.head.appendChild(script);
+      });
     </script>
 
     <!-- SEO Meta Tags -->
@@ -24,11 +30,10 @@
     <!-- Open Graph Tags -->
     <meta property="og:title" content="Route N109 Mobilidade Elétrica | Stand & Oficina na Guia" />
     <meta property="og:description" content="Stand de veículos elétricos novos e usados, diagnóstico avançado de baterias e oficina eletrónica na Guia, Pombal." />
-    <meta property="og:image" content="/images/bikes/zendit-rr.webp" />
+    <meta property="og:image" content="/images/route109_hero.webp" />
     <meta property="og:type" content="website" />
-    <!-- Preload Mobile & Desktop LCP Hero Images Responsively -->
-    <link rel="preload" href="/images/bikes/zendit-rr.webp" as="image" media="(max-width: 640px)" fetchpriority="high" />
-    <link rel="preload" href="/images/bikes/zendit-rr.webp" as="image" media="(min-width: 641px)" fetchpriority="high" />
+    <!-- Preload LCP Hero Image for Maximum Speed -->
+    <link rel="preload" href="/images/route109_hero.webp" as="image" type="image/webp" fetchpriority="high" />
 
     <!-- Google Fonts: Outfit (Premium Geometric Sans-Serif) & Inter (Clean Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -39,7 +39,7 @@ export default function About() {
               />
             </div>
             {/* Caption style under image */}
-            <div className="mt-2 text-[9px] uppercase tracking-widest text-neutral-400 font-bold text-center">
+            <div className="mt-2 text-[9px] uppercase tracking-widest text-neutral-600 font-bold text-center">
               Centro Técnico de Diagnóstico e Reparação Eletrónica
             </div>
           </div>
