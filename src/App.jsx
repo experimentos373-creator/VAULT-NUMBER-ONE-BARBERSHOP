@@ -4,6 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
+import CookieBanner from "./components/CookieBanner";
 import { LanguageProvider } from "./context/LanguageContext";
 
 import Home from "./pages/Home";
@@ -13,7 +14,6 @@ const SEOPage = lazy(() => import("./pages/SEOPage"));
 const CatalogPage = lazy(() => import("./pages/CatalogPage"));
 const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 const CookiePolicyPage = lazy(() => import("./pages/CookiePolicyPage"));
-import CookieBanner from "./components/CookieBanner";
 
 // Scroll Restoration & Hash Scrolling Helper
 function ScrollToTop() {

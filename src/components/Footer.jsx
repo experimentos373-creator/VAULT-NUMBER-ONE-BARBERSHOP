@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Facebook, Instagram, Phone, Mail, ArrowUpRight, MapPin, ArrowUp } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { config } from "../config";
