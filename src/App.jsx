@@ -11,6 +11,9 @@ import Home from "./pages/Home";
 // Lazy load secondary pages for chunk splitting
 const SEOPage = lazy(() => import("./pages/SEOPage"));
 const CatalogPage = lazy(() => import("./pages/CatalogPage"));
+const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
+const CookiePolicyPage = lazy(() => import("./pages/CookiePolicyPage"));
+import CookieBanner from "./components/CookieBanner";
 
 // Scroll Restoration & Hash Scrolling Helper
 function ScrollToTop() {
@@ -111,6 +114,20 @@ export default function App() {
             <Route path="/fr/catalogue" element={<CatalogPage />} />
             <Route path="/de/katalog" element={<CatalogPage />} />
 
+            {/* Privacy Policy routes */}
+            <Route path="/politica-privacidade" element={<PrivacyPolicyPage />} />
+            <Route path="/en/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/es/politica-privacidad" element={<PrivacyPolicyPage />} />
+            <Route path="/fr/politique-confidentialite" element={<PrivacyPolicyPage />} />
+            <Route path="/de/datenschutz" element={<PrivacyPolicyPage />} />
+
+            {/* Cookie Policy routes */}
+            <Route path="/politica-cookies" element={<CookiePolicyPage />} />
+            <Route path="/en/cookie-policy" element={<CookiePolicyPage />} />
+            <Route path="/es/politica-cookies" element={<CookiePolicyPage />} />
+            <Route path="/fr/politique-cookies" element={<CookiePolicyPage />} />
+            <Route path="/de/cookie-richtlinie" element={<CookiePolicyPage />} />
+
             {/* Dynamic SEO pages */}
             <Route path="/:slug" element={<SEOPage />} />
             <Route path="/en/:slug" element={<SEOPage />} />
@@ -125,6 +142,9 @@ export default function App() {
 
         {/* Dynamic Floating WhatsApp / Phone button */}
         <WhatsAppButton />
+
+        {/* GDPR Cookie Consent Banner */}
+        <CookieBanner />
 
         {/* Vercel Speed Insights */}
         <SpeedInsights />

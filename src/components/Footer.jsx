@@ -152,7 +152,7 @@ export default function Footer() {
                 </span>
               </li>
             </ul>
-            <div className="pt-2">
+            <div className="pt-2 flex flex-col gap-2">
               <a 
                 href="https://www.livroreclamacoes.pt" 
                 target="_blank" 
@@ -162,6 +162,15 @@ export default function Footer() {
                 <span>Livro de Reclamações Eletrónico</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-neutral-400 pt-1">
+                <Link to={prefix ? `${prefix}/politica-privacidade` : "/politica-privacidade"} className="hover:text-primary transition-colors">
+                  {language === "en" ? "Privacy Policy" : "Política de Privacidade"}
+                </Link>
+                <span>•</span>
+                <Link to={prefix ? `${prefix}/politica-cookies` : "/politica-cookies"} className="hover:text-primary transition-colors">
+                  {language === "en" ? "Cookie Policy" : "Política de Cookies"}
+                </Link>
+              </div>
             </div>
           </div>
 
