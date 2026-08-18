@@ -127,7 +127,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to={prefix || "/"} className="flex flex-row items-center gap-2 sm:gap-3 group">
             <div className="flex items-center gap-2">
-              <img src="/logo.png" alt="Route 109 Logo" className="h-8 w-8 sm:h-9 sm:w-9 object-contain" />
+              <img src="/logo.webp" alt="Route 109 Logo" className="h-8 w-8 sm:h-9 sm:w-9 object-contain" width="36" height="36" />
               <span className="font-extrabold tracking-tighter text-lg sm:text-xl font-display text-black uppercase">
                 Route<span className="text-primary font-black"> N109</span>
               </span>

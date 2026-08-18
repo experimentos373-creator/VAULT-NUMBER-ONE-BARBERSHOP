@@ -60,7 +60,7 @@ export default function Footer() {
           {/* Column 1: Brand Info & Social Media Cards */}
           <div className="lg:col-span-5 space-y-5">
             <a href={`${prefix}/#home`} className="flex items-center gap-3">
-              <img src="/logo.png" alt="Route 109 Logo" className="h-10 w-auto object-contain" />
+              <img src="/logo.webp" alt="Route 109 Logo" className="h-10 w-auto object-contain" width="40" height="40" />
               <span className="font-extrabold tracking-tighter text-white font-display text-lg uppercase">
                 Route <span className="text-primary font-black font-display">N109</span>
               </span>

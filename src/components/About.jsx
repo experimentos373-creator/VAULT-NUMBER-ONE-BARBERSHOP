@@ -31,7 +31,7 @@ export default function About() {
           <div className="relative p-2.5 bg-[#FCFBFA] border border-neutral-200 shadow-md w-full max-w-[450px]">
             <div className="border border-neutral-200 overflow-hidden relative">
               <img
-                src="/images/route109_about.jpg"
+                src="/images/route109_about.webp"
                 alt="Oficina Route N109 - Assistência Técnica"
                 className="w-full h-[320px] sm:h-[400px] object-cover hover:scale-102 transition-transform duration-700"
                 width="500"
