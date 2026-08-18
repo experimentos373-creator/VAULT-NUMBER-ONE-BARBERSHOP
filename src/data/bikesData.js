@@ -66,7 +66,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia moto",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/lisbon_sx.webp",
+      "/images/vehicles/gallery/lisbon-sx/gallery_1.webp",
+      "/images/vehicles/gallery/lisbon-sx/gallery_2.webp"
+    ]
   },
   {
     "id": "neovolt-standard",
@@ -133,7 +138,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia motor e controladora",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/neovolt_standard.webp",
+      "/images/vehicles/gallery/neovolt-standard/gallery_1.webp",
+      "/images/vehicles/gallery/neovolt-standard/gallery_2.webp"
+    ]
   },
   {
     "id": "vespy-sky",
@@ -204,7 +214,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia motor e controladora",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/vespy_sky.webp",
+      "/images/vehicles/gallery/vespy-sky/gallery_1.webp",
+      "/images/vehicles/gallery/vespy-sky/gallery_2.webp"
+    ]
   },
   {
     "id": "neovolt-go-x-60v",
@@ -274,7 +289,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia motor e controladora",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/neovolt_gox.webp",
+      "/images/vehicles/gallery/neovolt-go-x-60v/gallery_1.webp",
+      "/images/vehicles/gallery/neovolt-go-x-60v/gallery_2.webp"
+    ]
   },
   {
     "id": "neovolt-go-x-72v",
@@ -344,7 +364,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia motor e controladora",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/neovolt_gox.webp",
+      "/images/vehicles/gallery/neovolt-go-x-72v/gallery_1.webp",
+      "/images/vehicles/gallery/neovolt-go-x-72v/gallery_2.webp"
+    ]
   },
   {
     "id": "neovolt-we-ride-72v",
@@ -407,7 +432,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia motor e controladora",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/neovolt_weride.webp",
+      "/images/vehicles/gallery/neovolt-we-ride-72v/gallery_1.webp",
+      "/images/vehicles/gallery/neovolt-we-ride-72v/gallery_2.webp"
+    ]
   },
   {
     "id": "voltrish-london-xrp",
@@ -471,7 +501,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia motor e controladora",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/voltrish_london_xrp.webp",
+      "/images/vehicles/gallery/voltrish-london-xrp/gallery_1.webp",
+      "/images/vehicles/gallery/voltrish-london-xrp/gallery_2.webp"
+    ]
   },
   {
     "id": "s4-gow",
@@ -539,7 +574,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia motor e controladora",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/s4_gow.webp",
+      "/images/vehicles/gallery/s4-gow/gallery_1.webp",
+      "/images/vehicles/gallery/s4-gow/gallery_2.webp"
+    ]
   },
   {
     "id": "scooty-250-power",
@@ -603,7 +643,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia motor e controladora",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/scooty_250_power.webp",
+      "/images/vehicles/gallery/scooty-250-power/gallery_1.webp",
+      "/images/vehicles/gallery/scooty-250-power/gallery_2.webp"
+    ]
   },
   {
     "id": "zoa-plus-72v",
@@ -667,7 +712,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia motor e controladora",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/zoa_72v.webp",
+      "/images/vehicles/gallery/zoa-plus-72v/gallery_1.webp",
+      "/images/vehicles/gallery/zoa-plus-72v/gallery_2.webp"
+    ]
   },
   {
     "id": "neovolt-flow",
@@ -731,7 +781,10 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia motor e controladora",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/neovolt_flow.webp"
+    ]
   },
   {
     "id": "neovolt-pulse",
@@ -795,7 +848,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia motor e controladora",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/neovolt_pulse.webp",
+      "/images/vehicles/gallery/neovolt-pulse/gallery_1.webp",
+      "/images/vehicles/gallery/neovolt-pulse/gallery_2.webp"
+    ]
   },
   {
     "id": "vision-sport-72v",
@@ -859,7 +917,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia motor e controladora",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/vision_sport.webp",
+      "/images/vehicles/gallery/vision-sport-72v/gallery_1.webp",
+      "/images/vehicles/gallery/vision-sport-72v/gallery_2.webp"
+    ]
   },
   {
     "id": "f9-voltrish",
@@ -918,6 +981,11 @@ export const bikes = [
       "Top case",
       "Iluminação LED",
       "Alarme"
+    ],
+    "images": [
+      "/images/vehicles/f9_voltrish.webp",
+      "/images/vehicles/gallery/f9-voltrish/gallery_1.webp",
+      "/images/vehicles/gallery/f9-voltrish/gallery_2.webp"
     ]
   },
   {
@@ -977,6 +1045,11 @@ export const bikes = [
       "Top case",
       "Iluminação LED",
       "Alarme"
+    ],
+    "images": [
+      "/images/vehicles/azores.webp",
+      "/images/vehicles/gallery/azores/gallery_1.webp",
+      "/images/vehicles/gallery/azores/gallery_2.webp"
     ]
   },
   {
@@ -1034,6 +1107,11 @@ export const bikes = [
       "Velocípede sem carta",
       "Alarme",
       "Travões de disco frente/trás"
+    ],
+    "images": [
+      "/images/vehicles/we_fun.webp",
+      "/images/vehicles/gallery/we-fun/gallery_1.webp",
+      "/images/vehicles/gallery/we-fun/gallery_2.webp"
     ]
   },
   {
@@ -1093,6 +1171,11 @@ export const bikes = [
       "Encosto para 2ª pessoa",
       "Iluminação LED",
       "Alarme"
+    ],
+    "images": [
+      "/images/vehicles/rio_j2_60v.webp",
+      "/images/vehicles/gallery/rio-j2-60v/gallery_1.webp",
+      "/images/vehicles/gallery/rio-j2-60v/gallery_2.webp"
     ]
   },
   {
@@ -1152,6 +1235,11 @@ export const bikes = [
       "Top case",
       "Iluminação LED",
       "Alarme"
+    ],
+    "images": [
+      "/images/vehicles/rio_j2_72v.webp",
+      "/images/vehicles/gallery/rio-j2-72v/gallery_1.webp",
+      "/images/vehicles/gallery/rio-j2-72v/gallery_2.webp"
     ]
   },
   {
@@ -1208,6 +1296,11 @@ export const bikes = [
     "features": [
       "Velocípede sem carta",
       "Iluminação LED"
+    ],
+    "images": [
+      "/images/vehicles/voltrish_21.webp",
+      "/images/vehicles/gallery/voltrish-21/gallery_1.webp",
+      "/images/vehicles/gallery/voltrish-21/gallery_2.webp"
     ]
   },
   {
@@ -1272,7 +1365,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia moto",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/vista_3_rodas.webp",
+      "/images/vehicles/gallery/vista-3-rodas/gallery_1.webp",
+      "/images/vehicles/gallery/vista-3-rodas/gallery_2.webp"
+    ]
   },
   {
     "id": "triciclo-kiev",
@@ -1329,6 +1427,11 @@ export const bikes = [
       "Velocípede que não necessita de carta de habilitação",
       "Velocidade máxima de até 40km/h",
       "Alarme"
+    ],
+    "images": [
+      "/images/vehicles/triciclo_kiev.webp",
+      "/images/vehicles/gallery/triciclo-kiev/gallery_1.webp",
+      "/images/vehicles/gallery/triciclo-kiev/gallery_2.webp"
     ]
   },
   {
@@ -1387,6 +1490,11 @@ export const bikes = [
       "Bateria de 48V 15Ah",
       "Velocidades: 15 / 30 / 45 km/h",
       "Peso máximo suportado: 120 kg"
+    ],
+    "images": [
+      "/images/vehicles/g2_pro_1050w.webp",
+      "/images/vehicles/gallery/g2-pro-1050w/gallery_1.webp",
+      "/images/vehicles/gallery/g2-pro-1050w/gallery_2.webp"
     ]
   },
   {
@@ -1446,6 +1554,13 @@ export const bikes = [
       "Cesto de arrumação",
       "Iluminação LED",
       "Alarme"
+    ],
+    "images": [
+      "/images/vehicles/triciclo_fun.webp",
+      "/images/vehicles/gallery/triciclo-fun-2-lugares/gallery_1.webp",
+      "/images/vehicles/gallery/triciclo-fun-2-lugares/gallery_2.webp",
+      "/images/vehicles/gallery/triciclo-fun-2-lugares/gallery_3.webp",
+      "/images/vehicles/gallery/triciclo-fun-2-lugares/gallery_4.webp"
     ]
   },
   {
@@ -1510,7 +1625,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia moto",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/luna_qc.webp",
+      "/images/vehicles/gallery/luna-qc/gallery_1.webp",
+      "/images/vehicles/gallery/luna-qc/gallery_2.webp"
+    ]
   },
   {
     "id": "luna-qs-4-rodas",
@@ -1577,7 +1697,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia motor e controladora",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/luna_qs_4_rodas.webp",
+      "/images/vehicles/gallery/luna-qs-4-rodas/gallery_1.webp",
+      "/images/vehicles/gallery/luna-qs-4-rodas/gallery_2.webp"
+    ]
   },
   {
     "id": "tokio-i32-4-rodas",
@@ -1640,7 +1765,10 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia moto",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/tokio_i32_4_rodas.webp"
+    ]
   },
   {
     "id": "tokio-extreme-4-rodas-capota",
@@ -1704,7 +1832,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia moto",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/tokio_extreme_4_rodas.webp",
+      "/images/vehicles/gallery/tokio-extreme-4-rodas-capota/gallery_1.webp",
+      "/images/vehicles/gallery/tokio-extreme-4-rodas-capota/gallery_2.webp"
+    ]
   },
   {
     "id": "triciclo-space-3-lugares",
@@ -1764,6 +1897,11 @@ export const bikes = [
       "Top case",
       "Iluminação LED",
       "Alarme"
+    ],
+    "images": [
+      "/images/vehicles/triciclo_space_3_lugares.webp",
+      "/images/vehicles/gallery/triciclo-space-3-lugares/gallery_1.webp",
+      "/images/vehicles/gallery/triciclo-space-3-lugares/gallery_2.webp"
     ]
   },
   {
@@ -1822,6 +1960,11 @@ export const bikes = [
       "Travão de disco frente",
       "Iluminação LED",
       "Alarme"
+    ],
+    "images": [
+      "/images/vehicles/seventeen_sporte.webp",
+      "/images/vehicles/gallery/seventeen-sporte/gallery_1.webp",
+      "/images/vehicles/gallery/seventeen-sporte/gallery_2.webp"
     ]
   },
   {
@@ -1878,6 +2021,11 @@ export const bikes = [
     "features": [
       "Velocípede sem carta",
       "Alarme"
+    ],
+    "images": [
+      "/images/vehicles/mx1_rio.webp",
+      "/images/vehicles/gallery/mx1-rio/gallery_1.webp",
+      "/images/vehicles/gallery/mx1-rio/gallery_2.webp"
     ]
   },
   {
@@ -1936,6 +2084,11 @@ export const bikes = [
       "Velocidade máxima de até 50km/h",
       "Travão de disco frente e atrás",
       "Alarme"
+    ],
+    "images": [
+      "/images/vehicles/acm_power_es049.webp",
+      "/images/vehicles/gallery/acm-power-es-049/gallery_1.webp",
+      "/images/vehicles/gallery/acm-power-es-049/gallery_2.webp"
     ]
   },
   {
@@ -1994,6 +2147,11 @@ export const bikes = [
       "Velocidade máxima de até 50km/h",
       "Travão de disco frente e atrás",
       "Alarme"
+    ],
+    "images": [
+      "/images/vehicles/acm_power_es55.webp",
+      "/images/vehicles/gallery/acm-power-es-55/gallery_1.webp",
+      "/images/vehicles/gallery/acm-power-es-55/gallery_2.webp"
     ]
   },
   {
@@ -2047,7 +2205,12 @@ export const bikes = [
         "power": 40,
         "weight": 60
       }
-    }
+    },
+    "images": [
+      "/images/vehicles/vortex_fox.webp",
+      "/images/vehicles/gallery/vortex-fox/gallery_1.webp",
+      "/images/vehicles/gallery/vortex-fox/gallery_2.webp"
+    ]
   },
   {
     "id": "tokio-3-rodas-mobilidade",
@@ -2099,7 +2262,14 @@ export const bikes = [
         "power": 40,
         "weight": 60
       }
-    }
+    },
+    "images": [
+      "/images/vehicles/tokio_3_rodas.webp",
+      "/images/vehicles/gallery/tokio-3-rodas-mobilidade/gallery_1.webp",
+      "/images/vehicles/gallery/tokio-3-rodas-mobilidade/gallery_2.webp",
+      "/images/vehicles/gallery/tokio-3-rodas-mobilidade/gallery_3.webp",
+      "/images/vehicles/gallery/tokio-3-rodas-mobilidade/gallery_4.webp"
+    ]
   },
   {
     "id": "raider-mini-33-3-rodas",
@@ -2170,7 +2340,12 @@ export const bikes = [
     "warranty": {
       "motor": "2 anos de garantia motor",
       "battery": "6 meses de garantia de bateria"
-    }
+    },
+    "images": [
+      "/images/vehicles/raider_mini_33.webp",
+      "/images/vehicles/gallery/raider-mini-33-3-rodas/gallery_1.webp",
+      "/images/vehicles/gallery/raider-mini-33-3-rodas/gallery_2.webp"
+    ]
   }
 ];
 

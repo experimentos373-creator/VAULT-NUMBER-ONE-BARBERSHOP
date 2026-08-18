@@ -26,6 +26,6 @@ dist-ssr
 # Agent metadata and temp directories
 .agent/
 .gemini/
-
+scratch/
 
 .vercel

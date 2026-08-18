@@ -1,8 +1,153 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { ArrowLeft, X, Phone, Maximize2, Search, ZoomIn, ZoomOut, RefreshCw, SlidersHorizontal, Heart, Filter, Zap, Battery, Cpu, Wrench, Circle, Shield, Activity, Gauge, TrendingUp, Info, Compass, MapPin, Mountain, Trees, Check } from "lucide-react";
+import { ArrowLeft, X, Phone, Maximize2, Search, ZoomIn, ZoomOut, RefreshCw, SlidersHorizontal, Heart, Filter, Zap, Battery, Cpu, Wrench, Circle, Shield, Activity, Gauge, TrendingUp, Info, Compass, MapPin, Mountain, Trees, Check, ChevronLeft, ChevronRight, Images as ImageIcon } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { bikes } from "../data/bikesData";
+
+function BikeCatalogCard({
+  bike,
+  isFavorite,
+  onToggleFavorite,
+  onOpenModal,
+}) {
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const images = bike.images && bike.images.length > 0 ? bike.images : [bike.image];
+  const hasMultiple = images.length > 1;
+
+  const handlePrev = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setCurrentIdx((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+  };
+
+  const handleNext = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setCurrentIdx((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+  };
+
+  return (
+    <div className="flex flex-col bg-white border border-neutral-200/90 rounded-2xl p-5 text-left group h-full relative product-card-frame overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+      {/* Star Badge */}
+      {bike.isStar && (
+        <div className="absolute top-4 left-4 z-10 bg-primary text-white px-3 py-1 text-[9px] font-black uppercase rounded shadow-sm select-none">
+          Destaque
+        </div>
+      )}
+
+      {/* Favorite Heart Button */}
+      <button
+        onClick={(e) => onToggleFavorite(bike.id, e)}
+        className={`absolute top-4 right-4 z-10 p-2 rounded-full backdrop-blur-md transition-all duration-200 border cursor-pointer shadow-sm ${
+          isFavorite 
+            ? "bg-red-500/10 text-red-500 border-red-500/30" 
+            : "bg-[#FCFBFA]/85 text-neutral-450 border-neutral-200 hover:text-neutral-800 hover:bg-[#FCFBFA]"
+        }`}
+        aria-label="Toggle Favorite"
+      >
+        <Heart className={`w-3.5 h-3.5 ${isFavorite ? "fill-current text-red-500" : ""}`} />
+      </button>
+
+      {/* Product Image Frame with Gallery Navigation */}
+      <div 
+        onClick={() => onOpenModal(bike)}
+        className="product-studio-bg card-studio-aura border border-neutral-100/90 rounded-xl aspect-[4/3] flex items-center justify-center relative overflow-hidden mb-5 cursor-pointer p-4 group-hover:border-primary/20 transition-colors select-none"
+      >
+        <img
+          key={images[currentIdx]}
+          src={images[currentIdx]}
+          alt={`${bike.name} - ${currentIdx + 1}`}
+          loading="lazy"
+          className={`max-w-[92%] max-h-[92%] object-contain transition-all duration-300 group-hover:scale-105 ${
+            currentIdx === 0 ? "vehicle-drop-shadow" : "rounded-lg shadow-sm"
+          }`}
+        />
+
+        {/* Multi-photo Indicator Badge */}
+        {hasMultiple && (
+          <div className="absolute top-3 left-3 bg-neutral-900/75 backdrop-blur-sm text-white px-2 py-0.5 rounded text-[9px] font-bold flex items-center gap-1 opacity-90 group-hover:opacity-100 transition-opacity z-10">
+            <ImageIcon className="w-2.5 h-2.5" />
+            <span>{currentIdx + 1}/{images.length}</span>
+          </div>
+        )}
+
+        {/* Left / Right Card Navigation Arrows */}
+        {hasMultiple && (
+          <>
+            <button
+              onClick={handlePrev}
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-neutral-900 shadow-md flex items-center justify-center border border-neutral-200 transition-all opacity-0 group-hover:opacity-100 sm:opacity-0 hover:scale-110 active:scale-95 z-20 cursor-pointer"
+              title="Foto anterior"
+              aria-label="Foto anterior"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={handleNext}
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-neutral-900 shadow-md flex items-center justify-center border border-neutral-200 transition-all opacity-0 group-hover:opacity-100 sm:opacity-0 hover:scale-110 active:scale-95 z-20 cursor-pointer"
+              title="Próxima foto"
+              aria-label="Próxima foto"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+
+            {/* Thumbnail Dots */}
+            <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-neutral-900/60 backdrop-blur-sm z-10">
+              {images.map((_, dotIdx) => (
+                <span
+                  key={dotIdx}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentIdx(dotIdx);
+                  }}
+                  className={`block rounded-full transition-all duration-300 cursor-pointer ${
+                    dotIdx === currentIdx 
+                      ? "w-3.5 h-1.5 bg-primary" 
+                      : "w-1.5 h-1.5 bg-white/60 hover:bg-white"
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Product Title */}
+      <h2 
+        onClick={() => onOpenModal(bike)}
+        className="text-[14px] font-black text-neutral-950 font-display group-hover:text-primary transition-colors cursor-pointer mb-3 uppercase tracking-tight line-clamp-1"
+      >
+        {bike.name}
+      </h2>
+
+      {/* Price Section */}
+      <div className="flex flex-wrap items-baseline gap-2 mb-5">
+        <span className="text-primary font-black text-xl sm:text-2xl">
+          {new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(bike.price)}
+        </span>
+      </div>
+
+      {/* Specs Grid */}
+      <div className="grid grid-cols-3 gap-1.5 pt-3 border-t border-neutral-100 mt-auto">
+        <div className="bg-[#F8F9FA] rounded-lg p-1.5 flex flex-col items-center justify-center text-center border border-neutral-100 min-w-0">
+          <Zap className="w-3.5 h-3.5 text-primary mb-1 flex-shrink-0" />
+          <span className="text-[7px] text-neutral-400 uppercase tracking-wider font-bold block mb-0.5">Motor</span>
+          <span className="text-neutral-800 font-extrabold text-[9px] block truncate max-w-full leading-none">{bike.powerNominal}</span>
+        </div>
+        <div className="bg-[#F8F9FA] rounded-lg p-1.5 flex flex-col items-center justify-center text-center border border-neutral-100 min-w-0">
+          <Gauge className="w-3.5 h-3.5 text-primary mb-1 flex-shrink-0" />
+          <span className="text-[7px] text-neutral-400 uppercase tracking-wider font-bold block mb-0.5">Velocidade</span>
+          <span className="text-neutral-800 font-extrabold text-[9px] block truncate max-w-full leading-none">{bike.maxSpeed}</span>
+        </div>
+        <div className="bg-[#F8F9FA] rounded-lg p-1.5 flex flex-col items-center justify-center text-center border border-neutral-100 min-w-0">
+          <Battery className="w-3.5 h-3.5 text-primary mb-1 flex-shrink-0" />
+          <span className="text-[7px] text-neutral-400 uppercase tracking-wider font-bold block mb-0.5">Autonomia</span>
+          <span className="text-neutral-800 font-extrabold text-[9px] block truncate max-w-full leading-none">{bike.autonomy}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function CatalogPage() {
   const { t, language } = useLanguage();
@@ -117,7 +262,8 @@ export default function CatalogPage() {
   const [isFullscreenDragging, setIsFullscreenDragging] = useState(false);
   const [fullscreenDragStart, setFullscreenDragStart] = useState({ x: 0, y: 0 });
 
-
+  // Modal Gallery Images
+  const [modalImageIndex, setModalImageIndex] = useState(0);
 
   const [activeTab, setActiveTab] = useState("specs");
   
@@ -134,9 +280,41 @@ export default function CatalogPage() {
     newParams.delete("bike");
     setSearchParams(newParams);
     setActiveTab("specs");
+    setModalImageIndex(0);
     setScale(baseScale);
     setPosition({ x: 0, y: 0 });
+    setIsFullscreenImage(false);
   }, [searchParams, setSearchParams, baseScale]);
+
+  const handlePrevImage = useCallback((e) => {
+    if (e) e.stopPropagation();
+    if (!selectedBike) return;
+    const imgs = selectedBike.images && selectedBike.images.length > 0 ? selectedBike.images : [selectedBike.image];
+    setModalImageIndex((prev) => (prev > 0 ? prev - 1 : imgs.length - 1));
+    setScale(baseScale);
+    setPosition({ x: 0, y: 0 });
+    setFullscreenScale(1);
+    setFullscreenPosition({ x: 0, y: 0 });
+  }, [selectedBike, baseScale]);
+
+  const handleNextImage = useCallback((e) => {
+    if (e) e.stopPropagation();
+    if (!selectedBike) return;
+    const imgs = selectedBike.images && selectedBike.images.length > 0 ? selectedBike.images : [selectedBike.image];
+    setModalImageIndex((prev) => (prev < imgs.length - 1 ? prev + 1 : 0));
+    setScale(baseScale);
+    setPosition({ x: 0, y: 0 });
+    setFullscreenScale(1);
+    setFullscreenPosition({ x: 0, y: 0 });
+  }, [selectedBike, baseScale]);
+
+  const handleSelectImageIndex = useCallback((idx) => {
+    setModalImageIndex(idx);
+    setScale(baseScale);
+    setPosition({ x: 0, y: 0 });
+    setFullscreenScale(1);
+    setFullscreenPosition({ x: 0, y: 0 });
+  }, [baseScale]);
 
   // Prevent scroll when modal or fullscreen is open
   useEffect(() => {
@@ -155,11 +333,21 @@ export default function CatalogPage() {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") closeModal();
+      if (e.key === "Escape") {
+        if (isFullscreenImage) {
+          setIsFullscreenImage(false);
+        } else {
+          closeModal();
+        }
+      } else if (e.key === "ArrowLeft") {
+        if (selectedBike) handlePrevImage();
+      } else if (e.key === "ArrowRight") {
+        if (selectedBike) handleNextImage();
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [closeModal]);
+  }, [closeModal, isFullscreenImage, selectedBike, handlePrevImage, handleNextImage]);
 
   const handleMouseDown = (e) => {
     if (scale <= baseScale) return;
@@ -344,8 +532,11 @@ export default function CatalogPage() {
     newParams.set("bike", bike.id);
     setSearchParams(newParams);
     setActiveTab("specs");
+    setModalImageIndex(0);
     setScale(baseScale);
     setPosition({ x: 0, y: 0 });
+    setFullscreenScale(1);
+    setFullscreenPosition({ x: 0, y: 0 });
   };
 
   return (
@@ -626,77 +817,13 @@ export default function CatalogPage() {
           {/* Bike Grid — High-fidelity E-commerce Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {sortedBikes.map((bike) => (
-              <div
+              <BikeCatalogCard
                 key={bike.id}
-                className="flex flex-col bg-white border border-neutral-200/90 rounded-2xl p-5 text-left group h-full relative product-card-frame overflow-hidden shadow-sm"
-              >
-                {/* Star Badge */}
-                {bike.isStar && (
-                  <div className="absolute top-4 left-4 z-10 bg-primary text-white px-3 py-1 text-[9px] font-black uppercase rounded shadow-sm select-none">
-                    Destaque
-                  </div>
-                )}
-
-                {/* Favorite Heart Button */}
-                <button
-                  onClick={(e) => toggleFavorite(bike.id, e)}
-                  className={`absolute top-4 right-4 z-10 p-2 rounded-full backdrop-blur-md transition-all duration-200 border cursor-pointer shadow-sm ${
-                    favorites.includes(bike.id) 
-                      ? "bg-red-500/10 text-red-500 border-red-500/30" 
-                      : "bg-[#FCFBFA]/85 text-neutral-450 border-neutral-200 hover:text-neutral-800 hover:bg-[#FCFBFA]"
-                  }`}
-                  aria-label="Toggle Favorite"
-                >
-                  <Heart className={`w-3.5 h-3.5 ${favorites.includes(bike.id) ? "fill-current text-red-500" : ""}`} />
-                </button>
-
-                {/* Product Image Frame */}
-                <div 
-                  onClick={() => openBikeModal(bike)}
-                  className="product-studio-bg card-studio-aura border border-neutral-100/90 rounded-xl aspect-[4/3] flex items-center justify-center relative overflow-hidden mb-5 cursor-pointer p-5 group-hover:border-primary/20 transition-colors"
-                >
-                  <img
-                    src={bike.image}
-                    alt={bike.name}
-                    loading="lazy"
-                    className="max-w-[92%] max-h-[92%] object-contain vehicle-drop-shadow group-hover:scale-106"
-                  />
-                </div>
-
-                {/* Product Title */}
-                <h2 
-                  onClick={() => openBikeModal(bike)}
-                  className="text-[14px] font-black text-neutral-950 font-display group-hover:text-primary transition-colors cursor-pointer mb-3 uppercase tracking-tight line-clamp-1"
-                >
-                  {bike.name}
-                </h2>
-
-                {/* Price Section */}
-                <div className="flex flex-wrap items-baseline gap-2 mb-5">
-                  <span className="text-primary font-black text-xl sm:text-2xl">
-                    {new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(bike.price)}
-                  </span>
-                </div>
-
-                {/* Specs Grid (3 spec cards at the bottom) */}
-                <div className="grid grid-cols-3 gap-1.5 pt-3 border-t border-neutral-100 mt-auto">
-                  <div className="bg-[#F8F9FA] rounded-lg p-1.5 flex flex-col items-center justify-center text-center border border-neutral-100 min-w-0">
-                    <Zap className="w-3.5 h-3.5 text-primary mb-1 flex-shrink-0" />
-                    <span className="text-[7px] text-neutral-400 uppercase tracking-wider font-bold block mb-0.5">Motor</span>
-                    <span className="text-neutral-800 font-extrabold text-[9px] block truncate max-w-full leading-none">{bike.powerNominal}</span>
-                  </div>
-                  <div className="bg-[#F8F9FA] rounded-lg p-1.5 flex flex-col items-center justify-center text-center border border-neutral-100 min-w-0">
-                    <Gauge className="w-3.5 h-3.5 text-primary mb-1 flex-shrink-0" />
-                    <span className="text-[7px] text-neutral-400 uppercase tracking-wider font-bold block mb-0.5">Velocidade</span>
-                    <span className="text-neutral-800 font-extrabold text-[9px] block truncate max-w-full leading-none">{bike.maxSpeed}</span>
-                  </div>
-                  <div className="bg-[#F8F9FA] rounded-lg p-1.5 flex flex-col items-center justify-center text-center border border-neutral-100 min-w-0">
-                    <Battery className="w-3.5 h-3.5 text-primary mb-1 flex-shrink-0" />
-                    <span className="text-[7px] text-neutral-400 uppercase tracking-wider font-bold block mb-0.5">Autonomia</span>
-                    <span className="text-neutral-800 font-extrabold text-[9px] block truncate max-w-full leading-none">{bike.autonomy}</span>
-                  </div>
-                </div>
-              </div>
+                bike={bike}
+                isFavorite={favorites.includes(bike.id)}
+                onToggleFavorite={toggleFavorite}
+                onOpenModal={openBikeModal}
+              />
             ))}
           </div>
 
@@ -737,93 +864,156 @@ export default function CatalogPage() {
             </button>
 
             {/* Left Frame */}
-            <div className="w-full md:w-[60%] product-studio-bg flex items-center justify-center p-2 sm:p-4 border-b md:border-b-0 md:border-r border-neutral-200/60 h-[30vh] min-h-[220px] sm:h-[280px] md:h-full relative overflow-hidden group select-none shrink-0">
-              {/* Expand to Fullscreen Button */}
-              <button
-                onClick={() => setIsFullscreenImage(true)}
-                className="absolute top-3 left-3 bg-neutral-950 hover:bg-primary text-white p-2 rounded-none border-none transition-all duration-300 z-10 cursor-pointer flex items-center justify-center shadow-lg"
-                title="Expand Image"
-                aria-label="Expand Image to Fullscreen"
-              >
-                <Maximize2 className="w-4 h-4 text-white" />
-              </button>
+            {(() => {
+              const modalImages = (selectedBike.images && selectedBike.images.length > 0) ? selectedBike.images : [selectedBike.image];
+              const currentModalImage = modalImages[modalImageIndex] || selectedBike.image;
+              const hasMultipleModalImages = modalImages.length > 1;
 
-              <div 
-                className="w-full h-full flex items-center justify-center overflow-hidden cursor-default relative p-4"
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUpOrLeave}
-                onMouseLeave={handleMouseUpOrLeave}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleMouseUpOrLeave}
-                onDoubleClick={handleDoubleClick}
-              >
-                <img 
-                  src={selectedBike.image} 
-                  alt={selectedBike.name} 
-                  style={{
-                    transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
-                    transformOrigin: "center center",
-                    transition: isDragging ? "none" : "transform 0.2s ease-out"
-                  }}
-                  className={`max-h-[105%] max-w-[105%] md:max-h-[90%] md:max-w-[90%] object-contain select-none vehicle-drop-shadow ${
-                    scale > baseScale ? (isDragging ? "cursor-grabbing" : "cursor-grab") : "cursor-zoom-in"
-                  }`}
-                  draggable="false"
-                />
-              </div>
-
-              {/* Floating Zoom Controls */}
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-1 bg-white border border-neutral-200 rounded-none px-3 py-1.5 shadow-lg z-10">
-                <button
-                  onClick={() => {
-                    const currentIdx = getCurrentStepIndex();
-                    if (currentIdx > 0) {
-                      const nextStep = zoomSteps[currentIdx - 1];
-                      const nextScale = baseScale * nextStep;
-                      setScale(nextScale);
-                      if (nextStep === 1.0) setPosition({ x: 0, y: 0 });
-                    }
-                  }}
-                  disabled={getCurrentStepIndex() === 0}
-                  className="w-7 h-7 flex items-center justify-center rounded-none bg-neutral-100 hover:bg-neutral-250 text-neutral-800 cursor-pointer transition-colors border-none text-xs font-bold disabled:opacity-40 disabled:cursor-not-allowed"
-                  title="Zoom Out"
-                >
-                  <ZoomOut className="w-3.5 h-3.5" />
-                </button>
-                <span className="text-[10px] font-bold text-neutral-600 min-w-10 text-center uppercase tracking-widest select-none font-sans">
-                  {Math.round(zoomSteps[getCurrentStepIndex()] * 100)}%
-                </span>
-                <button
-                  onClick={() => {
-                    const currentIdx = getCurrentStepIndex();
-                    if (currentIdx < zoomSteps.length - 1) {
-                      const nextStep = zoomSteps[currentIdx + 1];
-                      const nextScale = baseScale * nextStep;
-                      setScale(nextScale);
-                    }
-                  }}
-                  disabled={getCurrentStepIndex() === zoomSteps.length - 1}
-                  className="w-7 h-7 flex items-center justify-center rounded-none bg-neutral-100 hover:bg-neutral-250 text-neutral-800 cursor-pointer transition-colors border-none text-xs font-bold disabled:opacity-40 disabled:cursor-not-allowed"
-                  title="Zoom In"
-                >
-                  <ZoomIn className="w-3.5 h-3.5" />
-                </button>
-                {scale !== baseScale && (
+              return (
+                <div className="w-full md:w-[60%] product-studio-bg flex items-center justify-center p-2 sm:p-4 border-b md:border-b-0 md:border-r border-neutral-200/60 h-[32vh] min-h-[240px] sm:h-[300px] md:h-full relative overflow-hidden group select-none shrink-0">
+                  {/* Expand to Fullscreen Button */}
                   <button
-                    onClick={() => {
-                      setScale(baseScale);
-                      setPosition({ x: 0, y: 0 });
-                    }}
-                    className="ml-1 w-7 h-7 flex items-center justify-center rounded-none bg-neutral-950 hover:bg-primary text-white cursor-pointer transition-colors border-none"
-                    title="Reset"
+                    onClick={() => setIsFullscreenImage(true)}
+                    className="absolute top-3 left-3 bg-neutral-950 hover:bg-primary text-white p-2 rounded-none border-none transition-all duration-300 z-20 cursor-pointer flex items-center justify-center shadow-lg"
+                    title="Expand Image"
+                    aria-label="Expand Image to Fullscreen"
                   >
-                    <RefreshCw className="w-3 h-3" />
+                    <Maximize2 className="w-4 h-4 text-white" />
                   </button>
-                )}
-              </div>
-            </div>
+
+                  {/* Photo Counter Badge */}
+                  {hasMultipleModalImages && (
+                    <div className="absolute top-3 right-14 md:right-4 bg-neutral-900/80 backdrop-blur-md text-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider z-20 flex items-center gap-1.5 shadow-md">
+                      <ImageIcon className="w-3 h-3 text-primary" />
+                      <span>{modalImageIndex + 1} / {modalImages.length}</span>
+                    </div>
+                  )}
+
+                  {/* Left / Right Floating Navigation Arrows */}
+                  {hasMultipleModalImages && (
+                    <>
+                      <button
+                        onClick={handlePrevImage}
+                        className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/95 hover:bg-white text-neutral-900 shadow-xl flex items-center justify-center border border-neutral-200/90 transition-all hover:scale-110 active:scale-95 z-20 cursor-pointer"
+                        title="Foto anterior"
+                        aria-label="Foto anterior"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={handleNextImage}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/95 hover:bg-white text-neutral-900 shadow-xl flex items-center justify-center border border-neutral-200/90 transition-all hover:scale-110 active:scale-95 z-20 cursor-pointer"
+                        title="Próxima foto"
+                        aria-label="Próxima foto"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </>
+                  )}
+
+                  <div 
+                    className="w-full h-full flex items-center justify-center overflow-hidden cursor-default relative p-4"
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={handleMouseUpOrLeave}
+                    onMouseLeave={handleMouseUpOrLeave}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleMouseUpOrLeave}
+                    onDoubleClick={handleDoubleClick}
+                  >
+                    <img 
+                      key={currentModalImage}
+                      src={currentModalImage} 
+                      alt={selectedBike.name} 
+                      style={{
+                        transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
+                        transformOrigin: "center center",
+                        transition: isDragging ? "none" : "transform 0.2s ease-out"
+                      }}
+                      className={`max-h-[105%] max-w-[105%] md:max-h-[90%] md:max-w-[90%] object-contain select-none transition-opacity duration-300 ${
+                        modalImageIndex === 0 ? "vehicle-drop-shadow" : "rounded-lg shadow-sm"
+                      } ${
+                        scale > baseScale ? (isDragging ? "cursor-grabbing" : "cursor-grab") : "cursor-zoom-in"
+                      }`}
+                      draggable="false"
+                    />
+                  </div>
+
+                  {/* Bottom Gallery Thumbnails Carousel & Zoom Controls */}
+                  <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex items-center gap-2 z-20 max-w-[95%]">
+                    {hasMultipleModalImages && (
+                      <div className="flex items-center gap-1.5 bg-white/95 backdrop-blur-md border border-neutral-200/90 px-2.5 py-1 shadow-lg overflow-x-auto rounded-full">
+                        {modalImages.map((imgUrl, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => handleSelectImageIndex(idx)}
+                            className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border-2 transition-all p-0.5 bg-neutral-100 flex-shrink-0 cursor-pointer ${
+                              modalImageIndex === idx
+                                ? "border-primary scale-110 shadow-sm ring-2 ring-primary/40 bg-white"
+                                : "border-neutral-200 opacity-60 hover:opacity-100"
+                            }`}
+                            title={`Foto ${idx + 1}`}
+                          >
+                            <img src={imgUrl} alt="" className="w-full h-full object-contain rounded-full" />
+                          </button>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Floating Zoom Controls */}
+                    <div className="flex items-center gap-1 bg-white/95 backdrop-blur-md border border-neutral-200/90 rounded-full px-2.5 py-1 shadow-lg">
+                      <button
+                        onClick={() => {
+                          const currentIdx = getCurrentStepIndex();
+                          if (currentIdx > 0) {
+                            const nextStep = zoomSteps[currentIdx - 1];
+                            const nextScale = baseScale * nextStep;
+                            setScale(nextScale);
+                            if (nextStep === 1.0) setPosition({ x: 0, y: 0 });
+                          }
+                        }}
+                        disabled={getCurrentStepIndex() === 0}
+                        className="w-6 h-6 flex items-center justify-center rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-800 cursor-pointer transition-colors border-none text-xs font-bold disabled:opacity-40 disabled:cursor-not-allowed"
+                        title="Zoom Out"
+                      >
+                        <ZoomOut className="w-3 h-3" />
+                      </button>
+                      <span className="text-[9px] font-bold text-neutral-600 min-w-8 text-center uppercase tracking-widest select-none font-sans">
+                        {Math.round(zoomSteps[getCurrentStepIndex()] * 100)}%
+                      </span>
+                      <button
+                        onClick={() => {
+                          const currentIdx = getCurrentStepIndex();
+                          if (currentIdx < zoomSteps.length - 1) {
+                            const nextStep = zoomSteps[currentIdx + 1];
+                            const nextScale = baseScale * nextStep;
+                            setScale(nextScale);
+                          }
+                        }}
+                        disabled={getCurrentStepIndex() === zoomSteps.length - 1}
+                        className="w-6 h-6 flex items-center justify-center rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-800 cursor-pointer transition-colors border-none text-xs font-bold disabled:opacity-40 disabled:cursor-not-allowed"
+                        title="Zoom In"
+                      >
+                        <ZoomIn className="w-3 h-3" />
+                      </button>
+                      {scale !== baseScale && (
+                        <button
+                          onClick={() => {
+                            setScale(baseScale);
+                            setPosition({ x: 0, y: 0 });
+                          }}
+                          className="ml-0.5 w-6 h-6 flex items-center justify-center rounded-full bg-neutral-950 hover:bg-primary text-white cursor-pointer transition-colors border-none"
+                          title="Reset"
+                        >
+                          <RefreshCw className="w-2.5 h-2.5" />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
 
             {/* Right Frame */}
             <div className="w-full md:w-[40%] p-6 md:p-8 flex flex-col justify-between flex-1 min-h-0 md:h-full bg-[#FCFBFA] overflow-hidden">
@@ -1044,129 +1234,171 @@ export default function CatalogPage() {
         </div>
       )}
 
-      {/* Fullscreen Image Overlay */}
-      {isFullscreenImage && selectedBike && (
-        <div className="fixed inset-0 w-full h-full bg-neutral-950 z-[999] flex flex-col items-center justify-center p-4 select-none">
-          <div className="absolute top-4 right-4 flex items-center gap-3 z-10">
-            {/* Reset Zoom */}
-            {fullscreenScale !== 1 && (
+      {/* Fullscreen Image Preview Modal */}
+      {isFullscreenImage && selectedBike && (() => {
+        const modalImages = (selectedBike.images && selectedBike.images.length > 0) ? selectedBike.images : [selectedBike.image];
+        const currentModalImage = modalImages[modalImageIndex] || selectedBike.image;
+        const hasMultipleModalImages = modalImages.length > 1;
+
+        return (
+          <div className="fixed inset-0 z-[100] bg-neutral-950/95 flex items-center justify-center p-4 select-none animate-fade-in backdrop-blur-md">
+            {/* Top Bar with Title, Counter and Close Button */}
+            <div className="absolute top-4 left-6 right-6 flex items-center justify-between z-30 pointer-events-none">
+              <div className="flex items-center gap-3 pointer-events-auto">
+                <span className="text-white font-bold text-sm bg-neutral-900/80 px-4 py-2 rounded-full border border-neutral-800 backdrop-blur-md shadow-lg">
+                  {selectedBike.name}
+                </span>
+                {hasMultipleModalImages && (
+                  <span className="text-white/80 text-xs bg-neutral-900/80 px-3 py-2 rounded-full border border-neutral-800 backdrop-blur-md font-semibold flex items-center gap-1.5 shadow-lg">
+                    <ImageIcon className="w-3.5 h-3.5 text-primary" />
+                    <span>Foto {modalImageIndex + 1} de {modalImages.length}</span>
+                  </span>
+                )}
+              </div>
               <button
-                onClick={() => {
+                onClick={() => setIsFullscreenImage(false)}
+                className="pointer-events-auto bg-neutral-900/80 hover:bg-neutral-800 text-white p-2.5 rounded-full border border-neutral-700 transition-all cursor-pointer shadow-xl hover:scale-105"
+                aria-label="Fechar"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Fullscreen Navigation Arrows */}
+            {hasMultipleModalImages && (
+              <>
+                <button
+                  onClick={handlePrevImage}
+                  className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-neutral-900/80 hover:bg-neutral-800 text-white shadow-2xl flex items-center justify-center border border-neutral-700 transition-all hover:scale-110 active:scale-95 z-30 cursor-pointer"
+                  title="Foto anterior"
+                  aria-label="Foto anterior"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={handleNextImage}
+                  className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-neutral-900/80 hover:bg-neutral-800 text-white shadow-2xl flex items-center justify-center border border-neutral-700 transition-all hover:scale-110 active:scale-95 z-30 cursor-pointer"
+                  title="Próxima foto"
+                  aria-label="Próxima foto"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </>
+            )}
+
+            <div 
+              className="w-full h-full flex items-center justify-center overflow-hidden cursor-default relative p-4"
+              onMouseDown={(e) => {
+                if (fullscreenScale <= 1) return;
+                setIsFullscreenDragging(true);
+                setFullscreenDragStart({ x: e.clientX - fullscreenPosition.x, y: e.clientY - fullscreenPosition.y });
+              }}
+              onMouseMove={(e) => {
+                if (!isFullscreenDragging || fullscreenScale <= 1) return;
+                e.preventDefault();
+                const newX = e.clientX - fullscreenDragStart.x;
+                const newY = e.clientY - fullscreenDragStart.y;
+                const maxDragX = (fullscreenScale - 1) * window.innerWidth / 2;
+                const maxDragY = (fullscreenScale - 1) * window.innerHeight / 2;
+                setFullscreenPosition({
+                  x: Math.max(-maxDragX, Math.min(maxDragX, newX)),
+                  y: Math.max(-maxDragY, Math.min(maxDragY, newY))
+                });
+              }}
+              onMouseUp={() => setIsFullscreenDragging(false)}
+              onMouseLeave={() => setIsFullscreenDragging(false)}
+              onTouchStart={(e) => {
+                if (fullscreenScale <= 1 || e.touches.length !== 1) return;
+                setIsFullscreenDragging(true);
+                const touch = e.touches[0];
+                setFullscreenDragStart({ x: touch.clientX - fullscreenPosition.x, y: touch.clientY - fullscreenPosition.y });
+              }}
+              onTouchMove={(e) => {
+                if (!isFullscreenDragging || fullscreenScale <= 1 || e.touches.length !== 1) return;
+                const touch = e.touches[0];
+                const newX = touch.clientX - fullscreenDragStart.x;
+                const newY = touch.clientY - fullscreenDragStart.y;
+                const maxDragX = (fullscreenScale - 1) * window.innerWidth / 2;
+                const maxDragY = (fullscreenScale - 1) * window.innerHeight / 2;
+                setFullscreenPosition({
+                  x: Math.max(-maxDragX, Math.min(maxDragX, newX)),
+                  y: Math.max(-maxDragY, Math.min(maxDragY, newY))
+                });
+              }}
+              onTouchEnd={() => setIsFullscreenDragging(false)}
+              onDoubleClick={() => {
+                if (fullscreenScale > 1) {
                   setFullscreenScale(1);
                   setFullscreenPosition({ x: 0, y: 0 });
+                } else {
+                  setFullscreenScale(2);
+                  setFullscreenPosition({ x: 0, y: 0 });
+                }
+              }}
+            >
+              <img
+                key={currentModalImage}
+                src={currentModalImage}
+                alt={selectedBike.name}
+                style={{
+                  transform: `translate(${fullscreenPosition.x}px, ${fullscreenPosition.y}px) scale(${fullscreenScale})`,
+                  transformOrigin: "center center",
+                  transition: isFullscreenDragging ? "none" : "transform 0.2s ease-out"
                 }}
-                className="bg-neutral-900 text-white p-3 rounded-full border border-neutral-800 hover:bg-neutral-800 transition-colors cursor-pointer flex items-center justify-center"
-              >
-                <RefreshCw className="w-5 h-5 text-primary" />
-              </button>
-            )}
-            {/* Close Fullscreen */}
-            <button
-              onClick={() => {
-                setIsFullscreenImage(false);
-                setFullscreenScale(1);
-                setFullscreenPosition({ x: 0, y: 0 });
-              }}
-              className="bg-neutral-900 text-white p-3 rounded-full border border-neutral-800 hover:bg-neutral-800 transition-colors cursor-pointer flex items-center justify-center"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
+                className="max-w-full max-h-full object-contain select-none"
+                draggable="false"
+              />
+            </div>
 
-          {/* Zoomable Image inside Fullscreen */}
-          <div
-            className="w-full h-full flex items-center justify-center overflow-hidden"
-            onMouseDown={(e) => {
-              if (fullscreenScale <= 1) return;
-              setIsFullscreenDragging(true);
-              setFullscreenDragStart({ x: e.clientX - fullscreenPosition.x, y: e.clientY - fullscreenPosition.y });
-            }}
-            onMouseMove={(e) => {
-              if (!isFullscreenDragging || fullscreenScale <= 1) return;
-              e.preventDefault();
-              const newX = e.clientX - fullscreenDragStart.x;
-              const newY = e.clientY - fullscreenDragStart.y;
-              const maxDragX = (fullscreenScale - 1) * window.innerWidth / 2;
-              const maxDragY = (fullscreenScale - 1) * window.innerHeight / 2;
-              setFullscreenPosition({
-                x: Math.max(-maxDragX, Math.min(maxDragX, newX)),
-                y: Math.max(-maxDragY, Math.min(maxDragY, newY))
-              });
-            }}
-            onMouseUp={() => setIsFullscreenDragging(false)}
-            onMouseLeave={() => setIsFullscreenDragging(false)}
-            onTouchStart={(e) => {
-              if (fullscreenScale <= 1 || e.touches.length !== 1) return;
-              setIsFullscreenDragging(true);
-              const touch = e.touches[0];
-              setFullscreenDragStart({ x: touch.clientX - fullscreenPosition.x, y: touch.clientY - fullscreenPosition.y });
-            }}
-            onTouchMove={(e) => {
-              if (!isFullscreenDragging || fullscreenScale <= 1 || e.touches.length !== 1) return;
-              const touch = e.touches[0];
-              const newX = touch.clientX - fullscreenDragStart.x;
-              const newY = touch.clientY - fullscreenDragStart.y;
-              const maxDragX = (fullscreenScale - 1) * window.innerWidth / 2;
-              const maxDragY = (fullscreenScale - 1) * window.innerHeight / 2;
-              setFullscreenPosition({
-                x: Math.max(-maxDragX, Math.min(maxDragX, newX)),
-                y: Math.max(-maxDragY, Math.min(maxDragY, newY))
-              });
-            }}
-            onTouchEnd={() => setIsFullscreenDragging(false)}
-            onDoubleClick={() => {
-              if (fullscreenScale > 1) {
-                setFullscreenScale(1);
-                setFullscreenPosition({ x: 0, y: 0 });
-              } else {
-                setFullscreenScale(2);
-                setFullscreenPosition({ x: 0, y: 0 });
-              }
-            }}
-          >
-            <img
-              src={selectedBike.image}
-              alt={selectedBike.name}
-              style={{
-                transform: `translate(${fullscreenPosition.x}px, ${fullscreenPosition.y}px) scale(${fullscreenScale})`,
-                transformOrigin: "center center",
-                transition: isFullscreenDragging ? "none" : "transform 0.2s ease-out"
-              }}
-              className="max-w-full max-h-full object-contain select-none"
-              draggable="false"
-            />
-          </div>
+            {/* Floating Zoom & Thumbnails for Fullscreen */}
+            <div className="absolute bottom-6 flex flex-col items-center gap-3 z-30 pointer-events-auto">
+              {hasMultipleModalImages && (
+                <div className="flex items-center gap-2 bg-neutral-900/90 border border-neutral-800 rounded-full px-3 py-1.5 shadow-2xl backdrop-blur-md">
+                  {modalImages.map((imgUrl, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => handleSelectImageIndex(idx)}
+                      className={`w-8 h-8 rounded-full overflow-hidden border-2 transition-all p-0.5 bg-neutral-800 flex-shrink-0 cursor-pointer ${
+                        modalImageIndex === idx ? "border-primary scale-110 shadow-md ring-2 ring-primary/40" : "border-neutral-700 opacity-50 hover:opacity-100"
+                      }`}
+                      title={`Foto ${idx + 1}`}
+                    >
+                      <img src={imgUrl} alt="" className="w-full h-full object-contain rounded-full" />
+                    </button>
+                  ))}
+                </div>
+              )}
 
-          {/* Floating Zoom Indicators for Fullscreen */}
-          <div className="absolute bottom-6 flex items-center gap-4 bg-neutral-900/90 border border-neutral-800 rounded-full px-5 py-2.5 shadow-2xl">
-            <button
-              onClick={() => {
-                const newScale = Math.max(1, fullscreenScale - 0.25);
-                setFullscreenScale(newScale);
-                if (newScale === 1) setFullscreenPosition({ x: 0, y: 0 });
-              }}
-              disabled={fullscreenScale <= 1}
-              className="text-white hover:text-primary cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed bg-transparent border-none"
-            >
-              <ZoomOut className="w-5 h-5" />
-            </button>
-            <span className="text-xs font-black text-white min-w-12 text-center uppercase tracking-widest">
-              {Math.round(fullscreenScale * 100)}%
-            </span>
-            <button
-              onClick={() => {
-                const newScale = Math.min(3, fullscreenScale + 0.25);
-                setFullscreenScale(newScale);
-              }}
-              disabled={fullscreenScale >= 3}
-              className="text-white hover:text-primary cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed bg-transparent border-none"
-            >
-              <ZoomIn className="w-5 h-5" />
-            </button>
+              <div className="flex items-center gap-4 bg-neutral-900/90 border border-neutral-800 rounded-full px-5 py-2 shadow-2xl backdrop-blur-md">
+                <button
+                  onClick={() => {
+                    const newScale = Math.max(1, fullscreenScale - 0.25);
+                    setFullscreenScale(newScale);
+                    if (newScale === 1) setFullscreenPosition({ x: 0, y: 0 });
+                  }}
+                  disabled={fullscreenScale <= 1}
+                  className="text-white hover:text-primary cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed bg-transparent border-none"
+                >
+                  <ZoomOut className="w-4 h-4" />
+                </button>
+                <span className="text-xs font-black text-white min-w-12 text-center uppercase tracking-widest">
+                  {Math.round(fullscreenScale * 100)}%
+                </span>
+                <button
+                  onClick={() => {
+                    const newScale = Math.min(3, fullscreenScale + 0.25);
+                    setFullscreenScale(newScale);
+                  }}
+                  disabled={fullscreenScale >= 3}
+                  className="text-white hover:text-primary cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed bg-transparent border-none"
+                >
+                  <ZoomIn className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      )}
-
+        );
+      })()}
 
     </div>
   );
