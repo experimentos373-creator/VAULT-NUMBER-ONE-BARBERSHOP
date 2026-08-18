@@ -783,7 +783,9 @@ export const bikes = [
       "battery": "6 meses de garantia de bateria"
     },
     "images": [
-      "/images/vehicles/neovolt_flow.webp"
+      "/images/vehicles/neovolt_flow.webp",
+      "/images/vehicles/gallery/neovolt-flow/gallery_1.webp",
+      "/images/vehicles/gallery/neovolt-flow/gallery_2.webp"
     ]
   },
   {
