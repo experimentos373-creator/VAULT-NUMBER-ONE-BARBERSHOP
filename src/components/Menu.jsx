@@ -117,7 +117,7 @@ export default function Menu() {
               className="flex gap-6 transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
               style={{ transform: `translateX(calc(-${currentIndex} * (100% + 24px) / ${cardsPerView}))` }}
             >
-              {popularBikes.map((bike) => (
+              {popularBikes.map((bike, index) => (
                 <div 
                   key={bike.id} 
                   className="flex-shrink-0"
@@ -137,7 +137,7 @@ export default function Menu() {
                       <img
                         src={bike.image}
                         alt={bike.name}
-                        loading="lazy"
+                        loading={index < 2 ? "eager" : "lazy"}
                         width="300"
                         height="225"
                         className="max-w-[92%] max-h-[92%] object-contain vehicle-drop-shadow group-hover:scale-106"

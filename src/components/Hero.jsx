@@ -11,15 +11,18 @@ export default function Hero() {
     >
       {/* Full-bleed Showroom Background Cover Image */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="/images/route109_hero.webp"
-          alt="Showroom Route N109 - Motos e Scooters Elétricas"
-          fetchPriority="high"
-          decoding="async"
-          width="1200"
-          height="800"
-          className="w-full h-full object-cover object-[60%_20%] md:object-[50%_20%] scale-100 filter brightness-[0.80] contrast-[1.4]"
-        />
+        <picture>
+          <source media="(max-width: 640px)" srcSet="/images/route109_hero_mobile.webp" type="image/webp" />
+          <img
+            src="/images/route109_hero.webp"
+            alt="Showroom Route N109 - Motos e Scooters Elétricas"
+            fetchPriority="high"
+            decoding="async"
+            width="1200"
+            height="800"
+            className="w-full h-full object-cover object-[60%_20%] md:object-[50%_20%] scale-100 filter brightness-[0.80] contrast-[1.4]"
+          />
+        </picture>
         {/* Layered Gradient Overlays for optimal readability & atmosphere */}
         <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/80 via-neutral-950/50 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-neutral-950/30" />

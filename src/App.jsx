@@ -6,8 +6,9 @@ import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
 import { LanguageProvider } from "./context/LanguageContext";
 
-// Lazy load pages for chunk splitting and optimized performance
-const Home = lazy(() => import("./pages/Home"));
+import Home from "./pages/Home";
+
+// Lazy load secondary pages for chunk splitting
 const SEOPage = lazy(() => import("./pages/SEOPage"));
 const CatalogPage = lazy(() => import("./pages/CatalogPage"));
 
