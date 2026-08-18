@@ -1558,9 +1558,7 @@ export const bikes = [
     "images": [
       "/images/vehicles/triciclo_fun.webp",
       "/images/vehicles/gallery/triciclo-fun-2-lugares/gallery_1.webp",
-      "/images/vehicles/gallery/triciclo-fun-2-lugares/gallery_2.webp",
-      "/images/vehicles/gallery/triciclo-fun-2-lugares/gallery_3.webp",
-      "/images/vehicles/gallery/triciclo-fun-2-lugares/gallery_4.webp"
+      "/images/vehicles/gallery/triciclo-fun-2-lugares/gallery_2.webp"
     ]
   },
   {
@@ -1698,7 +1696,9 @@ export const bikes = [
       "battery": "6 meses de garantia de bateria"
     },
     "images": [
-      "/images/vehicles/luna_qc_3_lugares.webp"
+      "/images/vehicles/luna_qc_3_lugares.webp",
+      "/images/vehicles/gallery/luna-qc-3-lugares/gallery_1.webp",
+      "/images/vehicles/gallery/luna-qc-3-lugares/gallery_2.webp"
     ]
   },
   {
