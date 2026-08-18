@@ -1767,7 +1767,9 @@ export const bikes = [
       "battery": "6 meses de garantia de bateria"
     },
     "images": [
-      "/images/vehicles/tokio_i32_4_rodas.webp"
+      "/images/vehicles/tokio_i32_4_rodas.webp",
+      "/images/vehicles/gallery/tokio-i32-4-rodas/gallery_1.webp",
+      "/images/vehicles/gallery/tokio-i32-4-rodas/gallery_2.webp"
     ]
   },
   {
@@ -2266,9 +2268,7 @@ export const bikes = [
     "images": [
       "/images/vehicles/tokio_3_rodas.webp",
       "/images/vehicles/gallery/tokio-3-rodas-mobilidade/gallery_1.webp",
-      "/images/vehicles/gallery/tokio-3-rodas-mobilidade/gallery_2.webp",
-      "/images/vehicles/gallery/tokio-3-rodas-mobilidade/gallery_3.webp",
-      "/images/vehicles/gallery/tokio-3-rodas-mobilidade/gallery_4.webp"
+      "/images/vehicles/gallery/tokio-3-rodas-mobilidade/gallery_2.webp"
     ]
   },
   {
